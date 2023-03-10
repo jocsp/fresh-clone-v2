@@ -1,0 +1,392 @@
+* {
+  padding: 0px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.m-top-5 {
+  margin-top: 5px;
+}
+
+.m-top-10 {
+  margin-top: 10px;
+}
+
+.m-right-10 {
+  margin-right: 10px;
+}
+
+.m-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.m-left-10 {
+  margin-left: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.standard-input {
+  box-shadow: 1px 1px 5px rgba(200, 200, 200, 0.9);
+  border-radius: 5px;
+  height: 28px;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: 1px solid rgba(200, 200, 200, 0.9);
+}
+
+.standard-input:focus {
+  outline: 1px solid rgb(25, 25, 25);
+}
+
+.standard-button {
+  border-radius: 5px;
+  border: 1px solid rgba(200, 200, 200, 0.9);
+  height: 28px;
+  line-height: 20px;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.error {
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #e7195a;
+  background-color: #e7195a11;
+  color: #e7195a;
+  padding: 5px 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* VERTICAL NAVBAR */
+
+.vertical-nav {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #12344d;
+  width: 50px;
+  height: 100vh;
+  text-align: center;
+  color: white;
+}
+
+.vertical-nav a {
+  color: #ffffff;
+  padding: 10px 0 10px 0;
+}
+
+.vertical-nav a:hover {
+  background-color: #38556a;
+}
+
+/*LOGIN PAGE*/
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  border-radius: 30px;
+  background-color: #12b319;
+  border: 1px solid #23c42a;
+  color: white;
+  cursor: pointer;
+}
+
+.login-button:focus {
+  outline: 1px solid #01a208;
+}
+
+.login-button:hover {
+  background-color: #34c52b;
+}
+
+/***** TOP BAR *****/
+
+.top-bar {
+  position: relative;
+  left: 50px;
+  width: calc(100vw - 50px);
+  height: 50px;
+  line-height: 30px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.7);
+  background-color: #ffffff;
+}
+
+.new-button {
+  border: 1px solid #cfd7df;
+  border-radius: 5px;
+  background-color: #fdfdfd;
+  padding: 5px;
+  color: black;
+}
+
+.new-button:hover {
+  background-color: #dddddd;
+}
+
+.profile-image {
+  background-color: #e6d0ee;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.search-input {
+  box-shadow: none;
+}
+
+/******* BOTTOM BAR *******/
+
+.bottom-bar {
+  position: relative;
+  left: 50px;
+  height: 40px;
+  line-height: 30px;
+  width: calc(100vw - 50px);
+  border-bottom: 1px solid rgba(222, 222, 222, 0.7);
+  background-color: #f5f7f9;
+  padding: 10px;
+}
+
+/* NEW TICKET */
+
+/* input new ticket */
+
+.new-ticket {
+  background-color: #ebeff3;
+}
+
+.new-ticket-form {
+  position: relative;
+  margin-top: 10px;
+  left: 60px;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  padding: 10px;
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* hide scroll-bar in IE and Edge */
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+  width: calc(100vw - 280px);
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+/* hide scroll bar in Chrome, Safari and Opera*/
+.new-ticket-form::-webkit-scrollbar {
+  display: none;
+}
+
+/* input new ticket */
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.input {
+  border-radius: 5px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgba(100, 100, 100, 0.9);
+}
+
+.empty {
+  border: 1px solid #e7195a;
+}
+
+/* text area */
+
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+}
+
+.text-area-container textarea {
+  resize: none;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bcbcbc;
+  height: 200px;
+}
+
+/* new tickets buttons */
+
+.new-ticket-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 20px auto;
+}
+
+.new-ticket-buttons button {
+  background-color: #fbfcfc;
+  border-radius: 5px;
+  color: #000000;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  padding: 5px 10px;
+}
+
+.create-button {
+  margin-left: 10px;
+  background-color: #224561 !important;
+  color: #ffffff !important;
+}
+
+/*error new ticket */
+
+.error-new-ticket {
+  display: block;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.input-container-multitag {
+  width: 100%;
+  min-height: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: left;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  padding: 5px 10px;
+  cursor: text;
+  line-height: 24px;
+}
+
+.input-container-multitag:focus-within {
+  outline: 1px solid black;
+}
+
+.editable {
+  display: inline-block;
+  min-width: 5px;
+  max-width: auto;
+  height: 16px;
+  line-height: 16px;
+}
+
+.editable:focus {
+  outline: none;
+}
+
+.options {
+  background-color: #fff;
+  border-radius: 5px;
+  min-height: 40px;
+  max-height: 150px;
+  margin-top: 5px;
+  position: absolute;
+  padding: 5px 10px;
+  overflow: auto;
+  width: 211px;
+  box-shadow: 0.5px 0.5px 5px #3334, -0.5px -0.5px 5px #3334;
+}
+
+/* options container for  single select component */
+
+.options-single {
+  width: 69%;
+  margin-top: 70px;
+}
+
+.options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.options::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.options::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
+}
+
+.option {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+.option-selected-container {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.option-selected {
+  background-color: #ebeff2;
+  padding: 3px 0 3px 3px;
+  border-radius: 3px 0 0 3px;
+  user-select: none;
+}
+
+.delete-button {
+  background-color: #ebeff2;
+  padding: 3px 3px 3px 3px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.cross-icon {
+  font-size: small;
+}
+
+.delete-button:hover {
+  background-color: #dadee1;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: rgba(229, 242, 253, 255);
+  color: rgba(44, 92, 197, 200);
+  user-select: none;
+}
+
+.check-icon {
+  color: #2c5cc5;
+}
+
+.selected-container:empty + .editable:empty::before {
+  content: "Any";
+  color: rgb(170, 170, 170);
+}

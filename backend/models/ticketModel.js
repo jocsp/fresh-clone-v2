@@ -24,6 +24,10 @@ ticketSchema.statics.createTicket = async function (data) {
     throw Error("All fields must be filled");
   }
 
+  const ticket_number = await this.countDocuments({});
+
+  data.ticket_number = ticket_number + 1;
+
   const ticket = await this.create(data);
 
   return ticket;

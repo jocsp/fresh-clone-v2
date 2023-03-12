@@ -10,12 +10,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:5000/api/user/login
+GET http://localhost:5000/api/ticket/get-tickets
 Content-Type: application/json
-
-{
-    "username": "jose",
-    "password": "jose"
-}
 
 ###

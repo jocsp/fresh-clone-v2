@@ -75,6 +75,27 @@ a {
   text-decoration: none;
 }
 
+/***** LOADING div *****/
+
+.loading {
+  height: 70px;
+  width: 70px;
+  border: 10px dotted gray;
+  border-radius: 50%;
+  margin: auto;
+  animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
 /* VERTICAL NAVBAR */
 
 .vertical-nav {

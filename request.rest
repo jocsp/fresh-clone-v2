@@ -14,3 +14,13 @@ GET http://localhost:5000/api/ticket/get-tickets
 Content-Type: application/json
 
 ###
+
+POST http://localhost:5000/api/note/add-note 
+Content-Type: application/json
+
+{
+    "by": "Jose Socorro",
+    "content": "This is a note really important note",
+    "noteDate": "10/11/2020",
+    "ticket_number": 1
+}

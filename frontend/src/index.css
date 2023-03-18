@@ -1,3 +1,7 @@
+:root {
+  --blueish: #3a4fc8;
+}
+
 * {
   padding: 0px;
   margin: 0;
@@ -10,6 +14,14 @@
 
 .m-top-10 {
   margin-top: 10px;
+}
+
+.m-top-20 {
+  margin-top: 20px;
+}
+
+.m-top-50 {
+  margin-top: 50px;
 }
 
 .m-right-10 {
@@ -30,6 +42,10 @@
 
 .light-font {
   color: rgba(50, 50, 50, 0.7);
+}
+
+.blueish-font {
+  color: var(--blueish);
 }
 
 .standard-input {
@@ -63,11 +79,16 @@
   padding: 5px 10px;
 }
 
-.flex {
+.flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
 }
 
 a {
@@ -82,8 +103,10 @@ a {
   width: 70px;
   border: 10px dotted gray;
   border-radius: 50%;
-  margin: auto;
   animation: rotation 3s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @keyframes rotation {
@@ -439,6 +462,12 @@ a {
   background-color: #ffffff;
 }
 
+.empty-message {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
 /***** TICKET CARD *****/
 
 .ticket-card-container {
@@ -474,4 +503,246 @@ a {
 
 table {
   width: 100%;
+}
+
+.subject-card:hover {
+  color: var(--blueish);
+}
+
+/***** SINGLE TICKET *****/
+
+.single-ticket-page {
+  background-color: #ebeff3;
+}
+
+.single-ticket-container {
+  position: relative;
+  left: 70px;
+  width: calc(100vw - 560px);
+  height: calc(100vh - 50px);
+  background-color: #ffffff;
+  padding: 20px 30px;
+  overflow: auto;
+  -ms-overflow-style: none; /* hide scroll-bar in IE and Edge */
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+}
+
+/* hide scroll bar in Chrome, Safari and Opera*/
+.single-ticket-container::-webkit-scrollbar {
+  display: none;
+}
+
+.subject {
+  font-size: 1.3rem;
+}
+
+.description {
+  margin-left: 40px;
+}
+
+/* Add note div and button */
+
+.add-note-div {
+  width: 100%;
+  height: 40px;
+  background-color: #f5f7f9;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.add-note {
+  background-color: #fcfdfd;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  border-radius: 5px;
+  color: #000000;
+  height: 30px;
+  padding: 5px 10px;
+}
+
+.add-note:hover {
+  background-color: #ebecec;
+  border: 1px solid rgb(190, 190, 190);
+}
+
+/***** ADDING NOTE PAGE *****/
+
+.button-default {
+  background-color: #fcfdfd;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  border-radius: 5px;
+  color: #000000;
+  height: 30px;
+  padding: 5px 10px;
+}
+
+.button-default:hover {
+  background-color: #ebecec;
+  border: 1px solid rgb(190, 190, 190);
+}
+
+.dark-bc {
+  background-color: #21435f;
+  color: white !important;
+}
+
+.dark-bc:hover {
+  background-color: #11334f;
+  border: 1px solid rgb(0, 31, 59);
+}
+
+.adding-note-bottom-bar {
+  width: 100%;
+  height: 40px;
+  background-color: #f5f7f9;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+}
+
+.note-textarea-container {
+  height: 120px;
+}
+
+.note-textarea {
+  width: 100%;
+  resize: none;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  border-bottom: 0;
+}
+
+.note-textarea:focus {
+  outline: none;
+}
+
+/***** NOTE *****/
+
+.note {
+  background-color: #fef1e1;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(222, 222, 222, 0.3);
+}
+
+.note-date {
+  font-size: 12px;
+  color: rgba(50, 50, 50, 0.7);
+}
+
+.note-content {
+  margin-left: 40px;
+}
+
+/***** DASHBOARD *****/
+
+.dashboard-container {
+  background-color: #ebeff3;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* DASHBOARD CARD */
+
+.dashboard-card-container {
+  position: relative;
+  top: 10px;
+  left: 60px;
+  width: calc(100vw - 60px - 10px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.dashboard-card {
+  height: 100px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 5px rgba(222, 222, 222, 0.7);
+}
+
+/* TODO */
+
+.todo-container {
+  height: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(222, 222, 222, 0.7);
+  padding: 10px;
+}
+
+.todo-input {
+  border-radius: 0;
+  border: 0 black solid;
+  border-bottom: 1px rgba(222, 222, 222, 0.7) solid;
+  width: 100%;
+  padding: 3px 10px;
+}
+
+.todo-input:focus {
+  outline: 0;
+  border-bottom: 1px rgba(94, 186, 125, 0.7) solid;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.todos {
+  overflow: auto;
+  height: 230px;
+}
+
+.check-todo:checked + p {
+  text-decoration: line-through;
+}
+
+/********/
+
+.todo-activities-container {
+  position: relative;
+  width: calc(100vw - 60px - 10px);
+  height: calc(100vh - 50px - 40px - 100px - 40px);
+  left: 60px;
+  top: 20px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+}
+
+.activities-dashboard-container {
+  background-color: #fff;
+  height: calc(100vh -100px - 20px);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(222, 222, 222, 0.7);
+  padding: 15px;
+  overflow: auto;
+}
+
+.activity {
+  padding: 10px;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.7);
+  display: flex;
+  gap: 10px;
+}
+
+.profile-image {
+  background-color: #e6d0ee;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.3);
 }

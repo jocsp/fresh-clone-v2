@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const agentRoutes = require("./routes/agentRoutes");
 const filtersRoutes = require("./routes/filtersRoutes");
 const ticketRoutes = require("./routes/ticketRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -25,6 +26,7 @@ app.use("/api/user", agentRoutes);
 
 app.use("/api/filters", filtersRoutes);
 app.use("/api/ticket", ticketRoutes);
+app.use("/api/note", noteRoutes);
 
 mongoose.set("strictQuery", true);
 

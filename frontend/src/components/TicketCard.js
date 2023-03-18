@@ -17,7 +17,7 @@ const TicketCard = ({
       </td>
 
       <td>
-        <Link to={"/ticket/" + ticket_number}>
+        <Link to={"/ticket/" + ticket_number} className="subject-card">
           {subject} <span className="light-font">{" #" + ticket_number}</span>{" "}
         </Link>
       </td>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import axios from "../api/axios";
 
-const useFetchData = ({ url }) => {
+const useFetchData = (url) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -10,7 +10,7 @@ const useFetchData = ({ url }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/ticket/get-tickets");
+        const response = await axios.get(url);
         setData(response.data);
         setLoaded(true);
       } catch (error) {

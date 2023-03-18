@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Tickets from "./pages/Tickets";
 import NewTicket from "./pages/NewTicket";
+import SingleTicket from "./pages/SingleTicket";
 
 function App() {
   const { agent } = useAuthContext();
@@ -28,6 +29,11 @@ function App() {
             <Route
               path="/tickets"
               element={agent ? <Tickets /> : <Navigate to="/login" />}
+            />
+
+            <Route
+              path="/ticket/:ticket_number"
+              element={agent ? <SingleTicket /> : <Navigate to="/login" />}
             />
 
             <Route

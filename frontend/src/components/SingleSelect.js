@@ -16,7 +16,9 @@ const SingleSelect = ({
   }, [optionSelected]);
 
   function selectOption(e) {
-    setOptionSelected(e.target.textContent);
+    const id = e.target.id;
+
+    setOptionSelected({ name: e.target.textContent, _id: id });
     edit.current.value = e.target.textContent;
   }
 
@@ -28,7 +30,7 @@ const SingleSelect = ({
   function handleBlur(e) {
     setDisplay(false);
     setQueriedOptions([...options]);
-    e.target.value = optionSelected;
+    e.target.value = optionSelected.name;
   }
 
   function makeQuery(e) {
@@ -59,10 +61,12 @@ const SingleSelect = ({
       {display ? (
         <div className="options options-single">
           {queriedOptions.map((option) => {
-            let selected = Boolean(optionSelected.includes(option.name));
+            let selected = Boolean(optionSelected._id === option._id);
+
             return (
               <div
                 className={selected ? "option selected" : "option"}
+                id={option._id}
                 onMouseDown={selectOption}
                 key={option._id}
               >

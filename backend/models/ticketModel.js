@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
-  contact: String,
+  contact: { type: mongoose.Schema.Types.ObjectId, ref: "Contact" },
   subject: String,
   type: String,
   status: String,
   priority: String,
   group: String,
-  agent: String,
+  agent: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },
   description: String,
   ticket_number: Number,
   date: Date,
-  createdBy: String,
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }],
   activities: [{ type: mongoose.Schema.Types.ObjectId, ref: "Activity" }],
 });
@@ -24,13 +24,27 @@ ticketSchema.statics.createTicket = async function (data) {
     throw Error("All fields must be filled");
   }
 
-  const ticket_number = await this.countDocuments({});
+  try {
+    const ticket_number = await this.countDocuments({});
 
-  data.ticket_number = ticket_number + 1;
+    const ticket = await this.create({
+      contact: data.contact._id,
+      subject: data.subject,
+      type: data.type.name,
+      status: data.status.name,
+      priority: data.priority.name,
+      group: data.group.name,
+      agent: data.agent._id,
+      description: data.description,
+      date: data.date,
+      createdBy: data.createdBy._id,
+      ticket_number: ticket_number + 1,
+    });
 
-  const ticket = await this.create(data);
-
-  return ticket;
+    return ticket;
+  } catch (error) {
+    throw Error("Error happened when creating ticket");
+  }
 };
 
 module.exports = mongoose.model("Ticket", ticketSchema);

@@ -68,6 +68,7 @@ const NewTicket = () => {
       type: selectedType,
       status: selectedStatus,
       priority: selectedPriority,
+      group: selectedGroup,
       agent: selectedAgent,
       description: description,
       date: new Date(),

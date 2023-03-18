@@ -9,7 +9,7 @@ const Tickets = () => {
     data: tickets,
     loaded,
     error,
-  } = useFetchData({ url: "/api/ticket/get-tickets" });
+  } = useFetchData("/api/ticket/get-tickets");
 
   return (
     <div className="ticket-page">
@@ -27,10 +27,10 @@ const Tickets = () => {
                 return (
                   <TicketCard
                     key={ticket._id}
-                    contact={ticket.contact}
+                    contact={ticket.contact.name}
                     subject={ticket.subject}
                     group={ticket.group}
-                    agent={ticket.agent}
+                    agent={ticket.agent.name}
                     priority={ticket.priority}
                     status={ticket.status}
                     ticket_number={ticket.ticket_number}
@@ -42,6 +42,10 @@ const Tickets = () => {
         ) : (
           <div className="loading"></div>
         )}
+        {loaded && !tickets.length ? (
+          <p className="empty-message">No tickets available</p>
+        ) : null}
+        {error ? <span className="error">{error}</span> : null}
       </div>
     </div>
   );

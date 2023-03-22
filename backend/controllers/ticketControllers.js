@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Ticket = require("../models/ticketModel");
+const Agent = require("../models/agentModel");
 
 const getTickets = async (req, res) => {
   try {
@@ -43,6 +44,11 @@ const newTicket = async (req, res) => {
 
   try {
     const ticket = await Ticket.createTicket(data);
+
+    const agent = await Agent.updateOne(
+      { _id: data.agent._id },
+      { $push: { ticketsAssigned: ticket } }
+    );
 
     res.status(200).json(ticket);
   } catch (error) {

@@ -8,6 +8,8 @@ const agentRoutes = require("./routes/agentRoutes");
 const filtersRoutes = require("./routes/filtersRoutes");
 const ticketRoutes = require("./routes/ticketRoutes");
 const noteRoutes = require("./routes/noteRoutes");
+const todoRoutes = require("./routes/todoRoutes");
+const { checkUser } = require("./middleware/authMiddleware");
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -20,13 +22,17 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+// middleware
+
+app.use(checkUser);
+
 // routes
 
 app.use("/api/user", agentRoutes);
-
 app.use("/api/filters", filtersRoutes);
 app.use("/api/ticket", ticketRoutes);
 app.use("/api/note", noteRoutes);
+app.use("/api/todo", todoRoutes);
 
 mongoose.set("strictQuery", true);
 

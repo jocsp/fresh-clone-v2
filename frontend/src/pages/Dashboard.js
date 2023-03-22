@@ -2,17 +2,27 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import TopBar from "../components/TopBar";
 import DashboardCard from "../components/DashboardCard";
+import ToDo from "../components/ToDo";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Dashboard() {
+  const {
+    agent: { ticketsAssigned },
+  } = useAuthContext();
+
   return (
     <div>
       <NavBar />
       <TopBar title="Dashboard" />
       <div className="bottom-bar"></div>
       <div className="dashboard-card-container">
-        <DashboardCard status="Open" />
-        <DashboardCard status="Pending" />
-        <DashboardCard status="On hold" />
+        <DashboardCard status="Open" tickets={ticketsAssigned} />
+        <DashboardCard status="In process" tickets={ticketsAssigned} />
+        <DashboardCard status="Pending" tickets={ticketsAssigned} />
+      </div>
+
+      <div className="todo-activities-container">
+        <ToDo />
       </div>
     </div>
   );

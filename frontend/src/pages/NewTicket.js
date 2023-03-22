@@ -14,7 +14,7 @@ const NewTicket = () => {
     loaded,
   } = useFiltersContext();
 
-  const { agent: currentAgent } = useAuthContext();
+  const { agent: currentAgent, dispatch } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -82,9 +82,12 @@ const NewTicket = () => {
         data: data,
       });
 
-      navigate("/tickets");
+      dispatch({
+        type: "UPDT-TKTS-ASSGND",
+        payload: { _id: response.data._id, status: response.data.status },
+      });
 
-      console.log(response);
+      navigate("/tickets");
     } catch (error) {
       setError(error.response.data.error);
     }

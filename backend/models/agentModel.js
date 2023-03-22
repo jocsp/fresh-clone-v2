@@ -47,7 +47,10 @@ agentSchema.statics.login = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
-  const agent = await this.findOne({ username }).lean();
+  const agent = await this.findOne({ username })
+    .populate({ path: "ticketsAssigned", select: "_id status" })
+    .populate("todos")
+    .lean();
 
   if (!agent) {
     throw Error("Incorrect username or password");

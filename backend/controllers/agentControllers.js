@@ -20,7 +20,10 @@ const initialAuthAgent = async (req, res) => {
 
   try {
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-    let agent = await Agent.findOne({ _id }).lean();
+    let agent = await Agent.findOne({ _id })
+      .populate({ path: "ticketsAssigned", select: "_id status" })
+      .populate("todos")
+      .lean();
 
     delete agent.password;
 

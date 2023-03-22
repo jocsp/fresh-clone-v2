@@ -1,16 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-function DashboardCard({ status }) {
-  const [countTicket, setCountTicket] = useState(0);
-  const { agent: agent } = useAuthContext();
+function DashboardCard({ status, tickets }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const newArray = tickets.filter((ticket) => ticket.status === status);
+    setCount(newArray.length);
+  }, []);
 
   return (
     <div className="dashboard-card">
       <span>{status}</span>
       <span style={{ fontSize: "1.5rem" }} className="m-top-10 bold">
-        {countTicket}
+        {count}
       </span>
     </div>
   );

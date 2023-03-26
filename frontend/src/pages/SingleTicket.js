@@ -95,6 +95,8 @@ const SingleTicket = () => {
           )}
         </div>
       ) : null}
+
+      {error ? <div className="error"> {error} </div> : null}
     </div>
   );
 };

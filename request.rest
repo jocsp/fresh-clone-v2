@@ -2,10 +2,10 @@ POST http://localhost:5000/api/user/signup
 Content-Type: application/json
 
 {
-    "username": "jose",
-    "password": "jose",
-    "email": "jose@freshclone.com",
-    "name": "Jose Socorro"
+    "username": "test",
+    "password": "test",
+    "email": "test@freshclone.com",
+    "name": "Test Testy"
 }
 
 ###

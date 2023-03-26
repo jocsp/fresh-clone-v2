@@ -1,9 +1,8 @@
-import axios from "../api/axios";
-import React, { useContext, useEffect } from "react";
+import axios from "../../api/axios.js";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import TodoItem from "./TodoItem";
-import { useAuthContext } from "../hooks/useAuthContext";
-import useFetchData from "../hooks/useFetchData";
+import useFetchData from "../../hooks/useFetchData";
 
 const ToDo = () => {
   const {
@@ -12,7 +11,7 @@ const ToDo = () => {
     loaded,
     setReFetch,
   } = useFetchData("/api/todo/get-todos");
-  const { dispatch } = useAuthContext();
+
   const [error, setError] = useState(null);
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState(null);
@@ -50,7 +49,7 @@ const ToDo = () => {
         data: { todo },
       });
 
-      dispatch({ type: "ADD-TODO", payload: response.data });
+      // dispatch({ type: "ADD-TODO", payload: response.data });
 
       setTodos((prevTodos) => [response.data, ...prevTodos]);
 

@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import TopBar from "../components/TopBar";
 import DashboardCard from "../components/DashboardCard";
-import ToDo from "../components/ToDo";
+import ToDo from "../components/ToDo/ToDo";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 function Dashboard() {

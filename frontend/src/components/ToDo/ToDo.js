@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
 import TodoItem from './TodoItem';
 import useFetchData from '../../hooks/useFetchData';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function ToDo() {
   const {
@@ -63,18 +63,25 @@ function ToDo() {
   return (
     <div className="todo-container">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="todo-input"
-          value={todo}
-          onChange={(e) => setTodo(e.target.value)}
-          placeholder="Type in here..."
-        />
+        <h3 className="todo-heading">To-do</h3>
+        <div className="todo-input">
+          <AddCircleIcon
+            className="add-todo"
+            onClick={handleSubmit}
+            style={{ fontSize: 'medium', alignSelf: 'center', color: 'green' }}
+          />
+          <input
+            type="text"
+            value={todo}
+            onChange={(e) => setTodo(e.target.value)}
+            placeholder="Add a to-do"
+          />
+        </div>
       </form>
 
       <div className="todos">
-        {todos
-          && todos.map((todoElement) => (
+        {todos &&
+          todos.map((todoElement) => (
             <TodoItem
               key={todoElement._id}
               todo={todoElement.todo}
@@ -88,10 +95,7 @@ function ToDo() {
       </div>
 
       {error || errorFetching ? (
-        <div className="error">
-          {error || errorFetching}
-          {' '}
-        </div>
+        <div className="error">{error || errorFetching} </div>
       ) : null}
     </div>
   );

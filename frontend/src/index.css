@@ -440,7 +440,7 @@ a {
 }
 
 .selected-container:empty + .editable:empty::before {
-  content: "Any";
+  content: 'Any';
   color: rgb(170, 170, 170);
 }
 
@@ -679,24 +679,62 @@ table {
   padding: 10px;
 }
 
+.todo-heading {
+  padding: 0 10px;
+  margin-bottom: 5px;
+}
+
 .todo-input {
   border-radius: 0;
   border: 0 black solid;
   border-bottom: 1px rgba(222, 222, 222, 0.7) solid;
   width: 100%;
   padding: 3px 10px;
+  display: flex;
+  gap: 5px;
 }
 
-.todo-input:focus {
+.todo-input:has(> input:focus) {
+  border-bottom: 1px solid rgba(94, 186, 125, 0.7);
+}
+
+.todo-input input {
+  border: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.todo-input input:focus {
   outline: 0;
-  border-bottom: 1px rgba(94, 186, 125, 0.7) solid;
+}
+
+.add-todo {
+  cursor: pointer;
 }
 
 .todo {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
+  padding: 10px 15px;
   font-size: 18px;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.7);
+}
+
+.todo input[type='checkbox'] {
+  accent-color: #1a4d73;
+}
+
+.todo .delete-todo {
+  color: #1a4d73;
+  margin-right: 20px;
+  opacity: 0;
+  transition: opacity 0.1s;
+  cursor: pointer;
+}
+
+.todo:hover > .delete-todo {
+  opacity: 1;
 }
 
 .todos {
@@ -704,8 +742,13 @@ table {
   height: 230px;
 }
 
+.check-todo {
+  width: 16px;
+}
+
 .check-todo:checked + p {
   text-decoration: line-through;
+  color: rgb(150, 150, 150);
 }
 
 /********/

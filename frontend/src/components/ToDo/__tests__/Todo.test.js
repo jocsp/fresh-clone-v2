@@ -1,4 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import {
+  findAllByTestId,
+  queryByText,
+  render,
+  screen,
+  within,
+} from '@testing-library/react';
 import ToDo from '../ToDo.js';
 import '@testing-library/jest-dom';
 import { createCustomServer, createServer } from '../../../mocks/server.js';
@@ -38,6 +44,11 @@ describe('Todo component with 2 todos beforehand', () => {
       url: '/api/todo/add-todo',
       res: { _id: '6417b6asdf17968155f49a5e', todo: addedTodo, checked: false },
     },
+    {
+      method: 'delete',
+      url: '/api/todo/delete-todo',
+      res: {},
+    },
   ]);
 
   test('check todos are displayed', async () => {
@@ -68,6 +79,18 @@ describe('Todo component with 2 todos beforehand', () => {
     const input = await addTodo();
 
     expect(input).toHaveValue('');
+  });
+
+  test('todo should not be displayed after deleting', async () => {
+    render(<ToDo />);
+
+    const deleteButtons = await screen.findAllByTestId('delete-todo');
+
+    await user.click(deleteButtons[1]);
+
+    const todo1 = screen.queryByText('todo 1');
+
+    expect(todo1).not.toBeInTheDocument();
   });
 });
 

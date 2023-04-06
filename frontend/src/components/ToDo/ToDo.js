@@ -1,19 +1,19 @@
-import axios from "../../api/axios.js";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import TodoItem from "./TodoItem";
-import useFetchData from "../../hooks/useFetchData";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-const ToDo = () => {
+import TodoItem from './TodoItem';
+import useFetchData from '../../hooks/useFetchData';
+
+function ToDo() {
   const {
     data,
     error: errorFetching,
     loaded,
     setReFetch,
-  } = useFetchData("/api/todo/get-todos");
+  } = useFetchData('/api/todo/get-todos');
 
   const [error, setError] = useState(null);
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState(null);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ const ToDo = () => {
   }, [data, loaded]);
 
   function reOrderTodos(todos) {
-    let checkedTodos = [];
-    let uncheckedTodos = [];
+    const checkedTodos = [];
+    const uncheckedTodos = [];
 
     todos.slice().forEach((element) => {
       if (element.checked === false) {
@@ -44,8 +44,8 @@ const ToDo = () => {
 
     try {
       const response = await axios({
-        method: "POST",
-        url: "/api/todo/add-todo",
+        method: 'POST',
+        url: '/api/todo/add-todo',
         data: { todo },
       });
 
@@ -53,7 +53,7 @@ const ToDo = () => {
 
       setTodos((prevTodos) => [response.data, ...prevTodos]);
 
-      setTodo("");
+      setTodo('');
     } catch (error) {
       console.log(error);
       setError(error.response.data.error);
@@ -73,27 +73,28 @@ const ToDo = () => {
       </form>
 
       <div className="todos">
-        {todos &&
-          todos.map((todoElement) => {
-            return (
-              <TodoItem
-                key={todoElement._id}
-                todo={todoElement.todo}
-                checkedProp={todoElement.checked}
-                setTodos={setTodos}
-                setError={setError}
-                todo_id={todoElement._id}
-                setReFetch={setReFetch}
-              />
-            );
-          })}
+        {todos
+          && todos.map((todoElement) => (
+            <TodoItem
+              key={todoElement._id}
+              todo={todoElement.todo}
+              checkedProp={todoElement.checked}
+              setTodos={setTodos}
+              setError={setError}
+              todo_id={todoElement._id}
+              setReFetch={setReFetch}
+            />
+          ))}
       </div>
 
       {error || errorFetching ? (
-        <div className="error">{error || errorFetching} </div>
+        <div className="error">
+          {error || errorFetching}
+          {' '}
+        </div>
       ) : null}
     </div>
   );
-};
+}
 
 export default ToDo;

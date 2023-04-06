@@ -1,20 +1,20 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer } from 'react';
 
 export const TicketContext = createContext();
 
 const ticketReducer = (state, action) => {
   switch (action.type) {
-    case "UPDATE":
+    case 'UPDATE':
       return { ...state, ...action.payload };
-    case "ADD-NOTE":
-      const notes = state.notes;
+    case 'ADD-NOTE':
+      const { notes } = state;
       return { ...state, notes: [...notes, action.payload] };
     default:
       return { ...state };
   }
 };
 
-export const TicketContextProvider = ({ children }) => {
+export function TicketContextProvider({ children }) {
   const [state, dispatch] = useReducer(ticketReducer, null);
 
   return (
@@ -22,4 +22,4 @@ export const TicketContextProvider = ({ children }) => {
       {children}
     </TicketContext.Provider>
   );
-};
+}

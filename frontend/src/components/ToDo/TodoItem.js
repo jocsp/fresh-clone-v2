@@ -1,34 +1,31 @@
-import axios from "../../api/axios";
-import React, { useState } from "react";
+import axios from 'axios';
+import React, { useState } from 'react';
 
-const TodoItem = ({
+function TodoItem({
   checkedProp,
   todo_id,
   todo,
   setTodos,
   setError,
   setReFetch,
-}) => {
+}) {
   const [checked, setChecked] = useState(checkedProp);
 
   function changeCheck() {
     setChecked((prevChecked) => !prevChecked);
 
     axios({
-      method: "POST",
-      url: "/api/todo/change-todo",
+      method: 'POST',
+      url: '/api/todo/change-todo',
       data: { todo_id, checked: !checked },
     })
       .then((response) => {
-        setTodos((prevTodos) => {
-          return prevTodos.map((todo) => {
-            if (todo_id !== todo._id) {
-              return todo;
-            } else {
-              return response.data;
-            }
-          });
-        });
+        setTodos((prevTodos) => prevTodos.map((todo) => {
+          if (todo_id !== todo._id) {
+            return todo;
+          }
+          return response.data;
+        }));
 
         setReFetch((preValue) => !preValue);
       })
@@ -43,7 +40,7 @@ const TodoItem = ({
       <input
         type="checkbox"
         name="checkbox"
-        style={{ margin: "0 5px 0 0" }}
+        style={{ margin: '0 5px 0 0' }}
         className="check-todo"
         checked={checked}
         onChange={changeCheck}
@@ -52,6 +49,6 @@ const TodoItem = ({
       <p>{todo}</p>
     </div>
   );
-};
+}
 
 export default TodoItem;

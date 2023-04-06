@@ -30,9 +30,12 @@ const addTodo = async (req, res) => {
 const getTodos = async (req, res) => {
   const { _id } = req.body;
 
-  const agent = await Agent.findById(_id).populate("todos").lean();
-
-  res.status(200).json(agent.todos);
+  try {
+    const agent = await Agent.findById(_id).populate("todos").lean();
+    res.status(200).json(agent.todos);
+  } catch (error) {
+    res.status(400).json({ error: error.messsage });
+  }
 };
 
 const changeTodo = async (req, res) => {

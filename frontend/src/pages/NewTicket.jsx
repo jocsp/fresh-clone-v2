@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import TopBar from "../components/TopBar";
-import SingleSelect from "../components/SingleSelect";
-import InputText from "../components/InputText";
-import { useFiltersContext } from "../hooks/useFiltersContext";
-import { useAuthContext } from "../hooks/useAuthContext";
-import axios from "../api/axios";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import NavBar from '../components/NavBar';
+import TopBar from '../components/TopBar';
+import SingleSelect from '../components/SingleSelect';
+import InputText from '../components/InputText';
+import { useFiltersContext } from '../hooks/useFiltersContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
-const NewTicket = () => {
+function NewTicket() {
   const {
     state: { filters },
     loaded,
@@ -23,26 +23,26 @@ const NewTicket = () => {
   const [error, setError] = useState(null);
 
   const [contact, setContact] = useState([]);
-  const [selectedContact, setSelectedContact] = useState("");
+  const [selectedContact, setSelectedContact] = useState('');
 
-  const [subject, setSubject] = useState("");
+  const [subject, setSubject] = useState('');
 
   const [type, setType] = useState([]);
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState('');
 
   const [status, setStatus] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState('');
 
   const [priority, setPriority] = useState([]);
-  const [selectedPriority, setSelectedPriority] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState('');
 
   const [group, setGroup] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState('');
 
   const [agent, setAgent] = useState([]);
-  const [selectedAgent, setSelectedAgent] = useState("");
+  const [selectedAgent, setSelectedAgent] = useState('');
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [createAnother, setCreateAnother] = useState(false);
 
   useEffect(() => {
@@ -64,30 +64,30 @@ const NewTicket = () => {
 
     const data = {
       contact: selectedContact,
-      subject: subject,
+      subject,
       type: selectedType,
       status: selectedStatus,
       priority: selectedPriority,
       group: selectedGroup,
       agent: selectedAgent,
-      description: description,
+      description,
       date: new Date(),
       createdBy: { _id: currentAgent._id, name: currentAgent.name },
     };
 
     try {
       const response = await axios({
-        url: "/api/ticket/new-ticket",
-        method: "POST",
-        data: data,
+        url: '/api/ticket/new-ticket',
+        method: 'POST',
+        data,
       });
 
       dispatch({
-        type: "UPDT-TKTS-ASSGND",
+        type: 'UPDT-TKTS-ASSGND',
         payload: { _id: response.data._id, status: response.data.status },
       });
 
-      navigate("/tickets");
+      navigate('/tickets');
     } catch (error) {
       setError(error.response.data.error);
     }
@@ -147,7 +147,7 @@ const NewTicket = () => {
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+            />
           </div>
 
           <div className="new-ticket-buttons">
@@ -174,6 +174,6 @@ const NewTicket = () => {
       ) : null}
     </div>
   );
-};
+}
 
 export default NewTicket;

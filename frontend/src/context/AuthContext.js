@@ -1,18 +1,18 @@
-import { createContext, useReducer, useEffect, useState } from "react";
-import axios from "../api/axios";
+import { createContext, useReducer, useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return { agent: action.payload };
-    case "LOGOUT":
+    case 'LOGOUT':
       return { agent: null };
-    case "UPDT-TKTS-ASSGND":
+    case 'UPDT-TKTS-ASSGND':
       state.agent.ticketsAssigned.push(action.payload);
       return { ...state };
-    case "ADD-TODO":
+    case 'ADD-TODO':
       state.agent.todos.push(action.payload);
       return { ...state };
     default:
@@ -20,16 +20,16 @@ const authReducer = (state, action) => {
   }
 };
 
-export const AuthContextProvider = ({ children }) => {
+export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, { user: null });
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const authorize = async () => {
-      const response = await axios.post("api/user/initial-auth");
+      const response = await axios.post('api/user/initial-auth');
 
       if (response.data.authorized) {
-        dispatch({ type: "LOGIN", payload: response.data.agent });
+        dispatch({ type: 'LOGIN', payload: response.data.agent });
       }
 
       setLoaded(true);
@@ -43,4 +43,4 @@ export const AuthContextProvider = ({ children }) => {
       {loaded && children}
     </AuthContext.Provider>
   );
-};
+}

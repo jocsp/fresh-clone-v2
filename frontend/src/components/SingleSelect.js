@@ -1,12 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import CheckIcon from "@mui/icons-material/Check";
+import { useEffect, useRef, useState } from 'react';
+import CheckIcon from '@mui/icons-material/Check';
 
-const SingleSelect = ({
-  label,
-  options,
-  optionSelected,
-  setOptionSelected,
-}) => {
+function SingleSelect({ label, options, optionSelected, setOptionSelected }) {
   const [queriedOptions, setQueriedOptions] = useState([...options]);
   const edit = useRef(null);
   const [display, setDisplay] = useState(false);
@@ -16,9 +11,9 @@ const SingleSelect = ({
   }, [optionSelected]);
 
   function selectOption(e) {
-    const id = e.target.id;
+    const { id, textContent } = e.target;
 
-    setOptionSelected({ name: e.target.textContent, _id: id });
+    setOptionSelected({ name: textContent, _id: id });
     edit.current.value = e.target.textContent;
   }
 
@@ -30,13 +25,15 @@ const SingleSelect = ({
   function handleBlur(e) {
     setDisplay(false);
     setQueriedOptions([...options]);
-    e.target.value = optionSelected.name;
+
+    e.target.value =
+      optionSelected.name === undefined ? '' : optionSelected.name;
   }
 
   function makeQuery(e) {
     setQueriedOptions((prevArray) => {
       const newArray = options.filter((element) => {
-        const rx = new RegExp(e.target.value, "i");
+        const rx = new RegExp(e.target.value, 'i');
         const variable = element.name.search(rx) >= 0;
 
         return variable;
@@ -61,11 +58,11 @@ const SingleSelect = ({
       {display ? (
         <div className="options options-single">
           {queriedOptions.map((option) => {
-            let selected = Boolean(optionSelected._id === option._id);
+            const selected = Boolean(optionSelected._id === option._id);
 
             return (
               <div
-                className={selected ? "option selected" : "option"}
+                className={selected ? 'option selected' : 'option'}
                 id={option._id}
                 onMouseDown={selectOption}
                 key={option._id}
@@ -73,7 +70,7 @@ const SingleSelect = ({
                 {option.name}
                 <CheckIcon
                   className="check-icon"
-                  style={selected ? { display: "block" } : { display: "none" }}
+                  style={selected ? { display: 'block' } : { display: 'none' }}
                 />
               </div>
             );
@@ -82,6 +79,6 @@ const SingleSelect = ({
       ) : null}
     </div>
   );
-};
+}
 
 export default SingleSelect;

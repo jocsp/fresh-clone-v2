@@ -1,9 +1,9 @@
-import React from "react";
-import NavBar from "../components/NavBar";
-import TopBar from "../components/TopBar";
-import DashboardCard from "../components/DashboardCard";
-import ToDo from "../components/ToDo/ToDo";
-import { useAuthContext } from "../hooks/useAuthContext";
+import React from 'react';
+import NavBar from '../components/NavBar';
+import TopBar from '../components/TopBar';
+import DashboardCard from '../components/DashboardCard';
+import ToDo from '../components/ToDo/ToDo';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function Dashboard() {
   const {
@@ -14,7 +14,7 @@ function Dashboard() {
     <div>
       <NavBar />
       <TopBar title="Dashboard" />
-      <div className="bottom-bar"></div>
+      <div className="bottom-bar" />
       <div className="dashboard-card-container">
         <DashboardCard status="Open" tickets={ticketsAssigned} />
         <DashboardCard status="In process" tickets={ticketsAssigned} />

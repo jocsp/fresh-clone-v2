@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function DashboardCard({ status, tickets }) {
   const [count, setCount] = useState(0);
@@ -13,7 +13,7 @@ function DashboardCard({ status, tickets }) {
   return (
     <div className="dashboard-card">
       <span>{status}</span>
-      <span style={{ fontSize: "1.5rem" }} className="m-top-10 bold">
+      <span style={{ fontSize: '1.5rem' }} className="m-top-10 bold">
         {count}
       </span>
     </div>

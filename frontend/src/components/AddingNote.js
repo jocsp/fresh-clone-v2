@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "../api/axios";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useTicketContext } from "../hooks/useTicketContext";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useTicketContext } from '../hooks/useTicketContext';
 
-const AddingNote = ({ setDisplayAddNote, ticket_number }) => {
+function AddingNote({ setDisplayAddNote, ticket_number }) {
   const [noteContent, setNoteContent] = useState();
   const { agent } = useAuthContext();
   const { dispatch } = useTicketContext();
@@ -16,18 +16,18 @@ const AddingNote = ({ setDisplayAddNote, ticket_number }) => {
       by: agent.name,
       content: noteContent,
       noteDate: new Date(),
-      ticket_number: ticket_number,
+      ticket_number,
     };
 
     try {
       setError(null);
       const response = await axios({
-        method: "POST",
-        url: "api/note/add-note",
-        data: data,
+        method: 'POST',
+        url: 'api/note/add-note',
+        data,
       });
 
-      dispatch({ type: "ADD-NOTE", payload: response.data });
+      dispatch({ type: 'ADD-NOTE', payload: response.data });
 
       setDisplayAddNote(false);
     } catch (error) {
@@ -43,7 +43,7 @@ const AddingNote = ({ setDisplayAddNote, ticket_number }) => {
           onChange={(e) => setNoteContent(e.target.value)}
           className="note-textarea"
           placeholder="Add note here..."
-        ></textarea>
+        />
       </div>
       <div className="adding-note-bottom-bar">
         <button
@@ -56,8 +56,10 @@ const AddingNote = ({ setDisplayAddNote, ticket_number }) => {
           Add note
         </button>
       </div>
+
+      {error ? <div className="error">{error}</div> : null}
     </form>
   );
-};
+}
 
 export default AddingNote;

@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
-const TopBar = ({ title }) => {
+function TopBar({ title }) {
   const { agent: currentAgent } = useAuthContext();
 
   return (
@@ -21,6 +21,6 @@ const TopBar = ({ title }) => {
       </div>
     </div>
   );
-};
+}
 
 export default TopBar;

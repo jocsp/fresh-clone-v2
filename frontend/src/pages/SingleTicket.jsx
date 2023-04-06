@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import TopBar from "../components/TopBar";
-import useFetchData from "../hooks/useFetchData";
-import { Link } from "react-router-dom";
-import { formatDate } from "../scripts/formatDate";
-import Note from "../components/Note";
-import AddingNote from "../components/AddingNote";
-import { useTicketContext } from "../hooks/useTicketContext";
-import { useAuthContext } from "../hooks/useAuthContext";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import TopBar from '../components/TopBar';
+import useFetchData from '../hooks/useFetchData';
 
-const SingleTicket = () => {
+import { formatDate } from '../scripts/formatDate';
+import Note from '../components/Note';
+import AddingNote from '../components/AddingNote';
+import { useTicketContext } from '../hooks/useTicketContext';
+import { useAuthContext } from '../hooks/useAuthContext';
+
+function SingleTicket() {
   const { agent: currentAgent } = useAuthContext();
   const { ticket_number } = useParams();
   const [displayAddNote, setDisplayAddNote] = useState(false);
@@ -18,27 +18,33 @@ const SingleTicket = () => {
     data: fetchedTicket,
     loaded,
     error,
-  } = useFetchData("/api/ticket/single-ticket/" + ticket_number);
+  } = useFetchData(`/api/ticket/single-ticket/${ticket_number}`);
 
   const { state: ticket, dispatch } = useTicketContext();
 
   useEffect(() => {
     if (loaded) {
-      dispatch({ type: "UPDATE", payload: fetchedTicket });
+      dispatch({ type: 'UPDATE', payload: fetchedTicket });
     }
   }, [loaded, dispatch, fetchedTicket]);
 
   return (
     <div className="single-ticket-page">
       <NavBar />
-      <TopBar title={"Tickets - " + ticket_number} />
+      <TopBar title={`Tickets - ${ticket_number}`} />
 
       {ticket ? (
         <div className="single-ticket-container">
           <div className="m-top-20">
-            <p className="subject bold"> {ticket?.subject} </p>
+            <p className="subject bold">
+              {' '}
+              {ticket?.subject}
+              {' '}
+            </p>
             <p>
-              Created by <span className="bold">{ticket?.createdBy.name}</span>
+              Created by
+              {' '}
+              <span className="bold">{ticket?.createdBy.name}</span>
             </p>
           </div>
 
@@ -59,21 +65,23 @@ const SingleTicket = () => {
           </div>
 
           <div className="m-top-50 description">
-            <p> {ticket?.description} </p>
+            <p>
+              {' '}
+              {ticket?.description}
+              {' '}
+            </p>
           </div>
 
-          {ticket?.notes.map((note) => {
-            return (
-              <Note
-                key={note._id}
-                by={note.by}
-                content={note.content}
-                noteDate={note.noteDate}
-                edited={note.edited}
-                editedBy={note.editedBy}
-              />
-            );
-          })}
+          {ticket?.notes.map((note) => (
+            <Note
+              key={note._id}
+              by={note.by}
+              content={note.content}
+              noteDate={note.noteDate}
+              edited={note.edited}
+              editedBy={note.editedBy}
+            />
+          ))}
 
           {displayAddNote ? (
             <AddingNote
@@ -96,9 +104,15 @@ const SingleTicket = () => {
         </div>
       ) : null}
 
-      {error ? <div className="error"> {error} </div> : null}
+      {error ? (
+        <div className="error">
+          {' '}
+          {error}
+          {' '}
+        </div>
+      ) : null}
     </div>
   );
-};
+}
 
 export default SingleTicket;

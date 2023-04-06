@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useState } from 'react';
+import { useLogin } from '../hooks/useLogin';
 
 function Login() {
-  const [username, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUser] = useState('');
+  const [password, setPassword] = useState('');
   const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
@@ -38,7 +38,7 @@ function Login() {
         type="submit"
         disabled={isLoading}
       >
-        {!isLoading ? "Log in" : "Loading..."}
+        {!isLoading ? 'Log in' : 'Loading...'}
       </button>
 
       {error ? <span className="error"> {error}</span> : null}

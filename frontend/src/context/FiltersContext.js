@@ -1,27 +1,27 @@
-import { createContext, useEffect, useState, useReducer } from "react";
+import { createContext, useEffect, useState, useReducer } from 'react';
 
-import axios from "../api/axios";
+import axios from 'axios';
 
 export const FiltersContext = createContext();
 
 const filtersReducer = (state, action) => {
   switch (action.type) {
-    case "UPDATE":
+    case 'UPDATE':
       return { filters: action.payload };
     default:
       return { ...state };
   }
 };
 
-export const FiltersContextProvider = ({ children }) => {
+export function FiltersContextProvider({ children }) {
   const [state, dispatch] = useReducer(filtersReducer, { filters: null });
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchFilters = async () => {
-      const response = await axios.get("api/filters/get-filters");
+      const response = await axios.get('api/filters/get-filters');
 
-      dispatch({ type: "UPDATE", payload: response.data });
+      dispatch({ type: 'UPDATE', payload: response.data });
       setLoaded(true);
     };
 
@@ -37,4 +37,4 @@ export const FiltersContextProvider = ({ children }) => {
       {children}
     </FiltersContext.Provider>
   );
-};
+}

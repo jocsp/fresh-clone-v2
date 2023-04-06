@@ -1,10 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useAuthContext } from "./hooks/useAuthContext";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Tickets from "./pages/Tickets";
-import NewTicket from "./pages/NewTicket";
-import SingleTicket from "./pages/SingleTicket";
+import {
+  BrowserRouter, Routes, Route, Navigate,
+} from 'react-router-dom';
+import { useAuthContext } from './hooks/useAuthContext';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Tickets from './pages/Tickets';
+import NewTicket from './pages/NewTicket';
+import SingleTicket from './pages/SingleTicket';
 
 function App() {
   const { agent } = useAuthContext();

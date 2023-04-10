@@ -86,6 +86,13 @@
   gap: 5px;
 }
 
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -195,16 +202,6 @@ a {
   background-color: #dddddd;
 }
 
-.profile-image {
-  background-color: #e6d0ee;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 5px;
-  color: rgba(0, 0, 0, 0.3);
-}
-
 .search-input {
   box-shadow: none;
 }
@@ -220,6 +217,8 @@ a {
   border-bottom: 1px solid rgba(222, 222, 222, 0.7);
   background-color: #f5f7f9;
   padding: 10px;
+
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 
 /* NEW TICKET */
@@ -322,16 +321,19 @@ a {
   margin-bottom: 10px;
 }
 
+/*** MULTITAG ***/
+
 .input-container-multitag {
   width: 100%;
   min-height: 20px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
   text-align: left;
-  border: 1px solid rgba(222, 222, 222, 0.7);
+  border: 1px solid rgba(200, 200, 200, 0.7);
   padding: 5px 10px;
   cursor: text;
   line-height: 24px;
+  box-shadow: inset 0 0 1px gray;
 }
 
 .input-container-multitag:focus-within {
@@ -460,6 +462,7 @@ a {
   overflow: auto;
   border: 1px solid rgba(222, 222, 222, 0.7);
   background-color: #ffffff;
+  box-shadow: 0 0 5px -1px #0006;
 }
 
 .empty-message {
@@ -630,6 +633,21 @@ table {
   border: 1px solid rgba(222, 222, 222, 0.3);
 }
 
+.note:hover .more-vert {
+  opacity: 1;
+}
+
+.note .more-vert {
+  transition: opacity 0.1s;
+}
+
+.more-vert {
+  font-size: 1.3rem !important;
+  color: gray;
+  cursor: pointer;
+  opacity: 0;
+}
+
 .note-date {
   font-size: 12px;
   color: rgba(50, 50, 50, 0.7);
@@ -781,11 +799,41 @@ table {
 }
 
 .profile-image {
-  background-color: #e6d0ee;
   height: 30px;
   width: 30px;
   text-align: center;
   line-height: 30px;
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.3);
+}
+
+.ticket-link {
+  color: #2c80d6;
+}
+
+/******* FILTERS *******/
+
+.filters {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  width: 270px;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+  border: 1px solid rgba(222, 222, 222, 0.7);
+  padding: 10px 20px;
+  box-shadow: -2px 0 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.submit-filters {
+  background-color: #173a54;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 5px 20px;
+  width: 100%;
+}
+
+.submit-filters:hover {
+  background-color: #284b65;
+  cursor: pointer;
 }

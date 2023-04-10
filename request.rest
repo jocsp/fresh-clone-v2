@@ -24,3 +24,14 @@ Content-Type: application/json
     "noteDate": "10/11/2020",
     "ticket_number": 1
 }
+
+###
+POST http://localhost:5000/api/contact/create-contact
+Content-Type: application/json
+
+{
+    "name": "Miami Healhty Smiles",
+    "color": "#ddbbbb",
+    "email": "miami@healthy.com",
+    "number": "789-123-4582"
+}

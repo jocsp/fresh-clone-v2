@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useAuthContext } from '../hooks/useAuthContext';
 
 function DashboardCard({ status, tickets }) {
   const [count, setCount] = useState(0);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useTicketContext } from '../hooks/useTicketContext';
@@ -7,13 +7,14 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
   const [noteContent, setNoteContent] = useState();
   const { agent } = useAuthContext();
   const { dispatch } = useTicketContext();
+  const textareaRef = useRef();
   const [error, setError] = useState(null);
 
   async function addNote(e) {
     e.preventDefault();
 
     const data = {
-      by: agent.name,
+      by: { name: agent.name, _id: agent._id },
       content: noteContent,
       noteDate: new Date(),
       ticket_number,
@@ -35,10 +36,15 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
     }
   }
 
+  useEffect(() => {
+    textareaRef.current.focus();
+  }, []);
+
   return (
     <form className="m-top-10" onSubmit={addNote}>
       <div className="note-textarea-container">
         <textarea
+          ref={textareaRef}
           value={noteContent}
           onChange={(e) => setNoteContent(e.target.value)}
           className="note-textarea"

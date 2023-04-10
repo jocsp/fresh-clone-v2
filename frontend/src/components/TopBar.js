@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import ProfileImage from './ProfileImage';
 
 function TopBar({ title }) {
   const { agent: currentAgent } = useAuthContext();
@@ -17,7 +18,7 @@ function TopBar({ title }) {
           placeholder="Search"
           className="standard-input search-input"
         />
-        <div className="profile-image m-right-10">{currentAgent.name[0]}</div>
+        <ProfileImage profile={currentAgent} />
       </div>
     </div>
   );

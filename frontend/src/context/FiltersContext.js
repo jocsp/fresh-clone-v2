@@ -7,14 +7,19 @@ export const FiltersContext = createContext();
 const filtersReducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE':
-      return { filters: action.payload };
+      return { ...state, filters: action.payload };
+    case 'UPDATE-SELECTED':
+      return { ...state, selected: action.payload };
     default:
       return { ...state };
   }
 };
 
 export function FiltersContextProvider({ children }) {
-  const [state, dispatch] = useReducer(filtersReducer, { filters: null });
+  const [state, dispatch] = useReducer(filtersReducer, {
+    filters: null,
+    selected: null,
+  });
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -24,6 +29,10 @@ export function FiltersContextProvider({ children }) {
       dispatch({ type: 'UPDATE', payload: response.data });
       setLoaded(true);
     };
+
+    const filters = JSON.parse(localStorage.getItem('filters'));
+
+    dispatch({ type: 'UPDATE-SELECTED', payload: filters });
 
     try {
       fetchFilters();

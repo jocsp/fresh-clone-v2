@@ -1,15 +1,38 @@
-import React from 'react';
-import useFetchData from '../hooks/useFetchData';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import NavBar from '../components/NavBar';
 import TopBar from '../components/TopBar';
 import TicketCard from '../components/TicketCard';
+import Filters from '../components/Filters';
+import { useFiltersContext } from '../hooks/useFiltersContext';
 
 function Tickets() {
-  const {
-    data: tickets,
-    loaded,
-    error,
-  } = useFetchData('/api/ticket/get-tickets');
+  const { state: filters, loaded } = useFiltersContext();
+  const [tickets, setTickets] = useState([]);
+  const [render, setRender] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTickets = async () => {
+      try {
+        const response = await axios({
+          url: '/api/ticket/get-tickets',
+          method: 'GET',
+          params: { filters: filters?.selected },
+        });
+        setTickets(response.data);
+        setRender(true);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    setRender(false);
+
+    if (loaded) {
+      fetchTickets();
+    }
+  }, [filters, loaded]);
 
   return (
     <div className="ticket-page">
@@ -20,7 +43,7 @@ function Tickets() {
       </div>
 
       <div className="tickets-container">
-        {loaded ? (
+        {render ? (
           <table>
             <tbody>
               {tickets.map((ticket) => (
@@ -40,11 +63,12 @@ function Tickets() {
         ) : (
           <div className="loading" />
         )}
-        {loaded && !tickets.length ? (
+        {render && !tickets.length ? (
           <p className="empty-message">No tickets available</p>
         ) : null}
         {error ? <span className="error">{error}</span> : null}
       </div>
+      <Filters />
     </div>
   );
 }

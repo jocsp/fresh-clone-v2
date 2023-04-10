@@ -1,7 +1,9 @@
-const mognoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const activitySchema = new mongoose.Schema({
-  subject: String,
+  type: String,
+  color: String,
+  name: String,
   verb: String,
   predicate: String,
   ticket_name: String,
@@ -10,4 +12,4 @@ const activitySchema = new mongoose.Schema({
   date: Date,
 });
 
-module.exports = mongoose.model("Activity", activitySchema);
+module.exports = mongoose.model('Activity', activitySchema);

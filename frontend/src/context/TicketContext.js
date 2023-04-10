@@ -9,6 +9,14 @@ const ticketReducer = (state, action) => {
     case 'ADD-NOTE':
       const { notes } = state;
       return { ...state, notes: [...notes, action.payload] };
+
+    case 'DELETE-NOTE':
+      const updatedNotes = state.notes.filter(
+        (note) => note._id !== action.payload._id
+      );
+
+      return { ...state, notes: updatedNotes };
+
     default:
       return { ...state };
   }

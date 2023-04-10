@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import TopBar from '../components/TopBar';
+import ProfileImage from '../components/ProfileImage';
 import useFetchData from '../hooks/useFetchData';
 
 import { formatDate } from '../scripts/formatDate';
@@ -36,22 +37,14 @@ function SingleTicket() {
       {ticket ? (
         <div className="single-ticket-container">
           <div className="m-top-20">
-            <p className="subject bold">
-              {' '}
-              {ticket?.subject}
-              {' '}
-            </p>
+            <p className="subject bold"> {ticket?.subject} </p>
             <p>
-              Created by
-              {' '}
-              <span className="bold">{ticket?.createdBy.name}</span>
+              Created by <span className="bold">{ticket?.createdBy.name}</span>
             </p>
           </div>
 
           <div className="m-top-20 flex">
-            <div className="profile-image m-right-10">
-              {ticket?.contact.name[0]}
-            </div>
+            <ProfileImage profile={ticket.contact} />
             <div>
               <p>
                 <Link className="bold blueish-font">
@@ -65,16 +58,13 @@ function SingleTicket() {
           </div>
 
           <div className="m-top-50 description">
-            <p>
-              {' '}
-              {ticket?.description}
-              {' '}
-            </p>
+            <p> {ticket?.description} </p>
           </div>
 
           {ticket?.notes.map((note) => (
             <Note
               key={note._id}
+              note_id={note._id}
               by={note.by}
               content={note.content}
               noteDate={note.noteDate}
@@ -90,9 +80,7 @@ function SingleTicket() {
             />
           ) : (
             <div className="add-note-div m-top-20">
-              <div className="profile-image m-right-10">
-                {currentAgent.name[0]}
-              </div>
+              <ProfileImage profile={currentAgent} />
               <button
                 className="add-note"
                 onClick={() => setDisplayAddNote(true)}
@@ -104,13 +92,7 @@ function SingleTicket() {
         </div>
       ) : null}
 
-      {error ? (
-        <div className="error">
-          {' '}
-          {error}
-          {' '}
-        </div>
-      ) : null}
+      {error ? <div className="error"> {error} </div> : null}
     </div>
   );
 }

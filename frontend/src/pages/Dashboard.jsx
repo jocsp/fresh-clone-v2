@@ -4,6 +4,7 @@ import TopBar from '../components/TopBar';
 import DashboardCard from '../components/DashboardCard';
 import ToDo from '../components/ToDo/ToDo';
 import { useAuthContext } from '../hooks/useAuthContext';
+import ActivitiesDashboard from '../components/ActivitiesDashboard';
 
 function Dashboard() {
   const {
@@ -23,6 +24,8 @@ function Dashboard() {
 
       <div className="todo-activities-container">
         <ToDo />
+
+        <ActivitiesDashboard />
       </div>
     </div>
   );

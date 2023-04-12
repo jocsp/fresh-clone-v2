@@ -18,7 +18,14 @@ const filtersReducer = (state, action) => {
 export function FiltersContextProvider({ children }) {
   const [state, dispatch] = useReducer(filtersReducer, {
     filters: null,
-    selected: null,
+    selected: {
+      agents: [],
+      group: [],
+      status: ['Open'],
+      priority: [],
+      type: [],
+      contacts: [],
+    },
   });
   const [loaded, setLoaded] = useState(false);
 
@@ -32,7 +39,9 @@ export function FiltersContextProvider({ children }) {
 
     const filters = JSON.parse(localStorage.getItem('filters'));
 
-    dispatch({ type: 'UPDATE-SELECTED', payload: filters });
+    if (filters) {
+      dispatch({ type: 'UPDATE-SELECTED', payload: filters });
+    }
 
     try {
       fetchFilters();

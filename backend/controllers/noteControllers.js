@@ -43,6 +43,26 @@ const addNote = async (req, res) => {
   }
 };
 
+const updateNote = async (req, res) => {
+  const { content, note_id, editedBy } = req.body;
+
+  try {
+    await Note.updateOne(
+      { _id: note_id },
+      {
+        content: content,
+        edited: true,
+        editedBy: editedBy,
+        timeEdited: new Date(),
+      }
+    );
+    res.status(200).json();
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const deleteNote = async (req, res) => {
   const { note_id } = req.body;
 
@@ -58,4 +78,4 @@ const deleteNote = async (req, res) => {
   res.status(200).json();
 };
 
-module.exports = { addNote, deleteNote };
+module.exports = { addNote, deleteNote, updateNote };

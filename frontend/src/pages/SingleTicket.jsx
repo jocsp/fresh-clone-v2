@@ -18,6 +18,7 @@ function SingleTicket() {
   const {
     data: fetchedTicket,
     loaded,
+    setReFetch,
     error,
   } = useFetchData(`/api/ticket/single-ticket/${ticket_number}`);
 
@@ -66,10 +67,12 @@ function SingleTicket() {
               key={note._id}
               note_id={note._id}
               by={note.by}
-              content={note.content}
+              initialContent={note.content}
               noteDate={note.noteDate}
               edited={note.edited}
               editedBy={note.editedBy}
+              timeEdited={note.timeEdited}
+              reFetch={() => setReFetch((prevValue) => !prevValue)}
             />
           ))}
 

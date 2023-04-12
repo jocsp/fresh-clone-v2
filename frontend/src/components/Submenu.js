@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
+import { UilTrashAlt } from '@iconscout/react-unicons';
 import Divider from '@mui/material/Divider';
-
-import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
@@ -91,6 +89,7 @@ export default function CustomizedMenus({ items, deleteHandler }) {
               onClick={handleClose}
               onMouseDown={item.event}
               disableRipple
+              style={{ gap: '4px' }}
             >
               {item.icon}
               {item.text}
@@ -103,9 +102,9 @@ export default function CustomizedMenus({ items, deleteHandler }) {
           onClick={handleClose}
           onMouseDown={deleteHandler}
           disableRipple
-          style={{ color: '#f00' }}
+          style={{ color: '#f00', gap: '4px' }}
         >
-          <DeleteIcon style={{ color: '#f00' }} />
+          <UilTrashAlt style={{ color: '#f00' }} />
           Delete
         </MenuItem>
       </StyledMenu>

@@ -36,6 +36,10 @@
   margin-left: 10px;
 }
 
+.padding-5-10 {
+  padding: 5px 10px;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -585,6 +589,11 @@ table {
   border: 1px solid rgb(190, 190, 190);
 }
 
+.button-default:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .dark-bc {
   background-color: #21435f;
   color: white !important;
@@ -653,7 +662,30 @@ table {
   color: rgba(50, 50, 50, 0.7);
 }
 
+.note-edited {
+  margin-left: 40px;
+  font-size: 14px;
+  font-style: italic;
+}
+
 .note-content {
+  margin-left: 40px;
+  width: calc(100% - 40px);
+  font-size: 15px;
+  resize: none;
+  overflow: hidden;
+}
+
+.fixed-note {
+  border: none;
+  background-color: #fef1e1;
+}
+
+.fixed-note:focus {
+  outline: none;
+}
+
+.note-buttons {
   margin-left: 40px;
 }
 

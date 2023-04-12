@@ -6,6 +6,7 @@
     "@babel/preset-env": "^7.20.2",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@iconscout/react-unicons": "^2.0.2",
     "@mui/icons-material": "^5.11.9",
     "@mui/styled-engine": "^5.11.9",
     "@testing-library/jest-dom": "^5.16.5",

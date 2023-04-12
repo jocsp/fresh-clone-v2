@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFiltersContext } from '../hooks/useFiltersContext';
 import MultiTag from './MultiTag';
-import axios from 'axios';
 
 const Filters = () => {
   const { state: filters, loaded, dispatch } = useFiltersContext();
 
   const [render, setRender] = useState(false);
+
+  console.log(filters?.selected);
 
   const [contacts, setContact] = useState([]);
   const [selectedContacts, setSelectedContacts] = useState([]);
@@ -36,12 +37,12 @@ const Filters = () => {
       setAgent([...filters.filters.agents]);
 
       if (filters?.selected) {
-        setSelectedAgents([...filters.selected.agents]);
-        setSelectedGroups([...filters.selected.group]);
-        setSelectedPriorities([...filters.selected.priority]);
-        setSelectedStatuses([...filters.selected.status]);
-        setSelectedTypes([...filters.selected.type]);
-        setSelectedContacts([...filters.selected.contacts]);
+        setSelectedAgents([...filters?.selected?.agents]);
+        setSelectedGroups([...filters?.selected?.group]);
+        setSelectedPriorities([...filters?.selected?.priority]);
+        setSelectedStatuses([...filters?.selected?.status]);
+        setSelectedTypes([...filters?.selected?.type]);
+        setSelectedContacts([...filters?.selected?.contacts]);
       }
 
       setRender(true);

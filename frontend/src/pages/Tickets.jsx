@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import NavBar from '../components/NavBar';
 import TopBar from '../components/TopBar';
 import TicketCard from '../components/TicketCard';
 import Filters from '../components/Filters';
 import { useFiltersContext } from '../hooks/useFiltersContext';
+import useRequest from '../hooks/useRequest';
 
 function Tickets() {
   const { state: filters, loaded } = useFiltersContext();
   const [tickets, setTickets] = useState([]);
   const [render, setRender] = useState(false);
   const [error, setError] = useState(null);
+  const { sendRequest } = useRequest();
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await axios({
+        const response = await sendRequest({
           url: '/api/ticket/get-tickets',
           method: 'GET',
           params: { filters: filters?.selected },
@@ -23,7 +25,8 @@ function Tickets() {
         setTickets(response.data);
         setRender(true);
       } catch (error) {
-        setError(error);
+        console.log(error);
+        setError(error.response.data.error);
       }
     };
 

@@ -1,17 +1,20 @@
-const express = require("express");
+const express = require('express');
 
 const {
   signupAgent,
   loginAgent,
   initialAuthAgent,
-} = require("../controllers/agentControllers");
+  logoutAgent,
+} = require('../controllers/agentControllers');
 
 const router = express.Router();
 
-router.post("/login", loginAgent);
+router.post('/login', loginAgent);
 
-router.post("/signup", signupAgent);
+router.post('/signup', signupAgent);
 
-router.post("/initial-auth", initialAuthAgent);
+router.get('/logout', logoutAgent);
+
+router.post('/initial-auth', initialAuthAgent);
 
 module.exports = router;

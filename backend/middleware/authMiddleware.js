@@ -1,10 +1,12 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const checkUser = (req, res, next) => {
+const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (!token) {
-    return next();
+    return res
+      .status(401)
+      .json({ authorized: false, error: 'No authorized to make that request' });
   }
 
   try {
@@ -12,9 +14,9 @@ const checkUser = (req, res, next) => {
     req.body._id = _id;
     next();
   } catch (error) {
-    console.log("error verifying token in Check User", error);
+    console.log('error verifying token in Check User', error);
     next();
   }
 };
 
-module.exports = { checkUser };
+module.exports = { requireAuth };

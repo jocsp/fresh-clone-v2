@@ -11,7 +11,7 @@ const noteRoutes = require('./routes/noteRoutes');
 const todoRoutes = require('./routes/todoRoutes');
 const activityRoutes = require('./routes/activitiesRoutes');
 const contactRoutes = require('./routes/contactRoutes');
-const { checkUser } = require('./middleware/authMiddleware');
+const { requireAuth } = require('./middleware/authMiddleware');
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -24,13 +24,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-// middleware
-
-app.use(checkUser);
-
 // routes
 
 app.use('/api/user', agentRoutes);
+
+// middleware only used for the following routes
+app.use(requireAuth);
+
+// more routes
 app.use('/api/filters', filtersRoutes);
 app.use('/api/ticket', ticketRoutes);
 app.use('/api/note', noteRoutes);

@@ -1,8 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import TodoItem from './TodoItem';
 import useFetchData from '../../hooks/useFetchData';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import useRequest from '../../hooks/useRequest';
 
 function ToDo() {
   const {
@@ -12,9 +13,10 @@ function ToDo() {
     setReFetch,
   } = useFetchData('/api/todo/get-todos');
 
-  const [error, setError] = useState(null);
+  const { dispatch } = useAuthContext();
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState(null);
+  const { sendRequest, error, loading } = useRequest();
 
   useEffect(() => {
     if (loaded) {
@@ -40,24 +42,15 @@ function ToDo() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    setError(null);
+    const response = await sendRequest({
+      method: 'POST',
+      url: '/api/todo/add-todo',
+      data: { todo },
+    });
 
-    try {
-      const response = await axios({
-        method: 'POST',
-        url: '/api/todo/add-todo',
-        data: { todo },
-      });
+    setTodos((prevTodos) => [response.data, ...prevTodos]);
 
-      // dispatch({ type: "ADD-TODO", payload: response.data });
-
-      setTodos((prevTodos) => [response.data, ...prevTodos]);
-
-      setTodo('');
-    } catch (error) {
-      console.log(error);
-      setError(error.response.data.error);
-    }
+    setTodo('');
   }
 
   return (
@@ -87,7 +80,6 @@ function ToDo() {
               todo={todoElement.todo}
               checkedProp={todoElement.checked}
               setTodos={setTodos}
-              setError={setError}
               todo_id={todoElement._id}
               setReFetch={setReFetch}
             />

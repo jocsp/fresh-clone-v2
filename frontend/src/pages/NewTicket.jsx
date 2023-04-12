@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import NavBar from '../components/NavBar';
 import TopBar from '../components/TopBar';
 import SingleSelect from '../components/SingleSelect';
 import InputText from '../components/InputText';
 import { useFiltersContext } from '../hooks/useFiltersContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import useRequest from '../hooks/useRequest';
 
 function NewTicket() {
   const {
@@ -45,6 +45,8 @@ function NewTicket() {
   const [description, setDescription] = useState('');
   const [createAnother, setCreateAnother] = useState(false);
 
+  const { sendRequest } = useRequest();
+
   useEffect(() => {
     if (loaded) {
       setContact([...filters.contacts]);
@@ -76,7 +78,7 @@ function NewTicket() {
     };
 
     try {
-      const response = await axios({
+      const response = await sendRequest({
         url: '/api/ticket/new-ticket',
         method: 'POST',
         data,

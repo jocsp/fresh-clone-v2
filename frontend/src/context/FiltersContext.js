@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState, useReducer } from 'react';
-
-import axios from 'axios';
+import useRequest from '../hooks/useRequest';
 
 export const FiltersContext = createContext();
 
@@ -28,10 +27,14 @@ export function FiltersContextProvider({ children }) {
     },
   });
   const [loaded, setLoaded] = useState(false);
+  const { sendRequest } = useRequest();
 
   useEffect(() => {
     const fetchFilters = async () => {
-      const response = await axios.get('api/filters/get-filters');
+      const response = await sendRequest({
+        url: 'api/filters/get-filters',
+        method: 'GET',
+      });
 
       dispatch({ type: 'UPDATE', payload: response.data });
       setLoaded(true);

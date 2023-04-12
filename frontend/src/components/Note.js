@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTicketContext } from '../hooks/useTicketContext';
-import axios from 'axios';
+
 import ProfileImage from './ProfileImage';
 import CustomizedMenus from './Submenu';
 import { UilEdit } from '@iconscout/react-unicons';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../scripts/formatDate';
 import { useAuthContext } from '../hooks/useAuthContext';
+import useRequest from '../hooks/useRequest';
 
 function Note({
   note_id,
@@ -24,6 +25,8 @@ function Note({
   const textareaRef = useRef();
   const [editing, setEditing] = useState(false);
   const [rows, setRows] = useState(Math.ceil(content.length / 100));
+
+  const { loading, error, sendRequest } = useRequest();
 
   useEffect(() => {
     let lines =
@@ -54,11 +57,12 @@ function Note({
   };
 
   const updateNote = async () => {
-    await axios({
+    await sendRequest({
       method: 'POST',
       url: '/api/note/update',
       data: { content, note_id, editedBy: currentAgent.name },
     });
+
     setEditing(false);
     reFetch();
   };
@@ -67,7 +71,7 @@ function Note({
 
   const deleteNote = async () => {
     try {
-      await axios({
+      await sendRequest({
         url: '/api/note/delete',
         method: 'DELETE',
         data: { note_id },
@@ -122,7 +126,7 @@ function Note({
             className="button-default dark-bc m-right-10"
             onClick={updateNote}
           >
-            Update
+            {!loading ? 'Update' : 'Loading...'}
           </button>
           <button className="button-default" onClick={cancelEdition}>
             Cancel

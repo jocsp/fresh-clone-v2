@@ -7,8 +7,6 @@ const Filters = () => {
 
   const [render, setRender] = useState(false);
 
-  console.log(filters?.selected);
-
   const [contacts, setContact] = useState([]);
   const [selectedContacts, setSelectedContacts] = useState([]);
 

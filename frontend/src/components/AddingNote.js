@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useTicketContext } from '../hooks/useTicketContext';
+import useRequest from '../hooks/useRequest';
 
 function AddingNote({ setDisplayAddNote, ticket_number }) {
   const [noteContent, setNoteContent] = useState();
   const { agent } = useAuthContext();
   const { dispatch } = useTicketContext();
   const textareaRef = useRef();
-  const [error, setError] = useState(null);
+  const { sendRequest, loading, error } = useRequest();
 
   async function addNote(e) {
     e.preventDefault();
@@ -21,8 +21,7 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
     };
 
     try {
-      setError(null);
-      const response = await axios({
+      const response = await sendRequest({
         method: 'POST',
         url: 'api/note/add-note',
         data,
@@ -31,9 +30,7 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
       dispatch({ type: 'ADD-NOTE', payload: response.data });
 
       setDisplayAddNote(false);
-    } catch (error) {
-      setError(error);
-    }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -59,7 +56,7 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
           Cancel
         </button>
         <button type="submit" className="button-default dark-bc m-left-10">
-          Add note
+          {!loading ? 'Add note' : 'Loading...'}
         </button>
       </div>
 

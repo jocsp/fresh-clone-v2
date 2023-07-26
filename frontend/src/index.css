@@ -208,6 +208,15 @@ a {
 
 .search-input {
   box-shadow: none;
+  width: 216px;
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+.search-input:focus {
+  width: 300px;
 }
 
 /******* BOTTOM BAR *******/
@@ -520,13 +529,17 @@ table {
 
 .single-ticket-page {
   background-color: #ebeff3;
+  width: 100vw;
 }
 
 .single-ticket-container {
   position: relative;
+  box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
   left: 70px;
-  width: calc(100vw - 560px);
+  /* width: calc(100vw - 560px); */
+  width: 64%;
   height: calc(100vh - 50px);
+  min-width: 600px;
   background-color: #ffffff;
   padding: 20px 30px;
   overflow: auto;
@@ -571,6 +584,24 @@ table {
 .add-note:hover {
   background-color: #ebecec;
   border: 1px solid rgb(190, 190, 190);
+}
+
+.properties {
+  position: absolute;
+  /* background: #fff; */
+  box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
+  border: 1px solid red;
+  top: 50px;
+  left: calc(64% + 75px);
+  height: calc(100vh - 50px);
+  width: 200px;
+  padding: 5px 10px;
+}
+
+@media screen and (max-width: 937.5px) {
+  .properties {
+    left: 675px;
+  }
 }
 
 /***** ADDING NOTE PAGE *****/

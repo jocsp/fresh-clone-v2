@@ -50,10 +50,13 @@ const changeTodo = async (req, res) => {
 };
 
 const deleteTodo = async (req, res) => {
-  const { todo_id } = req.body;
+  const { _id, todo_id } = req.body;
 
   try {
     await Todo.deleteOne({ _id: todo_id });
+
+    await Agent.findOneAndUpdate({ _id }, { $pull: { todos: todo_id } });
+
     res.status(200).json();
   } catch (error) {
     res.status(400).json({ error: error.message });

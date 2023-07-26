@@ -24,15 +24,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-// routes
-
+// these routes don't have the requireAuth middleware
 app.use('/api/user', agentRoutes);
+app.use('/api/filters', filtersRoutes);
 
 // middleware only used for the following routes
 app.use(requireAuth);
 
-// more routes
-app.use('/api/filters', filtersRoutes);
+// these routes have the requireAuth middleware
 app.use('/api/ticket', ticketRoutes);
 app.use('/api/note', noteRoutes);
 app.use('/api/todo', todoRoutes);

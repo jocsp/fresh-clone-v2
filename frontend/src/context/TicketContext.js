@@ -26,7 +26,7 @@ export function TicketContextProvider({ children }) {
   const [state, dispatch] = useReducer(ticketReducer, null);
 
   return (
-    <TicketContext.Provider value={{ state, dispatch }}>
+    <TicketContext.Provider value={{ ticket: state, dispatch }}>
       {children}
     </TicketContext.Provider>
   );

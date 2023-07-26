@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import TopBar from '../components/TopBar';
+import Properties from '../components/Properties';
 import ProfileImage from '../components/ProfileImage';
 import useFetchData from '../hooks/useFetchData';
 
@@ -22,7 +23,7 @@ function SingleTicket() {
     error,
   } = useFetchData(`/api/ticket/single-ticket/${ticket_number}`);
 
-  const { state: ticket, dispatch } = useTicketContext();
+  const { ticket, dispatch } = useTicketContext();
 
   useEffect(() => {
     if (loaded) {
@@ -94,6 +95,8 @@ function SingleTicket() {
           )}
         </div>
       ) : null}
+
+      <Properties />
 
       {error ? <div className="error"> {error} </div> : null}
     </div>

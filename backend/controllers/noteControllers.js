@@ -64,10 +64,15 @@ const updateNote = async (req, res) => {
 };
 
 const deleteNote = async (req, res) => {
-  const { note_id } = req.body;
+  const { ticket_id, note_id } = req.body;
 
   try {
-    const response = await Note.deleteOne({ _id: note_id });
+    await Note.deleteOne({ _id: note_id }).lean();
+
+    await Ticket.findOneAndUpdate(
+      { _id: ticket_id },
+      { $pull: { notes: note_id } }
+    ).lean();
 
     res.status(200).json();
   } catch (error) {

@@ -19,7 +19,7 @@ function Note({
   timeEdited,
   reFetch,
 }) {
-  const { dispatch } = useTicketContext();
+  const { ticket, dispatch } = useTicketContext();
   const { agent: currentAgent } = useAuthContext();
   const [content, setContent] = useState(initialContent);
   const textareaRef = useRef();
@@ -74,7 +74,7 @@ function Note({
       await sendRequest({
         url: '/api/note/delete',
         method: 'DELETE',
-        data: { note_id },
+        data: { note_id, ticket_id: ticket._id },
       });
 
       dispatch({ type: 'DELETE-NOTE', payload: { _id: note_id } });

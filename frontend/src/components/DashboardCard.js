@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function DashboardCard({ status, tickets }) {
+function DashboardCard({ status, tickets = [] }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

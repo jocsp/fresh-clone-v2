@@ -67,7 +67,7 @@ function Tickets() {
           <div className="loading" />
         )}
         {render && !tickets.length ? (
-          <p className="empty-message">No tickets available</p>
+          <p className="empty-message">No tickets found</p>
         ) : null}
         {error ? <span className="error">{error}</span> : null}
       </div>

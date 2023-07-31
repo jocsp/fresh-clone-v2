@@ -11,6 +11,8 @@ function Dashboard() {
     agent: { ticketsAssigned },
   } = useAuthContext();
 
+
+
   return (
     <div>
       <NavBar />

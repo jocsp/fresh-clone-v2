@@ -10,6 +10,7 @@ const authReducer = (state, action) => {
     case 'LOGOUT':
       return { agent: null };
     case 'UPDT-TKTS-ASSGND':
+      console.log(state)
       state.agent.ticketsAssigned.push(action.payload);
       return { ...state };
     case 'ADD-TODO':

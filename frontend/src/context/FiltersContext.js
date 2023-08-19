@@ -20,7 +20,7 @@ export function FiltersContextProvider({ children }) {
     selected: {
       agents: [],
       group: [],
-      status: ['Open'],
+      status: [],
       priority: [],
       type: [],
       contacts: [],

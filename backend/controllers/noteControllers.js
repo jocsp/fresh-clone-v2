@@ -11,7 +11,6 @@ const addNote = async (req, res) => {
   try {
     const ticket = await Ticket.findOne({ ticket_number: ticket_number });
     const agent = await Agent.findById(by._id).lean();
-
     const createdNote = await Note.create({
       by: agent,
       noteDate,

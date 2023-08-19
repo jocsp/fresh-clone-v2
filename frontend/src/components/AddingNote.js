@@ -6,11 +6,11 @@ import useRequest from '../hooks/useRequest';
 function AddingNote({ setDisplayAddNote, ticket_number }) {
   const [noteContent, setNoteContent] = useState();
   const { agent } = useAuthContext();
-  const { dispatch } = useTicketContext();
+  const { addNote } = useTicketContext();
   const textareaRef = useRef();
   const { sendRequest, loading, error } = useRequest();
 
-  async function addNote(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const data = {
@@ -27,10 +27,12 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
         data,
       });
 
-      dispatch({ type: 'ADD-NOTE', payload: response.data });
+      addNote(response.data);
 
       setDisplayAddNote(false);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
   }, []);
 
   return (
-    <form className="m-top-10" onSubmit={addNote}>
+    <form className="m-top-10" onSubmit={handleSubmit}>
       <div className="note-textarea-container">
         <textarea
           ref={textareaRef}

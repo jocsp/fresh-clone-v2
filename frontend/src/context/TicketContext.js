@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useParams } from 'react';
+import useFetchData from '../hooks/useFetchData';
 
 export const TicketContext = createContext();
 
@@ -25,8 +26,22 @@ const ticketReducer = (state, action) => {
 export function TicketContextProvider({ children }) {
   const [state, dispatch] = useReducer(ticketReducer, null);
 
+  const updateTicket = (ticket) => {
+    dispatch({ type: 'UPDATE', payload: ticket });
+  };
+
+  const addNote = (note) => {
+    dispatch({ type: 'ADD-NOTE', payload: note });
+  };
+
+  const deleteNote = (noteId) => {
+    dispatch({ type: 'DELETE-NOTE', payload: { _id: noteId } });
+  };
+
   return (
-    <TicketContext.Provider value={{ ticket: state, dispatch }}>
+    <TicketContext.Provider
+      value={{ ticket: state, dispatch, updateTicket, addNote, deleteNote }}
+    >
       {children}
     </TicketContext.Provider>
   );

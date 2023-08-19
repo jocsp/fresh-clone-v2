@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
-function SingleSelect({ label, options, optionSelected, setOptionSelected }) {
+function SingleSelect({ label, options, state }) {
+  const [optionSelected, setOptionSelected] = state;
   const [queriedOptions, setQueriedOptions] = useState([...options]);
   const edit = useRef(null);
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    edit.current.value = optionSelected;
+    edit.current.value = optionSelected.name;
   }, [optionSelected]);
 
   function selectOption(e) {

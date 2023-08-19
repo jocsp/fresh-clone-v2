@@ -4,7 +4,7 @@ function DashboardCard({ status, tickets = [] }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const newArray = tickets.filter((ticket) => ticket.status === status);
+    const newArray = tickets.filter((ticket) => ticket.status.name === status);
     setCount(newArray.length);
   }, []);
 

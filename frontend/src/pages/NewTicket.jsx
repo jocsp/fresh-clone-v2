@@ -14,7 +14,7 @@ function NewTicket() {
     loaded,
   } = useFiltersContext();
 
-  const { agent: currentAgent, dispatch } = useAuthContext();
+  const { agent: currentAgent, dispatch, addTicketAssigned } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -22,25 +22,25 @@ function NewTicket() {
   const [render, setRender] = useState(false);
   const [error, setError] = useState(null);
 
-  const [contact, setContact] = useState([]);
-  const [selectedContact, setSelectedContact] = useState('');
+  const [contact, setContactOptions] = useState([]);
+  const contactState = useState({ name: '' });
 
   const [subject, setSubject] = useState('');
 
-  const [type, setType] = useState([]);
-  const [selectedType, setSelectedType] = useState('');
+  const [typeOptions, setTypeOptions] = useState([]);
+  const typeState = useState({ name: '' });
 
-  const [status, setStatus] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState('');
+  const [statusOptions, setStatusOptions] = useState([]);
+  const statusState = useState({ name: '' });
 
-  const [priority, setPriority] = useState([]);
-  const [selectedPriority, setSelectedPriority] = useState('');
+  const [priorityOptions, setPriorityOptions] = useState([]);
+  const priorityState = useState({ name: '' });
 
-  const [group, setGroup] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState('');
+  const [groupOptions, setGroupOptions] = useState([]);
+  const groupState = useState({ name: '' });
 
-  const [agent, setAgent] = useState([]);
-  const [selectedAgent, setSelectedAgent] = useState('');
+  const [agentOptions, setAgentOptions] = useState([]);
+  const agentState = useState({ name: '' });
 
   const [description, setDescription] = useState('');
   const [createAnother, setCreateAnother] = useState(false);
@@ -49,12 +49,12 @@ function NewTicket() {
 
   useEffect(() => {
     if (loaded) {
-      setContact([...filters.contacts]);
-      setType([...filters.types]);
-      setStatus([...filters.status]);
-      setPriority([...filters.priorities]);
-      setGroup([...filters.groups]);
-      setAgent([...filters.agents]);
+      setContactOptions([...filters.contacts]);
+      setTypeOptions([...filters.types]);
+      setStatusOptions([...filters.status]);
+      setPriorityOptions([...filters.priorities]);
+      setGroupOptions([...filters.groups]);
+      setAgentOptions([...filters.agents]);
       setRender(true);
     }
   }, [loaded, filters]);
@@ -65,13 +65,13 @@ function NewTicket() {
     setError(null);
 
     const data = {
-      contact: selectedContact,
+      contact: contactState[0],
       subject,
-      type: selectedType,
-      status: selectedStatus,
-      priority: selectedPriority,
-      group: selectedGroup,
-      agent: selectedAgent,
+      type: typeState[0],
+      status: statusState[0],
+      priority: priorityState[0],
+      group: groupState[0],
+      agent: agentState[0],
       description,
       date: new Date(),
       createdBy: { _id: currentAgent._id, name: currentAgent.name },
@@ -84,13 +84,13 @@ function NewTicket() {
         data,
       });
 
-      dispatch({
-        type: 'UPDT-TKTS-ASSGND',
-        payload: { _id: response.data._id, status: response.data.status },
-      });
+      const { _id, agent, status } = response.data;
+
+      addTicketAssigned(_id, agent, status);
 
       navigate('/tickets');
     } catch (error) {
+      console.log(error);
       setError(error.response.data.error);
     }
   };
@@ -104,43 +104,33 @@ function NewTicket() {
           <SingleSelect
             label="Contact"
             options={contact}
-            optionSelected={selectedContact}
-            setOptionSelected={setSelectedContact}
+            state={contactState}
           />
 
           <InputText title="subject" input={subject} setInput={setSubject} />
 
-          <SingleSelect
-            label="Type"
-            options={type}
-            optionSelected={selectedType}
-            setOptionSelected={setSelectedType}
-          />
+          <SingleSelect label="Type" options={typeOptions} state={typeState} />
 
           <SingleSelect
             label="Status"
-            options={status}
-            optionSelected={selectedStatus}
-            setOptionSelected={setSelectedStatus}
+            options={statusOptions}
+            state={statusState}
           />
 
           <SingleSelect
             label="Priority"
-            options={priority}
-            optionSelected={selectedPriority}
-            setOptionSelected={setSelectedPriority}
+            options={priorityOptions}
+            state={priorityState}
           />
           <SingleSelect
             label="Group"
-            options={group}
-            optionSelected={selectedGroup}
-            setOptionSelected={setSelectedGroup}
+            options={groupOptions}
+            state={groupState}
           />
           <SingleSelect
             label="Agent"
-            options={agent}
-            optionSelected={selectedAgent}
-            setOptionSelected={setSelectedAgent}
+            options={agentOptions}
+            state={agentState}
           />
 
           <div className="text-area-container">

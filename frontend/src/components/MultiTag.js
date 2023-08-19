@@ -16,13 +16,15 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
   }
 
   function selectoption(e) {
+    const { id, textContent } = e.target;
+
     edit.current.textContent = '';
     setQueriedOptions([...options]);
     setOptionsSelected((prevoptions) => {
-      if (prevoptions.includes(e.target.textContent)) {
+      if (prevoptions.some((option) => option._id === id)) {
         return [...prevoptions];
       } else {
-        return [...prevoptions, e.target.textContent];
+        return [...prevoptions, { _id: id, name: textContent }];
       }
     });
   }
@@ -40,9 +42,9 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
     });
   }
 
-  function delteoption(e) {
+  function deleteOption(e) {
     setOptionsSelected((prevoptions) => {
-      return [...prevoptions.filter((option) => option !== e.target?.id)];
+      return [...prevoptions.filter((option) => option._id !== e.target?.id)];
     });
   }
   return (
@@ -56,14 +58,17 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
         <div className="selected-container">
           {optionsSelected.map((optionSelected) => {
             return (
-              <div key={optionSelected} className="option-selected-container">
-                <span key={optionSelected} className="option-selected">
-                  {optionSelected}
+              <div
+                key={optionSelected._id}
+                className="option-selected-container"
+              >
+                <span key={optionSelected._id} className="option-selected">
+                  {optionSelected.name}
                 </span>
                 <span
                   className="delete-button"
-                  id={optionSelected}
-                  onClick={delteoption}
+                  id={optionSelected._id}
+                  onClick={deleteOption}
                 >
                   x
                 </span>
@@ -84,11 +89,16 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
       {display ? (
         <div className="options">
           {queriedOptions.map((option) => {
-            let selected = Boolean(optionsSelected.includes(option.name));
+            let selected = Boolean(
+              optionsSelected.some(
+                (optionSelected) => optionSelected._id === option._id
+              )
+            );
 
             return (
               <div
                 key={option._id}
+                id={option._id}
                 className={selected ? 'option selected' : 'option'}
                 onMouseDown={selectoption}
               >

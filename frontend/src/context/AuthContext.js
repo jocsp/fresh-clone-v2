@@ -9,9 +9,12 @@ const authReducer = (state, action) => {
       return { agent: action.payload };
     case 'LOGOUT':
       return { agent: null };
-    case 'UPDT-TKTS-ASSGND':
-      console.log(state)
-      state.agent.ticketsAssigned.push(action.payload);
+    case 'ADD-TKTS-ASSGND':
+      if (state.agent._id === action.payload.agent) {
+        state.agent.ticketsAssigned.push(action.payload.ticket_data);
+      }
+      return { ...state };
+    case 'UPDT-TKTS-ASSGND': // PENDING TO CHANGE THE CODE
       return { ...state };
     case 'ADD-TODO':
       state.agent.todos.push(action.payload);
@@ -39,8 +42,15 @@ export function AuthContextProvider({ children }) {
     authorize();
   }, []);
 
+  const addTicketAssigned = (ticket_id, agent, status) => {
+    dispatch({
+      type: 'ADD-TKTS-ASSGND',
+      payload: { agent, ticket_data: { ticket_id, status: status } },
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, addTicketAssigned }}>
       {loaded && children}
     </AuthContext.Provider>
   );

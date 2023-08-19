@@ -529,7 +529,6 @@ table {
 
 .single-ticket-page {
   background-color: #ebeff3;
-  width: 100vw;
 }
 
 .single-ticket-container {
@@ -586,22 +585,41 @@ table {
   border: 1px solid rgb(190, 190, 190);
 }
 
-.properties {
+.properties-container {
   position: absolute;
-  /* background: #fff; */
+  background: #fff;
   box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
-  border: 1px solid red;
+
   top: 50px;
   left: calc(64% + 75px);
   height: calc(100vh - 50px);
   width: 200px;
   padding: 5px 10px;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 937.5px) {
-  .properties {
+  .properties-container {
     left: 675px;
   }
+}
+
+.update-button {
+  display: block;
+  width: 69%;
+  margin: 10px auto;
+  padding: 5px 10px;
+  height: auto;
+}
+
+.update-button:disabled {
+  cursor: not-allowed;
+  background-color: #11334f55;
+}
+
+.update-button:disabled:hover {
+  background-color: #11334f55;
+  border: 1px solid #11334f55;
 }
 
 /***** ADDING NOTE PAGE *****/
@@ -627,12 +645,19 @@ table {
 
 .dark-bc {
   background-color: #21435f;
+  /* background-color: #21435f; */
   color: white !important;
 }
 
 .dark-bc:hover {
   background-color: #11334f;
   border: 1px solid rgb(0, 31, 59);
+}
+
+.dark-bc:active {
+  transition: background-color 0.1s;
+  background-color: #00223e;
+  scale: 0.97;
 }
 
 .adding-note-bottom-bar {

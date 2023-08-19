@@ -6,7 +6,7 @@ const useFetchData = (url) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  const [reFetch, setReFetch] = useState(false);
+  const [reFetchFlag, setReFetchFlag] = useState(false);
   const { dispatch } = useAuthContext();
 
   useEffect(() => {
@@ -25,13 +25,17 @@ const useFetchData = (url) => {
     };
 
     fetchData();
-  }, [url, reFetch]);
+  }, [url, reFetchFlag]);
+
+  const reFetch = () => {
+    setReFetchFlag((prevValue) => !prevValue);
+  };
 
   return {
     data,
     loaded,
     error,
-    setReFetch,
+    reFetch,
   };
 };
 

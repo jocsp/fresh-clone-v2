@@ -5,7 +5,6 @@ import TopBar from '../components/TopBar';
 import Properties from '../components/Properties';
 import ProfileImage from '../components/ProfileImage';
 import useFetchData from '../hooks/useFetchData';
-
 import { formatDate } from '../scripts/formatDate';
 import Note from '../components/Note';
 import AddingNote from '../components/AddingNote';
@@ -19,7 +18,7 @@ function SingleTicket() {
   const {
     data: fetchedTicket,
     loaded,
-    setReFetch,
+    reFetch,
     error,
   } = useFetchData(`/api/ticket/single-ticket/${ticket_number}`);
 
@@ -73,7 +72,7 @@ function SingleTicket() {
               edited={note.edited}
               editedBy={note.editedBy}
               timeEdited={note.timeEdited}
-              reFetch={() => setReFetch((prevValue) => !prevValue)}
+              reFetch={reFetch}
             />
           ))}
 
@@ -96,7 +95,11 @@ function SingleTicket() {
         </div>
       ) : null}
 
-      <Properties />
+      {ticket ? (
+        <Properties />
+      ) : (
+        <div className="properties-container"> Loading... </div>
+      )}
 
       {error ? <div className="error"> {error} </div> : null}
     </div>

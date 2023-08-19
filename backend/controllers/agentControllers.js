@@ -21,7 +21,11 @@ const initialAuthAgent = async (req, res) => {
   try {
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
     let agent = await Agent.findOne({ _id })
-      .populate({ path: 'ticketsAssigned', select: '_id status' })
+      .populate({
+        path: 'ticketsAssigned',
+        select: '_id status',
+        populate: { path: 'status' },
+      })
       .populate('todos')
       .lean();
 

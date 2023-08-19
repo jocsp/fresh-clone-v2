@@ -12,39 +12,42 @@ const getTickets = async (req, res) => {
 
   query
     .sort({ _id: -1 })
+    .populate('status')
+    .populate('type')
+    .populate('group')
     .populate('contact')
+    .populate('priority')
     .populate({ path: 'createdBy', select: '-password' })
     .populate({ path: 'agent', select: '-password' })
     .lean();
 
   if (filters?.agents) {
-    const agents = await Agent.find({ name: filters.agents }, '_id').lean();
-    const agentsIds = agents.map((agent) => agent._id);
+    const agentsIds = filters.agents.map((agent) => agent._id);
     query.find({ agent: agentsIds });
   }
 
   if (filters?.group) {
-    query.find({ group: filters.group });
+    const groupIds = filters.group.map((group) => group._id);
+    query.find({ group: groupIds });
   }
 
   if (filters?.status) {
-    query.find({ status: filters.status });
+    const statusIds = filters.status.map((status) => status._id);
+    query.find({ status: statusIds });
   }
 
   if (filters?.priority) {
-    query.find({ priority: filters.priority });
+    const priorityIds = filters.priority.map((priority) => priority._id);
+    query.find({ priority: priorityIds });
   }
 
   if (filters?.type) {
-    query.find({ type: filters.type });
+    const typeIds = filters.type.map((type) => type._id);
+    query.find({ type: typeIds });
   }
 
   if (filters?.contacts) {
-    const contacts = await Contact.find(
-      { name: filters.contacts },
-      '_id'
-    ).lean();
-    const contactsIds = contacts.map((contact) => contact._id);
+    const contactsIds = filters.contacts.map((contact) => contact._id);
     query.find({ contact: contactsIds });
   }
 
@@ -66,6 +69,10 @@ const getSingleTicket = async (req, res) => {
     })
       .populate({ path: 'notes', populate: { path: 'by', model: 'Agent' } })
       .populate('contact')
+      .populate('status')
+      .populate('priority')
+      .populate('group')
+      .populate('type')
       .populate({ path: 'createdBy', select: '-password' })
       .populate({ path: 'agent', select: '-password' })
       .lean();
@@ -84,8 +91,6 @@ const newTicket = async (req, res) => {
     const ticket = await Ticket.createTicket(data);
     const contact = await Contact.findById(ticket.contact._id);
 
-    console.log(contact);
-
     const activity = await Activity.create({
       type: 'dashboard',
       name: contact.name,
@@ -103,6 +108,8 @@ const newTicket = async (req, res) => {
       { $push: { ticketsAssigned: ticket } }
     );
 
+    await ticket.populate('status');
+
     res.status(200).json(ticket);
   } catch (error) {
     console.log(error);
@@ -110,4 +117,16 @@ const newTicket = async (req, res) => {
   }
 };
 
-module.exports = { newTicket, getTickets, getSingleTicket };
+const updateTicket = async (req, res) => {
+  const { data, ticket_id } = req.body;
+
+  // finds ticket with the id provided (ticket_id), changes some fields and
+  // returns the new updated document
+  const updatedTicket = await Ticket.findOneAndUpdate(ticket_id, data, {
+    new: true,
+  }).lean();
+
+  res.status(200).json(updatedTicket);
+};
+
+module.exports = { newTicket, getTickets, getSingleTicket, updateTicket };

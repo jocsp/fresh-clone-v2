@@ -54,10 +54,10 @@ function Tickets() {
                   key={ticket._id}
                   contact={ticket.contact.name}
                   subject={ticket.subject}
-                  group={ticket.group}
+                  group={ticket.group.name}
                   agent={ticket.agent.name}
-                  priority={ticket.priority}
-                  status={ticket.status}
+                  priority={ticket.priority.name}
+                  status={ticket.status.name}
                   ticket_number={ticket.ticket_number}
                 />
               ))}

@@ -1,27 +1,27 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ticketSchema = new mongoose.Schema({
-  contact: { type: mongoose.Schema.Types.ObjectId, ref: "Contact" },
+  contact: { type: mongoose.Schema.Types.ObjectId, ref: 'Contact' },
   subject: String,
-  type: String,
-  status: String,
-  priority: String,
-  group: String,
-  agent: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },
+  type: { type: mongoose.Schema.Types.ObjectId, ref: 'Type' },
+  status: { type: mongoose.Schema.Types.ObjectId, ref: 'Status' },
+  priority: { type: mongoose.Schema.Types.ObjectId, ref: 'Priority' },
+  group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+  agent: { type: mongoose.Schema.Types.ObjectId, ref: 'Agent' },
   description: String,
   ticket_number: Number,
   date: Date,
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },
-  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }],
-  activities: [{ type: mongoose.Schema.Types.ObjectId, ref: "Activity" }],
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Agent' },
+  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
+  activities: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Activity' }],
 });
 
 ticketSchema.statics.createTicket = async function (data) {
   // validation
-  const isEmpty = Object.values(data).some((x) => x === null || x === "");
+  const isEmpty = Object.values(data).some((x) => x === null || x === '');
 
   if (isEmpty) {
-    throw Error("All fields must be filled");
+    throw Error('All fields must be filled');
   }
 
   try {
@@ -30,10 +30,10 @@ ticketSchema.statics.createTicket = async function (data) {
     const ticket = await this.create({
       contact: data.contact._id,
       subject: data.subject,
-      type: data.type.name,
-      status: data.status.name,
-      priority: data.priority.name,
-      group: data.group.name,
+      type: data.type._id,
+      status: data.status._id,
+      priority: data.priority._id,
+      group: data.group._id,
       agent: data.agent._id,
       description: data.description,
       date: data.date,
@@ -43,8 +43,8 @@ ticketSchema.statics.createTicket = async function (data) {
 
     return ticket;
   } catch (error) {
-    throw Error("Error happened when creating ticket");
+    throw Error('Error happened when creating ticket');
   }
 };
 
-module.exports = mongoose.model("Ticket", ticketSchema);
+module.exports = mongoose.model('Ticket', ticketSchema);

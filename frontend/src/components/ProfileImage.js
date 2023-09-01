@@ -1,6 +1,6 @@
-import React from 'react';
-import { useAuthContext } from '../hooks/useAuthContext';
-import useRequest from '../hooks/useRequest';
+import React from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useRequest from "../hooks/useRequest";
 
 const ProfileImage = ({ profile }) => {
   const { dispatch } = useAuthContext();
@@ -8,12 +8,12 @@ const ProfileImage = ({ profile }) => {
 
   const logoutAgent = async () => {
     const response = await sendRequest({
-      method: 'GET',
-      url: 'api/user/logout',
+      method: "GET",
+      url: "api/user/logout",
     });
 
     if (response.data.loggedOut) {
-      dispatch({ type: 'LOGOUT' });
+      dispatch({ type: "LOGOUT" });
     }
   };
 
@@ -21,9 +21,9 @@ const ProfileImage = ({ profile }) => {
     <div
       onClick={logoutAgent}
       className="profile-image m-right-10"
-      style={{ backgroundColor: profile.color }}
+      style={{ backgroundColor: profile?.color }}
     >
-      {profile.name[0].toUpperCase()}
+      {profile?.name[0].toUpperCase()}
     </div>
   );
 };

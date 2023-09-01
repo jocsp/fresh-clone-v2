@@ -7,7 +7,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import { FiltersContextProvider } from './context/FiltersContext';
 import { TicketContextProvider } from './context/TicketContext';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5001';
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

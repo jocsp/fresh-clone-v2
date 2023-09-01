@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import NavBar from '../components/NavBar';
-import TopBar from '../components/TopBar';
-import TicketCard from '../components/TicketCard';
-import Filters from '../components/Filters';
-import { useFiltersContext } from '../hooks/useFiltersContext';
-import useRequest from '../hooks/useRequest';
+import NavBar from "../components/NavBar";
+import TopBar from "../components/TopBar";
+import TicketCard from "../components/TicketCard";
+import Filters from "../components/Filters";
+import { useFiltersContext } from "../hooks/useFiltersContext";
+import useRequest from "../hooks/useRequest";
 
 function Tickets() {
   const { state: filters, loaded } = useFiltersContext();
@@ -18,8 +18,8 @@ function Tickets() {
     const fetchTickets = async () => {
       try {
         const response = await sendRequest({
-          url: '/api/ticket/get-tickets',
-          method: 'GET',
+          url: "/api/ticket/get-tickets",
+          method: "GET",
           params: { filters: filters?.selected },
         });
         setTickets(response.data);
@@ -52,7 +52,7 @@ function Tickets() {
               {tickets.map((ticket) => (
                 <TicketCard
                   key={ticket._id}
-                  contact={ticket.contact.name}
+                  contact={ticket.contact}
                   subject={ticket.subject}
                   group={ticket.group.name}
                   agent={ticket.agent.name}

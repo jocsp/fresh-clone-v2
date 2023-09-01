@@ -1,11 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
 :root {
   --blueish: #3a4fc8;
+  --single-ticket-container-width: 64%;
+  --properties-container-width: 250px;
+  --top-bar-height: 50px;
+  --vertical-nav-width: 50px;
+  --contact-details-container-width: 250px;
 }
 
 * {
   padding: 0px;
   margin: 0;
   box-sizing: border-box;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+
+.m-top-3 {
+  margin-top: 3px;
 }
 
 .m-top-5 {
@@ -36,12 +58,20 @@
   margin-left: 10px;
 }
 
+.gap-5 {
+  gap: 5px;
+}
+
 .padding-5-10 {
   padding: 5px 10px;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.lighter-font {
+  color: #adb0b6;
 }
 
 .light-font {
@@ -137,7 +167,7 @@ a {
   display: flex;
   flex-direction: column;
   background-color: #12344d;
-  width: 50px;
+  width: var(--vertical-nav-width);
   height: 100vh;
   text-align: center;
   color: white;
@@ -185,7 +215,7 @@ a {
   position: relative;
   left: 50px;
   width: calc(100vw - 50px);
-  height: 50px;
+  height: var(--top-bar-height);
   line-height: 30px;
   padding: 10px;
   display: flex;
@@ -274,10 +304,12 @@ a {
 }
 
 .input {
-  border-radius: 5px;
+  border-radius: 3px;
   height: 30px;
   padding: 10px;
-  border: 1px solid rgba(100, 100, 100, 0.9);
+  background-color: #fff;
+  border: 1px solid rgba(200, 200, 200, 0.7);
+  box-shadow: inset 0 0 1px gray;
 }
 
 .empty {
@@ -381,6 +413,7 @@ a {
 /* options container for  single select component */
 
 .options-single {
+  /* width: 69%; */
   width: 69%;
   margin-top: 70px;
 }
@@ -455,7 +488,7 @@ a {
 }
 
 .selected-container:empty + .editable:empty::before {
-  content: 'Any';
+  content: "Any";
   color: rgb(170, 170, 170);
 }
 
@@ -514,7 +547,7 @@ a {
 }
 
 .ticket-card-container td input {
-  margin: 0;
+  margin: 0 10px 0 0;
 }
 
 table {
@@ -536,8 +569,8 @@ table {
   box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
   left: 70px;
   /* width: calc(100vw - 560px); */
-  width: 64%;
-  height: calc(100vh - 50px);
+  width: var(--single-ticket-container-width);
+  height: calc(100vh - var(--top-bar-height));
   min-width: 600px;
   background-color: #ffffff;
   padding: 20px 30px;
@@ -589,13 +622,30 @@ table {
   position: absolute;
   background: #fff;
   box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
-
-  top: 50px;
-  left: calc(64% + 75px);
+  top: var(--top-bar-height);
+  left: calc(var(--single-ticket-container-width) + 75px);
   height: calc(100vh - 50px);
-  width: 200px;
+  width: var(--properties-container-width);
   padding: 5px 10px;
   overflow-y: auto;
+}
+
+.properties .input-container {
+  width: 90%;
+}
+
+.status-properties {
+  color: rgb(100, 100, 100);
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.title-properties {
+  display: block;
+  margin-top: 10px;
+  border-top: 1px solid rgb(222, 222, 222);
+  font-size: 1.3rem;
+  padding: 5px;
 }
 
 @media screen and (max-width: 937.5px) {
@@ -606,7 +656,7 @@ table {
 
 .update-button {
   display: block;
-  width: 69%;
+  width: 90%;
   margin: 10px auto;
   padding: 5px 10px;
   height: auto;
@@ -620,6 +670,56 @@ table {
 .update-button:disabled:hover {
   background-color: #11334f55;
   border: 1px solid #11334f55;
+}
+
+/** CONTACT DETAILS in Single ticket page **/
+
+.contact-details-container {
+  position: absolute;
+  background: #fff;
+  border: 1px solid rgba(155, 155, 155, 0.3);
+  top: calc(var(--top-bar-height) + 10px);
+  left: calc(
+    var(--single-ticket-container-width) + var(--properties-container-width) +
+      var(--vertical-nav-width) + 50px
+  );
+  width: var(--contact-details-container-width);
+  border-radius: 5px;
+  height: calc(100vh - var(--top-bar-height) - 20px);
+  overflow-y: auto;
+}
+
+.contact-details-heading {
+  background-color: #f5f7f9;
+  border-radius: 5px 5px 0px 0px;
+  gap: 5px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(155, 155, 155, 0.3);
+}
+
+.contact-details-content {
+  padding: 10px;
+}
+
+.email-heading {
+  color: #adb0b6;
+  margin: 15px 0px 5px 0;
+}
+
+.view-more-link {
+  color: #4f69c1;
+  margin-top: 15px;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+/* TIMELINE */
+
+.timeline-container {
+  position: relative;
+  overflow-y: auto;
+  height: 60%;
 }
 
 /***** ADDING NOTE PAGE *****/
@@ -713,7 +813,7 @@ table {
   opacity: 0;
 }
 
-.note-date {
+.small-lighter {
   font-size: 12px;
   color: rgba(50, 50, 50, 0.7);
 }
@@ -827,7 +927,7 @@ table {
   border-bottom: 1px solid rgba(222, 222, 222, 0.7);
 }
 
-.todo input[type='checkbox'] {
+.todo input[type="checkbox"] {
   accent-color: #1a4d73;
 }
 

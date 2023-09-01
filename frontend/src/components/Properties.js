@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import SingleSelect from './SingleSelect';
-import { useFiltersContext } from '../hooks/useFiltersContext';
-import { useTicketContext } from '../hooks/useTicketContext';
-import useRequest from '../hooks/useRequest';
+import React, { useEffect, useState } from "react";
+import SingleSelect from "./SingleSelect";
+import { useFiltersContext } from "../hooks/useFiltersContext";
+import { useTicketContext } from "../hooks/useTicketContext";
+import useRequest from "../hooks/useRequest";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Properties = () => {
   const { sendRequest } = useRequest();
@@ -10,6 +11,8 @@ const Properties = () => {
     state: { filters },
     loaded,
   } = useFiltersContext();
+
+  const { updateTicketsAssigned } = useAuthContext();
 
   const { ticket, updateTicket } = useTicketContext();
 
@@ -62,18 +65,28 @@ const Properties = () => {
   useEffect(() => {
     const { modified } = isModified();
     setIsDisabled(modified);
-  }, [typeState, statusState, priorityState, groupState, agentState, ticket]);
+  }, [
+    typeState,
+    statusState,
+    priorityState,
+    groupState,
+    agentState,
+    ticket,
+    filters,
+  ]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { dataModified } = isModified();
 
-    const response = sendRequest({
-      method: 'PATCH',
-      url: '/api/ticket/update',
+    const response = await sendRequest({
+      method: "PATCH",
+      url: "/api/ticket/update",
       data: { data: dataModified, ticket_id: ticket._id },
     });
+
+    updateTicketsAssigned(response.data);
 
     updateTicket(dataModified);
   };
@@ -82,8 +95,8 @@ const Properties = () => {
     <div className="properties-container">
       {ticket && loaded ? (
         <form className="properties" onSubmit={handleSubmit}>
-          <p>{ticket.status.name}</p>
-          <span>Properties</span>
+          <p className="status-properties">{ticket.status.name}</p>
+          <span className="title-properties">Properties</span>
           <SingleSelect
             label="Type"
             options={filters.types}

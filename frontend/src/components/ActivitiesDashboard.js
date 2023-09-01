@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import ProfileImage from './ProfileImage';
-import { Link } from 'react-router-dom';
-import { timeAgo } from '../scripts/formatDate';
-import useFetchData from '../hooks/useFetchData';
+import ProfileImage from "./ProfileImage";
+import { Link } from "react-router-dom";
+import { timeAgo } from "../scripts/formatDate";
+import useFetchData from "../hooks/useFetchData";
 
 function ActivitiesDashboard() {
   const {
     data: activities,
     loaded,
     error,
-  } = useFetchData('/api/activity/get-all');
+  } = useFetchData("/api/activity/get-all");
 
   return (
     <div className="activities-dashboard-container">
@@ -22,15 +22,15 @@ function ActivitiesDashboard() {
               <ProfileImage profile={activity} />
               <div>
                 <p>
-                  <span className="bold">{activity.name}</span> {activity.verb}{' '}
-                  {activity.predicate}{' '}
+                  <span className="bold">{activity.name}</span> {activity.verb}{" "}
+                  {activity.predicate}{" "}
                   <Link
                     className="ticket-link"
-                    to={'/ticket/' + activity.ticket_number}
+                    to={"/ticket/" + activity.ticket_number}
                   >
                     {activity.ticket_name} {`(#${activity.ticket_number})`}
-                    {activity.complement ? 'to ' + activity.complement : null}
                   </Link>
+                  {activity.complement ? " to " + activity.complement : null}
                 </p>
                 <p className="light-font">{timeAgo(activity.date)}</p>
               </div>

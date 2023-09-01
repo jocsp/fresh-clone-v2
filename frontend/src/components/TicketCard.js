@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import ProfileImage from "./ProfileImage";
 
 function TicketCard({
   contact,
@@ -12,13 +13,15 @@ function TicketCard({
 }) {
   return (
     <tr className="ticket-card-container">
-      <td>
-        <input type="checkbox" name="select" /> {contact}
+      <td className="flex">
+        <input type="checkbox" name="select" />
+        <ProfileImage profile={contact} />
+        {contact.name}
       </td>
 
       <td>
         <Link to={`/ticket/${ticket_number}`} className="subject-card">
-          {subject} <span className="light-font">{` #${ticket_number}`}</span>{' '}
+          {subject} <span className="light-font">{` #${ticket_number}`}</span>{" "}
         </Link>
       </td>
 

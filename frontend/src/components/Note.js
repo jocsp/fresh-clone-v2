@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useTicketContext } from '../hooks/useTicketContext';
+import React, { useState, useEffect, useRef } from "react";
+import { useTicketContext } from "../hooks/useTicketContext";
 
-import ProfileImage from './ProfileImage';
-import CustomizedMenus from './Submenu';
-import { UilEdit } from '@iconscout/react-unicons';
-import { Link } from 'react-router-dom';
-import { formatDate } from '../scripts/formatDate';
-import { useAuthContext } from '../hooks/useAuthContext';
-import useRequest from '../hooks/useRequest';
+import ProfileImage from "./ProfileImage";
+import CustomizedMenus from "./Submenu";
+import { UilEdit } from "@iconscout/react-unicons";
+import { Link } from "react-router-dom";
+import { formatDateAgo } from "../scripts/formatDate";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useRequest from "../hooks/useRequest";
 
 function Note({
   note_id,
@@ -31,7 +31,7 @@ function Note({
   useEffect(() => {
     let lines =
       Math.ceil(content.length / 100) +
-      content.replace(/\r/g, '').split(/\n/).length -
+      content.replace(/\r/g, "").split(/\n/).length -
       1;
 
     if (editing && lines < 3) {
@@ -58,8 +58,8 @@ function Note({
 
   const updateNote = async () => {
     await sendRequest({
-      method: 'POST',
-      url: '/api/note/update',
+      method: "POST",
+      url: "/api/note/update",
       data: { content, note_id, editedBy: currentAgent.name },
     });
 
@@ -67,17 +67,17 @@ function Note({
     reFetch();
   };
 
-  const subMenuItems = [{ text: 'Edit', icon: <UilEdit />, event: editNote }];
+  const subMenuItems = [{ text: "Edit", icon: <UilEdit />, event: editNote }];
 
   const deleteNote = async () => {
     try {
       await sendRequest({
-        url: '/api/note/delete',
-        method: 'DELETE',
+        url: "/api/note/delete",
+        method: "DELETE",
         data: { note_id, ticket_id: ticket._id },
       });
 
-      dispatch({ type: 'DELETE-NOTE', payload: { _id: note_id } });
+      dispatch({ type: "DELETE-NOTE", payload: { _id: note_id } });
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +93,7 @@ function Note({
               <Link className="bold blueish-font">{by.name}</Link> added a
               private note
             </p>
-            <p className="m-top-5 note-date"> {formatDate(noteDate)} </p>
+            <p className="m-top-5 small-lighter"> {formatDateAgo(noteDate)} </p>
           </div>
         </div>
 
@@ -101,9 +101,9 @@ function Note({
       </div>
       {edited ? (
         <p className="m-top-10 note-edited">
-          {' '}
-          Last time <span className="bold">edited</span> by{' '}
-          <span className="bold">{editedBy}</span> {formatDate(timeEdited)}{' '}
+          {" "}
+          Last time <span className="bold">edited</span> by{" "}
+          <span className="bold">{editedBy}</span> {formatDateAgo(timeEdited)}{" "}
         </p>
       ) : null}
 
@@ -112,8 +112,8 @@ function Note({
         rows={rows}
         className={
           editing
-            ? 'm-top-10 note-content padding-5-10'
-            : 'm-top-10 note-content fixed-note'
+            ? "m-top-10 note-content padding-5-10"
+            : "m-top-10 note-content fixed-note"
         }
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -126,7 +126,7 @@ function Note({
             className="button-default dark-bc m-right-10"
             onClick={updateNote}
           >
-            {!loading ? 'Update' : 'Loading...'}
+            {!loading ? "Update" : "Loading..."}
           </button>
           <button className="button-default" onClick={cancelEdition}>
             Cancel

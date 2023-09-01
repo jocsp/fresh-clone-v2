@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import TopBar from '../components/TopBar';
-import Properties from '../components/Properties';
-import ProfileImage from '../components/ProfileImage';
-import useFetchData from '../hooks/useFetchData';
-import { formatDate } from '../scripts/formatDate';
-import Note from '../components/Note';
-import AddingNote from '../components/AddingNote';
-import { useTicketContext } from '../hooks/useTicketContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import TopBar from "../components/TopBar";
+import Properties from "../components/Properties";
+import ProfileImage from "../components/ProfileImage";
+import useFetchData from "../hooks/useFetchData";
+import { formatDateAgo } from "../scripts/formatDate";
+import Note from "../components/Note";
+import AddingNote from "../components/AddingNote";
+import { useTicketContext } from "../hooks/useTicketContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+import ContactDetails from "../components/ContactDetails";
 
 function SingleTicket() {
+  const [loading, setLoading] = useState(true);
   const { agent: currentAgent } = useAuthContext();
   const { ticket_number } = useParams();
   const [displayAddNote, setDisplayAddNote] = useState(false);
@@ -22,13 +24,13 @@ function SingleTicket() {
     error,
   } = useFetchData(`/api/ticket/single-ticket/${ticket_number}`);
 
-  const { ticket, dispatch } = useTicketContext();
+  const { ticket, updateTicket } = useTicketContext();
 
   useEffect(() => {
     if (loaded) {
-      dispatch({ type: 'UPDATE', payload: fetchedTicket });
+      updateTicket(fetchedTicket);
     }
-  }, [loaded, dispatch, fetchedTicket]);
+  }, [loaded, fetchedTicket]);
 
   return (
     <div className="single-ticket-page">
@@ -52,8 +54,8 @@ function SingleTicket() {
                   {ticket?.contact.name}
                 </Link>
               </p>
-              <p className="note-date">
-                {ticket?.date ? formatDate(ticket?.date) : null}
+              <p className="small-lighter">
+                {ticket?.date ? formatDateAgo(ticket?.date) : null}
               </p>
             </div>
           </div>
@@ -100,6 +102,8 @@ function SingleTicket() {
       ) : (
         <div className="properties-container"> Loading... </div>
       )}
+
+      <ContactDetails />
 
       {error ? <div className="error"> {error} </div> : null}
     </div>

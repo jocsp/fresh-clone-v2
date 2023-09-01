@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import useRequest from '../../hooks/useRequest';
 
-function TodoItem({ checkedProp, todo_id, todo, setTodos, setReFetch }) {
+function TodoItem({ checkedProp, todo_id, todo, setTodos, reFetch }) {
   const [checked, setChecked] = useState(checkedProp);
 
   const { sendRequest } = useRequest();
@@ -26,7 +26,7 @@ function TodoItem({ checkedProp, todo_id, todo, setTodos, setReFetch }) {
       })
     );
 
-    setReFetch((preValue) => !preValue);
+      reFetch()
   }
 
   async function deleteTodo() {

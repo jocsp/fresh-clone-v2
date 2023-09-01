@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useAuthContext } from './useAuthContext';
-import axios from 'axios';
+import { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
+import axios from "axios";
 
 const useRequest = () => {
   const [data, setData] = useState(null);
@@ -30,13 +30,13 @@ const useRequest = () => {
     } catch (err) {
       console.log(err);
       if (err.response.status === 401) {
-        dispatch({ type: 'LOGOUT' });
+        dispatch({ type: "LOGOUT" });
       }
       setError(err.response.data.error);
     }
   };
 
-  return { data, error, loading, finished, sendRequest };
+  return { data, error, loading, finished, sendRequest, setError };
 };
 
 export default useRequest;

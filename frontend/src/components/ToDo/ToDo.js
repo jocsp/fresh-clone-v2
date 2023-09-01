@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import TodoItem from './TodoItem';
-import useFetchData from '../../hooks/useFetchData';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useAuthContext } from '../../hooks/useAuthContext';
-import useRequest from '../../hooks/useRequest';
+import React, { useEffect, useState } from "react";
+import TodoItem from "./TodoItem";
+import useFetchData from "../../hooks/useFetchData";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import useRequest from "../../hooks/useRequest";
 
 function ToDo() {
   const {
     data,
     error: errorFetching,
     loaded,
-    setReFetch,
-  } = useFetchData('/api/todo/get-todos');
+    reFetch,
+  } = useFetchData("/api/todo/get-todos");
 
   const { dispatch } = useAuthContext();
-  const [todo, setTodo] = useState('');
+  const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState(null);
-  const { sendRequest, error, loading } = useRequest();
-
-
+  const { sendRequest, error, loading, setError } = useRequest();
 
   useEffect(() => {
     if (loaded) {
@@ -44,15 +42,22 @@ function ToDo() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const response = await sendRequest({
-      method: 'POST',
-      url: '/api/todo/add-todo',
-      data: { todo },
-    });
+    try {
+      if (todo.trim()) {
+        const response = await sendRequest({
+          method: "POST",
+          url: "/api/todo/add-todo",
+          data: { todo },
+        });
 
-    setTodos((prevTodos) => [response.data, ...prevTodos]);
-
-    setTodo('');
+        setTodos((prevTodos) => [response.data, ...prevTodos]);
+        setTodo("");
+      } else {
+        setError("Todo is empty");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -63,7 +68,7 @@ function ToDo() {
           <AddCircleIcon
             className="add-todo"
             onClick={handleSubmit}
-            style={{ fontSize: 'medium', alignSelf: 'center', color: 'green' }}
+            style={{ fontSize: "medium", alignSelf: "center", color: "green" }}
           />
           <input
             type="text"
@@ -83,7 +88,7 @@ function ToDo() {
               checkedProp={todoElement.checked}
               setTodos={setTodos}
               todo_id={todoElement._id}
-              setReFetch={setReFetch}
+              reFetch={reFetch}
             />
           ))}
       </div>

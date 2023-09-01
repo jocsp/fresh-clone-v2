@@ -16,9 +16,11 @@ const getTodos = async (req, res) => {
 const addTodo = async (req, res) => {
   const { todo, _id } = req.body;
 
+
+
   try {
     if (!todo) {
-      throw Error('Todo input was empty');
+      throw Error('Todo input is empty');
     }
 
     const agent = await Agent.findOne({ _id: _id });
@@ -34,6 +36,7 @@ const addTodo = async (req, res) => {
 
     res.status(200).json(newTodo);
   } catch (error) {
+    console.log(error.message)
     res.status(400).json({ error: error.message });
   }
 };

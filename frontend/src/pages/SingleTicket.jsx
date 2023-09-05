@@ -30,6 +30,10 @@ function SingleTicket() {
     if (loaded) {
       updateTicket(fetchedTicket);
     }
+
+    return function cleanup() {
+      updateTicket(null);
+    };
   }, [loaded, fetchedTicket]);
 
   return (
@@ -61,7 +65,7 @@ function SingleTicket() {
           </div>
 
           <div className="m-top-50 description">
-            <p> {ticket?.description} </p>
+            <p style={{ whiteSpace: "pre" }}>{ticket?.description}</p>
           </div>
 
           {ticket?.notes.map((note) => (

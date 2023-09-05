@@ -10,6 +10,12 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:5000/api/ticket/example
+Content-Type: application/json
+
+{"ticket_number": "9"}
+
+###
 GET http://localhost:5000/api/ticket/get-tickets
 Content-Type: application/json
 

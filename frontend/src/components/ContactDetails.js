@@ -4,7 +4,7 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useTicketContext } from "../hooks/useTicketContext";
 import ProfileImage from "./ProfileImage";
 import LaunchIcon from "@mui/icons-material/Launch";
-import TimelineComponent from "./TimelineComponent";
+import Timeline from "./Timeline/Timeline";
 
 const ContactDetails = () => {
   const { ticket } = useTicketContext();
@@ -27,9 +27,7 @@ const ContactDetails = () => {
           <LaunchIcon style={{ fontSize: "medium" }} />
           View more info
         </Link>
-        {ticket ? (
-          <TimelineComponent tickets={ticket?.contact.tickets} />
-        ) : null}
+        {ticket ? <Timeline tickets={ticket?.contact.tickets} /> : null}
       </div>
     </div>
   );

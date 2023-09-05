@@ -6,7 +6,14 @@ export const TicketContext = createContext();
 const ticketReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE":
-      return { ...state, ...action.payload };
+      if (action.payload) {
+        return { ...state, ...action.payload };
+      } else {
+        // in case action.payload is null to delete the ticket in context the code above would not work
+        // because the state in ...state would be returned again.
+        // for that reason in here null is returned instead.
+        return null;
+      }
     case "ADD-NOTE":
       const { notes } = state;
       return { ...state, notes: [...notes, action.payload] };

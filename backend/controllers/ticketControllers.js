@@ -85,6 +85,8 @@ const getSingleTicket = async (req, res) => {
       .populate({ path: "agent", select: "-password" })
       .lean();
 
+    ticket.contact.tickets.reverse();
+
     res.status(200).json(ticket);
   } catch (error) {
     console.log(error);
@@ -135,9 +137,13 @@ const updateTicket = async (req, res) => {
 
   // finds ticket with the id provided (ticket_id), changes some fields and
   // returns the new updated document
-  const updatedTicket = await Ticket.findOneAndUpdate(ticket_id, data, {
-    new: true,
-  })
+  const updatedTicket = await Ticket.findOneAndUpdate(
+    { _id: ticket_id },
+    data,
+    {
+      new: true,
+    }
+  )
     .populate("status")
     .lean();
 
@@ -148,4 +154,9 @@ const updateTicket = async (req, res) => {
   res.status(200).json(updatedTicket);
 };
 
-module.exports = { newTicket, getTickets, getSingleTicket, updateTicket };
+module.exports = {
+  newTicket,
+  getTickets,
+  getSingleTicket,
+  updateTicket,
+};

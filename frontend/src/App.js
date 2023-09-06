@@ -6,6 +6,7 @@ import Tickets from "./pages/Tickets";
 import NewTicket from "./pages/NewTicket";
 import SingleTicket from "./pages/SingleTicket";
 import Home from "./pages/Home";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const { agent } = useAuthContext();
@@ -40,6 +41,11 @@ function App() {
             <Route
               path="/tickets/new"
               element={agent ? <NewTicket /> : <Navigate to="/login" />}
+            />
+
+            <Route
+              path="/contact/:contactId"
+              element={agent ? <ContactPage /> : <Navigate to="/login" />}
             />
           </Routes>
         </div>

@@ -23,11 +23,13 @@ const ContactDetails = () => {
         </div>
         <p className="email-heading">Email</p>
         <p> {ticket?.contact.email} </p>
-        <Link className="view-more-link">
+        <Link to={`/contact/${ticket?.contact._id}`} className="view-more-link">
           <LaunchIcon style={{ fontSize: "medium" }} />
           View more info
         </Link>
-        {ticket ? <Timeline tickets={ticket?.contact.tickets} /> : null}
+        {ticket ? (
+          <Timeline tickets={ticket?.contact.tickets} limit={5} />
+        ) : null}
       </div>
     </div>
   );

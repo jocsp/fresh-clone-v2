@@ -9,15 +9,15 @@ import TimelineDot from "./TimelineDot";
 import TimelineConnector from "./TimelineConnector";
 import TimelineContent from "./TimelineContent";
 
-const Timeline = ({ tickets }) => {
+const Timeline = ({ tickets, limit }) => {
   return (
     <div className="timeline-container m-top-20">
       <p className="lighter-font">Timeline</p>
       <div className="timeline m-top-20">
-        {tickets.map((ticket, index) => {
+        {tickets.map((ticket, index, extended = false) => {
           index += 1;
 
-          if (index > 6) return;
+          if (index > limit + 1) return;
 
           let timelineItem;
           const timelineContent = (
@@ -34,7 +34,7 @@ const Timeline = ({ tickets }) => {
               </p>
             </>
           );
-          if (index === tickets.length && tickets.length <= 5) {
+          if (index === tickets.length && tickets.length <= limit) {
             timelineItem = (
               <TimelineItem key={ticket._id}>
                 <TimelineSeparator>
@@ -53,7 +53,7 @@ const Timeline = ({ tickets }) => {
                 </TimelineContent>
               </TimelineItem>
             );
-          } else if (index === 6) {
+          } else if (index === limit + 1) {
             timelineItem = (
               <TimelineItem key={ticket._id}>
                 <TimelineSeparator>

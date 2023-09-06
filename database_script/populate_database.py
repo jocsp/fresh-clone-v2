@@ -86,24 +86,24 @@ groups_data = [
 contacts_data = [
     {
         "name": "Doral dentists",
-        "color": "#475c6c",
+        "color": "#B2A399",
         "email": "info@doraldentists.com",
-        "number": "7864238872",
+        "number": "+17864238872",
         "tickets": []
     },
     {
         "name": "Hialeah Dentists",
-        "color": "#8a8583",
+        "color": "#CAD3BA",
         "email": "info@hialeahmdd.com",
-        "number": "3054257861",
+        "number": "+13054257861",
         "tickets": [],
 
     },
     {
         "name": "Clavijo Dental",
-        "color": "#eed7a1",
+        "color": "#EDE7D5",
         "email": "infodental@clavijo.com",
-        "number": "5618872345",
+        "number": "+15618872345",
         "tickets": [],
 
     },

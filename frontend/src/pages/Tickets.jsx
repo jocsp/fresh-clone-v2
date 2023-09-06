@@ -6,6 +6,7 @@ import TicketCard from "../components/TicketCard";
 import Filters from "../components/Filters";
 import { useFiltersContext } from "../hooks/useFiltersContext";
 import useRequest from "../hooks/useRequest";
+import BottomBar from "../components/BottomBar";
 
 function Tickets() {
   const { state: filters, loaded } = useFiltersContext();
@@ -41,9 +42,7 @@ function Tickets() {
     <div className="ticket-page">
       <NavBar />
       <TopBar title="Tickets" />
-      <div className="bottom-bar">
-        <span>bottom-bar</span>
-      </div>
+      <BottomBar />
 
       <div className="tickets-container">
         {render ? (

@@ -7,6 +7,9 @@
   --top-bar-height: 50px;
   --vertical-nav-width: 50px;
   --contact-details-container-width: 250px;
+  --bottom-bar-height: 40px;
+
+  --light-color-border: rgba(155, 155, 155, 0.3);
 }
 
 * {
@@ -24,6 +27,10 @@
 }
 .fs-16 {
   font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
 }
 
 .m-top-3 {
@@ -214,7 +221,7 @@ a {
 .top-bar {
   position: relative;
   left: 50px;
-  width: calc(100vw - 50px);
+  width: calc(100vw - var(--vertical-nav-width));
   height: var(--top-bar-height);
   line-height: 30px;
   padding: 10px;
@@ -254,14 +261,13 @@ a {
 .bottom-bar {
   position: relative;
   left: 50px;
-  height: 40px;
+  height: var(--bottom-bar-height);
   line-height: 30px;
   width: calc(100vw - 50px);
   border-bottom: 1px solid rgba(222, 222, 222, 0.7);
   background-color: #f5f7f9;
   padding: 10px;
-
-  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 3px -5px rgba(0, 0, 0, 0.5);
 }
 
 /* NEW TICKET */
@@ -567,7 +573,7 @@ table {
 .single-ticket-container {
   position: relative;
   box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
-  left: 70px;
+  left: calc(20px + var(--vertical-nav-width));
   /* width: calc(100vw - 560px); */
   width: var(--single-ticket-container-width);
   height: calc(100vh - var(--top-bar-height));
@@ -677,7 +683,7 @@ table {
 .contact-details-container {
   position: absolute;
   background: #fff;
-  border: 1px solid rgba(155, 155, 155, 0.3);
+  border: 1px solid var(--light-color-border);
   top: calc(var(--top-bar-height) + 10px);
   left: calc(
     var(--single-ticket-container-width) + var(--properties-container-width) +
@@ -694,7 +700,7 @@ table {
   border-radius: 5px 5px 0px 0px;
   gap: 5px;
   padding: 10px 20px;
-  border-bottom: 1px solid rgba(155, 155, 155, 0.3);
+  border-bottom: 1px solid var(--light-color-border);
 }
 
 .contact-details-content {
@@ -1018,9 +1024,26 @@ table {
   height: 30px;
   width: 30px;
   text-align: center;
-  line-height: 30px;
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.3);
+}
+
+.pi-small {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+}
+
+.pi-medium {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+}
+
+.pi-large {
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
 }
 
 .ticket-link {
@@ -1052,4 +1075,21 @@ table {
 .submit-filters:hover {
   background-color: #284b65;
   cursor: pointer;
+}
+
+/******* CONTACT PAGE *******/
+
+.contact-container {
+  position: relative;
+  left: calc(var(--vertical-nav-width) + 80px);
+  width: calc(100vw - var(--vertical-nav-width) - 80px - 80px);
+  height: calc(100vh - var(--top-bar-height) - var(--bottom-bar-height));
+  min-height: 500px;
+  overflow-y: auto;
+
+  /* top: 20px; */
+  box-shadow: 0 0 3px #ddd, 2px 0 3px #ddd;
+  border-radius: 3px;
+  background-color: #ffffff;
+  padding: 20px 50px;
 }

@@ -17,12 +17,10 @@ const ContactPage = () => {
     loaded,
     error,
     reFetch,
-  } = useFetchData(`/api/contact/${contactId}`);
-
-  console.log(contact?.tickets);
+  } = useFetchData(`/api/contacts/single/${contactId}`);
 
   return (
-    <div>
+    <div className="contact-page">
       <NavBar />
       <TopBar title="Contact" />
       <BottomBar />

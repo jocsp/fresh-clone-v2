@@ -170,7 +170,7 @@ a {
 /* VERTICAL NAVBAR */
 
 .vertical-nav {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   background-color: #12344d;
@@ -567,7 +567,7 @@ table {
 /***** SINGLE TICKET *****/
 
 .single-ticket-page {
-  background-color: #ebeff3;
+  background-color: #eceff3;
 }
 
 .single-ticket-container {
@@ -1077,19 +1077,113 @@ table {
   cursor: pointer;
 }
 
-/******* CONTACT PAGE *******/
+/***** CONTACTS PAGE *****/
 
-.contact-container {
-  position: relative;
+.contacts-page > table,
+thead,
+th {
+  border: none;
+}
+
+.contacts-page {
+  background-color: #ebeff3;
+  min-height: 560px; /* top bar height + top positioning + min height of table container  */
+  height: 100vh;
+}
+
+.table-container {
+  background-color: #ffffff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid var(--light-color-border);
+  box-shadow: 0 0 2px #ddd, 2px 0 2px #ddd;
+  height: calc(100vh - var(--top-bar-height) - 40px);
   left: calc(var(--vertical-nav-width) + 80px);
-  width: calc(100vw - var(--vertical-nav-width) - 80px - 80px);
-  height: calc(100vh - var(--top-bar-height) - var(--bottom-bar-height));
   min-height: 500px;
   overflow-y: auto;
+  position: relative;
+  top: 10px;
+  width: calc(100vw - var(--vertical-nav-width) - 80px - 80px);
+}
 
-  /* top: 20px; */
-  box-shadow: 0 0 3px #ddd, 2px 0 3px #ddd;
-  border-radius: 3px;
+.contacts-table {
+  border-collapse: collapse;
+}
+
+.contacts-heading {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #f5f7f9;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid var(--light-color-border);
+}
+
+.contacts-heading > tr > th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.contacts-heading > tr > th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.contacts-body {
+  height: calc(100% - 50px);
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow-y: auto;
+}
+
+.contact-row {
+  border-bottom: 1px solid var(--light-color-border);
+  height: 50px;
+  max-height: 50px;
+}
+
+.contacts-body > .contact-row:last-child {
+  border-bottom: none;
+}
+
+.tr-light {
   background-color: #ffffff;
+}
+
+.tr-light:hover {
+  background-color: #ddd;
+}
+
+.tr-dark {
+  background-color: #f5f5f5;
+}
+
+.tr-dark:hover {
+  background-color: #aaa;
+}
+
+.contacts-body > tr > td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/******* CONTACT PAGE *******/
+
+.contact-page {
+  background-color: #eceff3;
+}
+
+.contact-container {
+  background-color: #ffffff;
+  box-shadow: 0 0 3px #ddd, 2px 0 3px #ddd;
+  height: calc(100vh - var(--top-bar-height) - var(--bottom-bar-height));
+  left: calc(var(--vertical-nav-width) + 80px);
+  min-height: 500px;
+  overflow-y: auto;
   padding: 20px 50px;
+  position: relative;
+  width: calc(100vw - var(--vertical-nav-width) - 80px - 80px);
 }

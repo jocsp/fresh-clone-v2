@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/contact/create-contact
+POST http://localhost:5000/api/contacts/create-contact
 Content-Type: application/json
 
 {

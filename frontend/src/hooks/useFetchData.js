@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useAuthContext } from './useAuthContext';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuthContext } from "./useAuthContext";
 
-const useFetchData = (url) => {
+const useFetchData = (url, initialValue = null) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(initialValue);
   const [reFetchFlag, setReFetchFlag] = useState(false);
   const { dispatch } = useAuthContext();
 
@@ -18,7 +18,7 @@ const useFetchData = (url) => {
         setLoaded(true);
       } catch (err) {
         if (err.response.status === 401) {
-          dispatch({ type: 'LOGOUT' });
+          dispatch({ type: "LOGOUT" });
         }
         setError(err.response.data.error);
       }

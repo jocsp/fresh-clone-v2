@@ -1,7 +1,9 @@
 const Contact = require("../models/contactModel");
 
 const getContacts = async (req, res) => {
-  return res.status(200).json();
+  const contacts = await Contact.find().lean();
+
+  return res.status(200).json(contacts);
 };
 
 const getContact = async (req, res) => {

@@ -8,8 +8,11 @@ import TimelineSeparator from "./TimelineSeparator";
 import TimelineDot from "./TimelineDot";
 import TimelineConnector from "./TimelineConnector";
 import TimelineContent from "./TimelineContent";
+import { useTicketContext } from "../../hooks/useTicketContext";
 
 const Timeline = ({ tickets, limit }) => {
+  const { ticket: ticketContext } = useTicketContext();
+
   return (
     <div className="timeline-container m-top-20">
       <p className="lighter-font">Timeline</p>
@@ -63,7 +66,9 @@ const Timeline = ({ tickets, limit }) => {
                 </TimelineSeparator>
 
                 <TimelineContent>
-                  <Link> View all activity </Link>
+                  <Link to={`/contact/${ticketContext.contact._id}`}>
+                    View all activity
+                  </Link>
                 </TimelineContent>
               </TimelineItem>
             );

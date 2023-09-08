@@ -36,7 +36,7 @@ app.use("/api/ticket", ticketRoutes);
 app.use("/api/note", noteRoutes);
 app.use("/api/todo", todoRoutes);
 app.use("/api/activity", activityRoutes);
-app.use("/api/contact", contactRoutes);
+app.use("/api/contacts", contactRoutes);
 
 mongoose.set("strictQuery", true);
 

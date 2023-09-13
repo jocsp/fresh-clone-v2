@@ -1079,10 +1079,19 @@ table {
 
 /***** CONTACTS PAGE *****/
 
-.contacts-page > table,
-thead,
-th {
-  border: none;
+.table {
+  display: table;
+}
+
+.table-row {
+  display: table-row;
+  height: 50px;
+}
+
+.table-cell {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .contacts-page {
@@ -1109,7 +1118,7 @@ th {
 }
 
 .contacts-table {
-  border-collapse: collapse;
+  width: 100%;
 }
 
 .contacts-heading {
@@ -1123,51 +1132,24 @@ th {
   border-bottom: 1px solid var(--light-color-border);
 }
 
-.contacts-heading > tr > th:first-child {
+.contacts-heading > .table-cell:first-child {
   border-top-left-radius: 10px;
 }
 
-.contacts-heading > tr > th:last-child {
+.contacts-heading > .table-cell:last-child {
   border-top-right-radius: 10px;
 }
 
-.contacts-body {
-  height: calc(100% - 50px);
-  width: 100%;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow-y: auto;
+a.table-row:hover {
+  background-color: #eee;
 }
 
-.contact-row {
-  border-bottom: 1px solid var(--light-color-border);
-  height: 50px;
-  max-height: 50px;
-}
-
-.contacts-body > .contact-row:last-child {
-  border-bottom: none;
-}
-
-.tr-light {
-  background-color: #ffffff;
-}
-
-.tr-light:hover {
-  background-color: #ddd;
-}
-
-.tr-dark {
+.table a.table-row:nth-child(odd) {
   background-color: #f5f5f5;
 }
 
-.tr-dark:hover {
-  background-color: #aaa;
-}
-
-.contacts-body > tr > td {
-  text-align: center;
-  vertical-align: middle;
+.table a.table-row:nth-child(odd):hover {
+  background-color: #eee;
 }
 
 /******* CONTACT PAGE *******/

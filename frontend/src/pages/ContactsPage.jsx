@@ -14,34 +14,63 @@ const ContactsPage = () => {
       <TopBar title="Contacts" />
 
       <div className="table-container">
-        <table className="contacts-table">
-          <thead className="contacts-heading">
-            <tr>
-              <th>Contact</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-
-          <tbody className="contacts-body">
-            {contacts.map((contact, index) => {
-              let trClassName = index % 2 === 0 ? "tr-light" : "tr-dark";
-
-              return (
-                <tr key={contact._id} className={`${trClassName} contact-row`}>
-                  <td>{contact.name}</td>
-                  <td>{contact.email}</td>
-                  <td>---</td>
-                  <td>{parsePhoneNumber(contact.number).formatNational()}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="table contacts-table">
+          <div className="table-row contacts-heading">
+            <div className="table-cell">Contact</div>
+            <div className="table-cell">Email</div>
+            <div className="table-cell">Address</div>
+            <div className="table-cell">Phone Number</div>
+          </div>
+          {contacts.map((contact) => {
+            return (
+              <Link
+                to={`/contact/${contact._id}`}
+                key={contact._id}
+                className="table-row"
+              >
+                <div className="table-cell">{contact.name}</div>
+                <div className="table-cell">{contact.email}</div>
+                <div className="table-cell">---</div>
+                <div className="table-cell">
+                  {parsePhoneNumber(contact.number).formatNational()}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
 export default ContactsPage;
+
+{
+  /* <div className="table-container">
+  <table className="contacts-table">
+    <thead className="contacts-heading">
+      <tr>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+
+    <tbody className="contacts-body">
+      {contacts.map((contact, index) => {
+        let trClassName = index % 2 === 0 ? "tr-light" : "tr-dark";
+
+        return (
+          <tr key={contact._id} className={`${trClassName} contact-row`}>
+            <td>{contact.name}</td>
+            <td>{contact.email}</td>
+            <td>---</td>
+            <td>{parsePhoneNumber(contact.number).formatNational()}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>; */
+}

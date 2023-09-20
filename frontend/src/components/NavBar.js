@@ -26,9 +26,9 @@ function NavBar() {
         <ContactsIcon />
       </Link>
 
-      <Link to="/settings">
+      {/* <Link to="/settings">
         <SettingsIcon />
-      </Link>
+      </Link> */}
     </div>
   );
 }

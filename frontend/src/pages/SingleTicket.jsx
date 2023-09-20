@@ -26,6 +26,8 @@ function SingleTicket() {
 
   const { ticket, updateTicket } = useTicketContext();
 
+  console.log(ticket);
+
   useEffect(() => {
     if (loaded) {
       updateTicket(fetchedTicket);

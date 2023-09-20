@@ -33,6 +33,8 @@ const useRequest = () => {
         dispatch({ type: "LOGOUT" });
       }
       setError(err.response.data.error);
+      setLoading(false);
+      setFinished(true);
     }
   };
 

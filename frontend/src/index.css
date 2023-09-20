@@ -1,4 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap");
 
 :root {
   --blueish: #3a4fc8;
@@ -413,7 +418,9 @@ a {
   padding: 5px 10px;
   overflow: auto;
   width: 211px;
-  box-shadow: 0.5px 0.5px 5px #3334, -0.5px -0.5px 5px #3334;
+  box-shadow:
+    0.5px 0.5px 5px #3334,
+    -0.5px -0.5px 5px #3334;
 }
 
 /* options container for  single select component */
@@ -572,7 +579,9 @@ table {
 
 .single-ticket-container {
   position: relative;
-  box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
+  box-shadow:
+    -2px 0 3px #ddd,
+    2px 0 3px #ddd;
   left: calc(20px + var(--vertical-nav-width));
   /* width: calc(100vw - 560px); */
   width: var(--single-ticket-container-width);
@@ -616,6 +625,7 @@ table {
   border-radius: 5px;
   color: #000000;
   height: 30px;
+  line-height: 18px;
   padding: 5px 10px;
 }
 
@@ -627,7 +637,9 @@ table {
 .properties-container {
   position: absolute;
   background: #fff;
-  box-shadow: -2px 0 3px #ddd, 2px 0 3px #ddd;
+  box-shadow:
+    -2px 0 3px #ddd,
+    2px 0 3px #ddd;
   top: var(--top-bar-height);
   left: calc(var(--single-ticket-container-width) + 75px);
   height: calc(100vh - 50px);
@@ -765,6 +777,7 @@ table {
   color: #000000;
   height: 30px;
   padding: 5px 10px;
+  line-height: 18px;
 }
 
 .button-default:hover {
@@ -1107,7 +1120,9 @@ table {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: 1px solid var(--light-color-border);
-  box-shadow: 0 0 2px #ddd, 2px 0 2px #ddd;
+  box-shadow:
+    0 0 2px #ddd,
+    2px 0 2px #ddd;
   height: calc(100vh - var(--top-bar-height) - 40px);
   left: calc(var(--vertical-nav-width) + 80px);
   min-height: 500px;
@@ -1160,7 +1175,9 @@ a.table-row:hover {
 
 .contact-container {
   background-color: #ffffff;
-  box-shadow: 0 0 3px #ddd, 2px 0 3px #ddd;
+  box-shadow:
+    0 0 3px #ddd,
+    2px 0 3px #ddd;
   height: calc(100vh - var(--top-bar-height) - var(--bottom-bar-height));
   left: calc(var(--vertical-nav-width) + 80px);
   min-height: 500px;
@@ -1168,4 +1185,14 @@ a.table-row:hover {
   padding: 20px 50px;
   position: relative;
   width: calc(100vw - var(--vertical-nav-width) - 80px - 80px);
+}
+
+/***** HOME *****/
+
+.logo-home {
+  font-family: "Mooli", sans-serif;
+}
+
+.items-home {
+  font-family: "Roboto", sans-serif;
 }

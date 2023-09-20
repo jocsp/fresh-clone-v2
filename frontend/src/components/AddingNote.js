@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useTicketContext } from '../hooks/useTicketContext';
-import useRequest from '../hooks/useRequest';
+import React, { useEffect, useRef, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useTicketContext } from "../hooks/useTicketContext";
+import useRequest from "../hooks/useRequest";
 
 function AddingNote({ setDisplayAddNote, ticket_number }) {
   const [noteContent, setNoteContent] = useState();
@@ -22,8 +22,8 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
 
     try {
       const response = await sendRequest({
-        method: 'POST',
-        url: 'api/note/add-note',
+        method: "POST",
+        url: "api/note/add-note",
         data,
       });
 
@@ -58,11 +58,11 @@ function AddingNote({ setDisplayAddNote, ticket_number }) {
           Cancel
         </button>
         <button type="submit" className="button-default dark-bc m-left-10">
-          {!loading ? 'Add note' : 'Loading...'}
+          {!loading ? "Add note" : "Loading..."}
         </button>
       </div>
 
-      {error ? <div className="error">{error}</div> : null}
+      {error ? <div className="error mt-5">{error}</div> : null}
     </form>
   );
 }

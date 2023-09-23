@@ -1039,6 +1039,31 @@ table {
   text-align: center;
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.3);
+  user-select: none;
+}
+
+.profile-img-clickable {
+  cursor: pointer;
+}
+
+.profile-img-clickable:active {
+  background-color: blue;
+  transform: scale(1.05);
+}
+
+.profile-img-nonclickable:hover {
+  cursor: default;
+}
+
+.profile-image-submenu {
+  position: absolute;
+  border-radius: 5px;
+  border: 1px solid var(--light-color-border);
+  background-color: #fff;
+  width: 200px;
+  top: calc(var(--top-bar-height) - 9px);
+  right: 5px;
+  z-index: 1;
 }
 
 .pi-small {

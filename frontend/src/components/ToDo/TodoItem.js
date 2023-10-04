@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useAuthContext } from '../../hooks/useAuthContext';
-import useRequest from '../../hooks/useRequest';
+import React, { useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import useRequest from "../../hooks/useRequest";
 
 function TodoItem({ checkedProp, todo_id, todo, setTodos, reFetch }) {
   const [checked, setChecked] = useState(checkedProp);
@@ -12,8 +11,8 @@ function TodoItem({ checkedProp, todo_id, todo, setTodos, reFetch }) {
     setChecked((prevChecked) => !prevChecked);
 
     const response = await sendRequest({
-      method: 'POST',
-      url: '/api/todo/change-todo',
+      method: "POST",
+      url: "/api/todo/change-todo",
       data: { todo_id, checked: !checked },
     });
 
@@ -26,13 +25,13 @@ function TodoItem({ checkedProp, todo_id, todo, setTodos, reFetch }) {
       })
     );
 
-      reFetch()
+    reFetch();
   }
 
   async function deleteTodo() {
     await sendRequest({
-      method: 'DELETE',
-      url: '/api/todo/delete-todo',
+      method: "DELETE",
+      url: "/api/todo/delete-todo",
       data: { todo_id },
     });
 
@@ -43,11 +42,11 @@ function TodoItem({ checkedProp, todo_id, todo, setTodos, reFetch }) {
 
   return (
     <div className="todo">
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <input
           type="checkbox"
           name="checkbox"
-          style={{ margin: '0 5px 0 0' }}
+          style={{ margin: "0 5px 0 0" }}
           className="check-todo"
           checked={checked}
           onChange={changeCheck}

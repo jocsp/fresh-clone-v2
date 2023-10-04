@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import useFetchData from "../../hooks/useFetchData";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import useRequest from "../../hooks/useRequest";
 
 function ToDo() {
@@ -13,10 +12,9 @@ function ToDo() {
     reFetch,
   } = useFetchData("/api/todo/get-todos");
 
-  const { dispatch } = useAuthContext();
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState(null);
-  const { sendRequest, error, loading, setError } = useRequest();
+  const { sendRequest, error, setError } = useRequest();
 
   useEffect(() => {
     if (loaded) {

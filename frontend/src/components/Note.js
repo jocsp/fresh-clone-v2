@@ -26,7 +26,7 @@ function Note({
   const [editing, setEditing] = useState(false);
   const [rows, setRows] = useState(Math.ceil(content.length / 100));
 
-  const { loading, error, sendRequest } = useRequest();
+  const { loading, sendRequest } = useRequest();
 
   useEffect(() => {
     let lines =
@@ -124,8 +124,7 @@ function Note({
           <button
             disabled={content === initialContent}
             className="button-default dark-bc m-right-10"
-            onClick={updateNote}
-          >
+            onClick={updateNote}>
             {!loading ? "Update" : "Loading..."}
           </button>
           <button className="button-default" onClick={cancelEdition}>

@@ -6,18 +6,12 @@ import useFetchData from "../hooks/useFetchData";
 import ProfileImage from "../components/ProfileImage";
 import BottomBar from "../components/BottomBar";
 import parsePhoneNumber from "libphonenumber-js";
-import TicketCard from "../components/TicketCard";
 import Timeline from "../components/Timeline/Timeline";
 
 const ContactPage = () => {
   const { contactId } = useParams();
 
-  const {
-    data: contact,
-    loaded,
-    error,
-    reFetch,
-  } = useFetchData(`/api/contacts/single/${contactId}`);
+  const { data: contact } = useFetchData(`/api/contacts/single/${contactId}`);
 
   return (
     <div className="contact-page">

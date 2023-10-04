@@ -13,7 +13,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import ContactDetails from "../components/ContactDetails";
 
 function SingleTicket() {
-  const [loading, setLoading] = useState(true);
   const { agent: currentAgent } = useAuthContext();
   const { ticket_number } = useParams();
   const [displayAddNote, setDisplayAddNote] = useState(false);
@@ -94,8 +93,7 @@ function SingleTicket() {
               <ProfileImage profile={currentAgent} />
               <button
                 className="add-note"
-                onClick={() => setDisplayAddNote(true)}
-              >
+                onClick={() => setDisplayAddNote(true)}>
                 Add note
               </button>
             </div>

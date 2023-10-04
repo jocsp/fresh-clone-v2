@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import TopBar from '../components/TopBar';
-import SingleSelect from '../components/SingleSelect';
-import InputText from '../components/InputText';
-import { useFiltersContext } from '../hooks/useFiltersContext';
-import { useAuthContext } from '../hooks/useAuthContext';
-import useRequest from '../hooks/useRequest';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import TopBar from "../components/TopBar";
+import SingleSelect from "../components/SingleSelect";
+import InputText from "../components/InputText";
+import { useFiltersContext } from "../hooks/useFiltersContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useRequest from "../hooks/useRequest";
 
 function NewTicket() {
   const {
@@ -14,7 +14,7 @@ function NewTicket() {
     loaded,
   } = useFiltersContext();
 
-  const { agent: currentAgent, dispatch, addTicketAssigned } = useAuthContext();
+  const { agent: currentAgent, addTicketAssigned } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -23,26 +23,26 @@ function NewTicket() {
   const [error, setError] = useState(null);
 
   const [contact, setContactOptions] = useState([]);
-  const contactState = useState({ name: '' });
+  const contactState = useState({ name: "" });
 
-  const [subject, setSubject] = useState('');
+  const [subject, setSubject] = useState("");
 
   const [typeOptions, setTypeOptions] = useState([]);
-  const typeState = useState({ name: '' });
+  const typeState = useState({ name: "" });
 
   const [statusOptions, setStatusOptions] = useState([]);
-  const statusState = useState({ name: '' });
+  const statusState = useState({ name: "" });
 
   const [priorityOptions, setPriorityOptions] = useState([]);
-  const priorityState = useState({ name: '' });
+  const priorityState = useState({ name: "" });
 
   const [groupOptions, setGroupOptions] = useState([]);
-  const groupState = useState({ name: '' });
+  const groupState = useState({ name: "" });
 
   const [agentOptions, setAgentOptions] = useState([]);
-  const agentState = useState({ name: '' });
+  const agentState = useState({ name: "" });
 
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [createAnother, setCreateAnother] = useState(false);
 
   const { sendRequest } = useRequest();
@@ -79,8 +79,8 @@ function NewTicket() {
 
     try {
       const response = await sendRequest({
-        url: '/api/ticket/new-ticket',
-        method: 'POST',
+        url: "/api/ticket/new-ticket",
+        method: "POST",
         data,
       });
 
@@ -88,7 +88,7 @@ function NewTicket() {
 
       addTicketAssigned(_id, agent, status);
 
-      navigate('/tickets');
+      navigate("/tickets");
     } catch (error) {
       console.log(error);
       setError(error.response.data.error);

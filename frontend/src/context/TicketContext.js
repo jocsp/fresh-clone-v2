@@ -1,5 +1,4 @@
-import { createContext, useEffect, useReducer, useParams } from "react";
-import useFetchData from "../hooks/useFetchData";
+import { createContext, useReducer } from "react";
 
 export const TicketContext = createContext();
 
@@ -47,8 +46,7 @@ export function TicketContextProvider({ children }) {
 
   return (
     <TicketContext.Provider
-      value={{ ticket: state, dispatch, updateTicket, addNote, deleteNote }}
-    >
+      value={{ ticket: state, dispatch, updateTicket, addNote, deleteNote }}>
       {children}
     </TicketContext.Provider>
   );

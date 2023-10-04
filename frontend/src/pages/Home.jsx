@@ -26,8 +26,7 @@ const Home = () => {
           <li>
             <Link
               to="/login"
-              className="text-white px-6 py-3 hover:cursor-pointer bg-cyan-950 hover:bg-cyan-900 rounded-md"
-            >
+              className="text-white px-6 py-3 hover:cursor-pointer bg-cyan-950 hover:bg-cyan-900 rounded-md">
               Log in
             </Link>
           </li>
@@ -52,11 +51,7 @@ const Home = () => {
           </p>
         </div>
 
-        <img
-          src={ticketImg}
-          alt="ticket image"
-          className="rounded-lg shadow h-80"
-        />
+        <img src={ticketImg} alt="ticket" className="rounded-lg shadow h-80" />
       </section>
 
       <section className="px-20 py-10 flex justify-center text-white bg-gradient-to-tr from-gray-700 via-slate-900 to-gray-700">
@@ -72,12 +67,12 @@ const Home = () => {
         <div>
           <img
             src={addingNoteImg}
-            alt="ticket image"
+            alt="ticket"
             className="rounded-lg shadow h-60 mb-5"
           />
           <img
             src={twoNotesImg}
-            alt="ticket image"
+            alt="ticket"
             className="rounded-lg shadow h-60"
           />
         </div>
@@ -99,11 +94,7 @@ const Home = () => {
         </div>
 
         <div className="p-2 h-auto bg-black rounded-lg">
-          <img
-            src={dashboardImg}
-            alt="ticket image"
-            className="rounded-lg block"
-          />
+          <img src={dashboardImg} alt="ticket" className="rounded-lg block" />
         </div>
       </section>
 

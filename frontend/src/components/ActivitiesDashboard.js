@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import ProfileImage from "./ProfileImage";
 import { Link } from "react-router-dom";
@@ -26,8 +26,7 @@ function ActivitiesDashboard() {
                   {activity.predicate}{" "}
                   <Link
                     className="ticket-link"
-                    to={"/ticket/" + activity.ticket_number}
-                  >
+                    to={"/ticket/" + activity.ticket_number}>
                     {activity.ticket_name} {`(#${activity.ticket_number})`}
                   </Link>
                   {activity.complement ? " to " + activity.complement : null}

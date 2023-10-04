@@ -18,7 +18,6 @@ const authReducer = (state, action) => {
       // variable ticket stores the updated ticket sent from the backend
       const { ticket } = action.payload;
 
-      let ticketsAssigned;
       // this if else block will handle the logic for when a ticket is assigned to the current agent
       // or when it is de assigned for the current agent.
       if (ticket.agent === state.agent._id) {
@@ -26,7 +25,7 @@ const authReducer = (state, action) => {
           (tckt) => tckt._id === ticket._id
         );
 
-        if (index == -1) {
+        if (index === -1) {
           state.agent.ticketsAssigned.push(ticket);
         } else {
           state.agent.ticketsAssigned[index] = ticket;
@@ -84,8 +83,7 @@ export function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ ...state, dispatch, addTicketAssigned, updateTicketsAssigned }}
-    >
+      value={{ ...state, dispatch, addTicketAssigned, updateTicketsAssigned }}>
       {loaded && children}
     </AuthContext.Provider>
   );

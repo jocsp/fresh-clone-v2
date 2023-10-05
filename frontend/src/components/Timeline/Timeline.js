@@ -47,10 +47,7 @@ const Timeline = ({ tickets, limit }) => {
                 </TimelineSeparator>
 
                 <TimelineContent>
-                  <Link
-                    // reloadDocument={true}
-                    to={`/ticket/${ticket.ticket_number}`}
-                  >
+                  <Link to={`/ticket/${ticket.ticket_number}`}>
                     {timelineContent}
                   </Link>
                 </TimelineContent>
@@ -83,10 +80,7 @@ const Timeline = ({ tickets, limit }) => {
                 </TimelineSeparator>
 
                 <TimelineContent>
-                  <Link
-                    // reloadDocument={true}
-                    to={`/ticket/${ticket.ticket_number}`}
-                  >
+                  <Link to={`/ticket/${ticket.ticket_number}`}>
                     {timelineContent}
                   </Link>
                 </TimelineContent>
@@ -100,30 +94,5 @@ const Timeline = ({ tickets, limit }) => {
     </div>
   );
 };
-
-// {
-//   tickets.reverse().map((ticket) => {
-//     return (
-//       <TimelineItem key={ticket._id}>
-//         <TimelineSeparator>
-//           <TimelineDot></TimelineDot>
-//           <TimelineConnector />
-//         </TimelineSeparator>
-//         <TimelineContent>
-//           <p className="fs-14">{ticket.subject}</p>
-//           <p className="fs-14 m-top-5">#{ticket.ticket_number}</p>
-
-//           <p className="small-lighter fs-13 m-top-10">
-//             {formatDate(ticket.date)}
-//           </p>
-
-//           <p className="small-lighter fs-13 m-top-5 m-bottom-10">
-//             Status: {ticket.status.name}
-//           </p>
-//         </TimelineContent>
-//       </TimelineItem>
-//     );
-//   });
-// }
 
 export default Timeline;

@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState, useRef } from 'react';
-import CheckIcon from '@mui/icons-material/Check';
+import React from "react";
+import { useState, useRef } from "react";
+import CheckIcon from "@mui/icons-material/Check";
 
 const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
   const [queriedOptions, setQueriedOptions] = useState([...options]);
@@ -9,16 +9,16 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
   const edit = useRef(null);
 
   function inputContainerClick(e) {
-    if (e.target.className !== 'delete-button') {
+    if (e.target.className !== "delete-button") {
       edit.current.focus();
       setDisplay(true);
     }
   }
 
-  function selectoption(e) {
+  function selectOption(e) {
     const { id, textContent } = e.target;
 
-    edit.current.textContent = '';
+    edit.current.textContent = "";
     setQueriedOptions([...options]);
     setOptionsSelected((prevoptions) => {
       if (prevoptions.some((option) => option._id === id)) {
@@ -31,11 +31,11 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
 
   function makeQuery(e) {
     setQueriedOptions((prevArray) => {
-      const newArray = options.filter((element) => {
-        const rx = new RegExp(e.target.textContent, 'i');
-        const variable = element.name.search(rx) >= 0;
+      const newArray = options.filter((option) => {
+        const rx = new RegExp(e.target.textContent, "i");
+        const queriedOption = option.name.search(rx) >= 0;
 
-        return variable;
+        return queriedOption;
       });
 
       return newArray;
@@ -53,23 +53,20 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
       <div
         className="input-container-multitag m-top-5"
         name={label}
-        onClick={inputContainerClick}
-      >
+        onClick={inputContainerClick}>
         <div className="selected-container">
           {optionsSelected.map((optionSelected) => {
             return (
               <div
                 key={optionSelected._id}
-                className="option-selected-container"
-              >
+                className="option-selected-container">
                 <span key={optionSelected._id} className="option-selected">
                   {optionSelected.name}
                 </span>
                 <span
                   className="delete-button"
                   id={optionSelected._id}
-                  onClick={deleteOption}
-                >
+                  onClick={deleteOption}>
                   x
                 </span>
               </div>
@@ -82,8 +79,7 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
           className="editable"
           onBlur={() => setDisplay(false)}
           contentEditable="true"
-          onInput={(e) => makeQuery(e)}
-        ></div>
+          onInput={(e) => makeQuery(e)}></div>
       </div>
 
       {display ? (
@@ -99,13 +95,12 @@ const MultiTag = ({ label, options, optionsSelected, setOptionsSelected }) => {
               <div
                 key={option._id}
                 id={option._id}
-                className={selected ? 'option selected' : 'option'}
-                onMouseDown={selectoption}
-              >
+                className={selected ? "option selected" : "option"}
+                onMouseDown={selectOption}>
                 {option.name}
                 <CheckIcon
                   className="check-icon"
-                  style={selected ? { display: 'block' } : { display: 'none' }}
+                  style={selected ? { display: "block" } : { display: "none" }}
                 />
               </div>
             );

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useAuthContext } from './useAuthContext';
+import { useState } from "react";
+import axios from "axios";
+import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -12,13 +12,13 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post('/api/user/login', {
+      const response = await axios.post("/api/user/login", {
         username,
         password,
       });
 
       setIsLoading(false);
-      dispatch({ type: 'LOGIN', payload: response.data });
+      dispatch({ type: "LOGIN", payload: response.data });
     } catch (error) {
       console.log(error.response.data.error);
       setError(error.response.data.error);

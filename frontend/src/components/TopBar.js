@@ -39,7 +39,7 @@ function TopBar({ title }) {
       <span className="bold">{title}</span>
       <div className="flex-center">
         <Link to="/tickets/new">
-          <button className="new-button">New</button>
+          <button className="new-button">New ticket</button>
         </Link>
         <input
           type="text"
@@ -56,8 +56,7 @@ function TopBar({ title }) {
             <div className="profile-image-submenu">
               <div
                 onClick={logoutAgent}
-                className="flex hover:bg-gray-100 px-1 py-0.5 hover:cursor-pointer"
-              >
+                className="flex hover:bg-gray-100 px-1 py-0.5 hover:cursor-pointer">
                 <ExitToAppIcon className="mr-1" />
                 <p>Log out</p>
               </div>

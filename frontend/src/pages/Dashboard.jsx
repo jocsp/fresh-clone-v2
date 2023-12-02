@@ -1,17 +1,17 @@
-import React from 'react';
-import NavBar from '../components/NavBar';
-import TopBar from '../components/TopBar';
-import DashboardCard from '../components/DashboardCard';
-import ToDo from '../components/ToDo/ToDo';
-import { useAuthContext } from '../hooks/useAuthContext';
-import ActivitiesDashboard from '../components/ActivitiesDashboard';
+import React from "react";
+import NavBar from "../components/NavBar";
+import TopBar from "../components/TopBar";
+import DashboardCard from "../components/DashboardCard";
+import ToDo from "../components/ToDo/ToDo";
+import { useAuthContext } from "../hooks/useAuthContext";
+import ActivitiesDashboard from "../components/ActivitiesDashboard";
 
 function Dashboard() {
   const {
     agent: { ticketsAssigned },
   } = useAuthContext();
 
-
+  console.log(ticketsAssigned);
 
   return (
     <div>

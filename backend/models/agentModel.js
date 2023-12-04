@@ -67,7 +67,7 @@ agentSchema.statics.login = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
-  console.log(username, password);
+  console.log("'" + username + "'");
 
   const agent = await this.findOne({ username })
     .populate({
@@ -78,9 +78,17 @@ agentSchema.statics.login = async function (username, password) {
     .populate("todos")
     .lean();
 
+  const agents = await this.find({});
+
+  console.log("agents:", agents);
+
+  console.log("agent:", agent);
+
   if (!agent) {
     throw Error("Incorrect username or password");
   }
+
+  console.log("agent was found");
 
   const match = await bcrypt.compare(password, agent.password);
 

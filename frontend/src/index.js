@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import axios from 'axios';
-import App from './App';
-import { AuthContextProvider } from './context/AuthContext';
-import { FiltersContextProvider } from './context/FiltersContext';
-import { TicketContextProvider } from './context/TicketContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import axios from "axios";
+import App from "./App";
+import { AuthContextProvider } from "./context/AuthContext";
+import { FiltersContextProvider } from "./context/FiltersContext";
+import { TicketContextProvider } from "./context/TicketContext";
 
-axios.defaults.baseURL = 'http://localhost:5001';
+axios.defaults.baseURL = "https://fresh-support-api.onrender.com";
 axios.defaults.withCredentials = true;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <AuthContextProvider>
@@ -19,6 +19,6 @@ root.render(
         <App />
       </TicketContextProvider>
     </FiltersContextProvider>
-  </AuthContextProvider>,
+  </AuthContextProvider>
   // </React.StrictMode>
 );

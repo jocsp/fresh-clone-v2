@@ -67,6 +67,8 @@ agentSchema.statics.login = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
+  console.log(username, password);
+
   const agent = await this.findOne({ username })
     .populate({
       path: "ticketsAssigned",

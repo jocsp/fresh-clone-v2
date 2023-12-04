@@ -17,6 +17,9 @@ export const useLogin = () => {
         password,
       });
 
+      console.log("this is the response when loging in", response);
+
+      console.log("this is the data when loging in", response.data);
       setIsLoading(false);
       dispatch({ type: "LOGIN", payload: response.data });
     } catch (error) {

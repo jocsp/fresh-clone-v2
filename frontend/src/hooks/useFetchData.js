@@ -18,6 +18,7 @@ const useFetchData = (url, initialValue = null) => {
         setLoaded(true);
       } catch (err) {
         if (err.response.status === 401) {
+          console.log("loging out agent because unauthorized");
           dispatch({ type: "LOGOUT" });
         }
         setError(err.response.data.error);

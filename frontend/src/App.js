@@ -12,6 +12,8 @@ import ContactsPage from "./pages/ContactsPage";
 function App() {
   const { agent } = useAuthContext();
 
+  console.log("agent", agent);
+
   return (
     <div>
       <BrowserRouter>

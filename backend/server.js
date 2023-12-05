@@ -14,7 +14,7 @@ const contactRoutes = require("./routes/contactRoutes");
 const { requireAuth } = require("./middleware/authMiddleware");
 
 const corsOptions = {
-  origin: ["https://freshsupport.joses.dev", "https://joses.dev"],
+  origin: "https://freshsupport.joses.dev",
   credentials: true,
 };
 

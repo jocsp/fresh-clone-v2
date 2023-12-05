@@ -7,7 +7,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { FiltersContextProvider } from "./context/FiltersContext";
 import { TicketContextProvider } from "./context/TicketContext";
 
-axios.defaults.baseURL = "https://fresh-support-api.onrender.com/";
+axios.defaults.baseURL = "https://freshsupportapi.joses.dev.com/";
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

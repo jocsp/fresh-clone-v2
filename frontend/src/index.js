@@ -7,8 +7,18 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { FiltersContextProvider } from "./context/FiltersContext";
 import { TicketContextProvider } from "./context/TicketContext";
 
-axios.defaults.baseURL = "http://localhost:5001";
+switch (process.env.NODE_ENV) {
+  case "development":
+    axios.defaults.baseURL = "http://localhost:5001";
+    break;
+  case "production":
+    axios.defaults.baseURL = "https://freshsupportapi.joses.dev/";
+    break;
+}
+
 axios.defaults.withCredentials = true;
+
+console.log(process.env);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

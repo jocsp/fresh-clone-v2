@@ -48,8 +48,6 @@ const loginAgent = async (req, res) => {
 
     const token = createToken(agent._id);
 
-    console.log("this is the token created", token);
-
     res.cookie("jwt", token, { maxAge: maxAge * 1000 });
 
     delete agent.password;

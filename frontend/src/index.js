@@ -18,8 +18,6 @@ switch (process.env.NODE_ENV) {
 
 axios.defaults.withCredentials = true;
 
-console.log(process.env);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>

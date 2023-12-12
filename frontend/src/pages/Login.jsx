@@ -40,6 +40,8 @@ function Login() {
         {!isLoading ? "Log in" : "Loading..."}
       </button>
 
+      <p className="text-center">Username: guest</p>
+      <p className="text-center">Password: guest</p>
       {error ? <span className="error"> {error}</span> : null}
     </form>
   );

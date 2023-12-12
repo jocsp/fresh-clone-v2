@@ -196,29 +196,18 @@ a {
 
 /*LOGIN PAGE*/
 
+.login-heading {
+  font-size: 1.6rem;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 300px;
   margin: auto;
+  margin-top: 10%;
   margin-bottom: 10px;
-}
-
-.login-button {
-  border-radius: 30px;
-  background-color: #12b319;
-  border: 1px solid #23c42a;
-  color: white;
-  cursor: pointer;
-}
-
-.login-button:focus {
-  outline: 1px solid #01a208;
-}
-
-.login-button:hover {
-  background-color: #34c52b;
 }
 
 /***** TOP BAR *****/

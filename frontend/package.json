@@ -1,5 +1,6 @@
 {
-  "name": "frontend",
+  "name": "freshsupport",
+  "homepage": "https://freshsupport.joses.dev",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

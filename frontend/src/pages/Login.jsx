@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useLogin } from '../hooks/useLogin';
+import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 function Login() {
-  const [username, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUser] = useState("");
+  const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
@@ -13,10 +13,10 @@ function Login() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <h3>Log in</h3>
+      <h3 className="login-heading">Log in</h3>
 
       <input
-        className="standard-input"
+        className="rounded-md border shadow-sm py-2 px-4"
         type="text"
         name="username"
         placeholder="Username here..."
@@ -25,7 +25,7 @@ function Login() {
       />
 
       <input
-        className="standard-input"
+        className="rounded-md border shadow-sm py-2 px-4"
         type="password"
         name="password"
         placeholder="Password here..."
@@ -34,11 +34,10 @@ function Login() {
       />
 
       <button
-        className="standard-button login-button"
+        className="bg-green-600 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-600 rounded-md border  text-white px-1 py-2"
         type="submit"
-        disabled={isLoading}
-      >
-        {!isLoading ? 'Log in' : 'Loading...'}
+        disabled={isLoading}>
+        {!isLoading ? "Log in" : "Loading..."}
       </button>
 
       {error ? <span className="error"> {error}</span> : null}

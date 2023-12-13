@@ -5,7 +5,7 @@ import ProfileImage from "./ProfileImage";
 import CustomizedMenus from "./Submenu";
 import { UilEdit } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
-import { formatDateAgo } from "../scripts/formatDate";
+import { formatDateAgo } from "../scripts/dateScripts";
 import { useAuthContext } from "../hooks/useAuthContext";
 import useRequest from "../hooks/useRequest";
 

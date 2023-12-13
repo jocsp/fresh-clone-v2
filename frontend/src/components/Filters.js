@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useFiltersContext } from '../hooks/useFiltersContext';
-import MultiTag from './MultiTag';
+import React, { useEffect, useState } from "react";
+import { useFiltersContext } from "../hooks/useFiltersContext";
+import MultiTag from "./MultiTag";
+import Loading from "./Loading";
 
 const Filters = () => {
   const { state: filters, loaded, dispatch } = useFiltersContext();
@@ -60,11 +61,11 @@ const Filters = () => {
     };
 
     dispatch({
-      type: 'UPDATE-SELECTED',
+      type: "UPDATE-SELECTED",
       payload: data,
     });
 
-    localStorage.setItem('filters', JSON.stringify(data));
+    localStorage.setItem("filters", JSON.stringify(data));
   };
 
   return (
@@ -118,7 +119,7 @@ const Filters = () => {
           />
         </div>
       ) : (
-        <div className="loading-component"></div>
+        <Loading />
       )}
     </form>
   );

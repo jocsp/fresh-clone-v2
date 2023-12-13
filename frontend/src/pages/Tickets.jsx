@@ -7,6 +7,7 @@ import Filters from "../components/Filters";
 import { useFiltersContext } from "../hooks/useFiltersContext";
 import useRequest from "../hooks/useRequest";
 import BottomBar from "../components/BottomBar";
+import Loading from "../components/Loading";
 
 function Tickets() {
   const { state: filters, loaded } = useFiltersContext();
@@ -63,7 +64,7 @@ function Tickets() {
             </tbody>
           </table>
         ) : (
-          <div className="loading" />
+          <Loading />
         )}
         {render && !tickets.length ? (
           <p className="empty-message">No tickets found</p>

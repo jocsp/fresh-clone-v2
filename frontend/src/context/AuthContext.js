@@ -1,5 +1,7 @@
 import { createContext, useReducer, useEffect, useState } from "react";
+import Loading from "../components/Loading";
 import axios from "axios";
+import { differenceInMinutes } from "date-fns";
 
 export const AuthContext = createContext();
 
@@ -52,6 +54,7 @@ const authReducer = (state, action) => {
 export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, { user: null });
   const [loaded, setLoaded] = useState(false);
+  const [isServerDown, setIsServerDown] = useState(false);
 
   useEffect(() => {
     const authorize = async () => {
@@ -62,7 +65,21 @@ export function AuthContextProvider({ children }) {
       }
 
       setLoaded(true);
+
+      const currentDate = new Date();
+
+      localStorage.setItem("lastTimeAccessed", currentDate.toISOString());
     };
+
+    const lastUsed = localStorage.getItem("lastTimeAccessed");
+
+    if (lastUsed) {
+      const minutesPassed = differenceInMinutes(new Date(), new Date(lastUsed));
+
+      if (minutesPassed >= 15) {
+        setIsServerDown(true);
+      }
+    }
 
     authorize();
   }, []);
@@ -84,12 +101,12 @@ export function AuthContextProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{ ...state, dispatch, addTicketAssigned, updateTicketsAssigned }}>
-      {/* {loaded && children} */}
+      {loaded ? children : <Loading />}
 
-      {loaded ? (
-        children
-      ) : (
-        <div className="flex flex-col justify-center items-center h-screen text-2xl text-center">
+      {/* render.com spins down the backend server after 15 minutes of inactivity, to avoid this, upgrade membership or change of platforms */}
+
+      {!loaded && isServerDown ? (
+        <div className="text-center mt-10">
           <p className="text-gray-800">
             Getting back up, the backend server spins down after 15 minutes of
             inactivity.
@@ -97,26 +114,8 @@ export function AuthContextProvider({ children }) {
           <p className="mt-6 text-gray-600">
             This may take a few seconds, even a minute :(
           </p>
-
-          <svg
-            class="mt-6 animate-spin -ml-1 mr-3 h-12 w-12 text-green-600 "
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24">
-            <circle
-              class="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              stroke-width="4"></circle>
-            <path
-              class="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
         </div>
-      )}
+      ) : null}
     </AuthContext.Provider>
   );
 }

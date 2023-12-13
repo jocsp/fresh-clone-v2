@@ -4,6 +4,7 @@ import { useFiltersContext } from "../hooks/useFiltersContext";
 import { useTicketContext } from "../hooks/useTicketContext";
 import useRequest from "../hooks/useRequest";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Loading from "./Loading";
 
 const Properties = () => {
   const { sendRequest } = useRequest();
@@ -126,13 +127,12 @@ const Properties = () => {
           <button
             type="submit"
             className="standard-button dark-bc update-button"
-            disabled={isDisabled}
-          >
+            disabled={isDisabled}>
             Update
           </button>
         </form>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </div>
   );

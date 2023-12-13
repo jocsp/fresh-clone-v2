@@ -2,7 +2,7 @@ import React from "react";
 
 import ProfileImage from "./ProfileImage";
 import { Link } from "react-router-dom";
-import { timeAgo } from "../scripts/formatDate";
+import { timeAgo } from "../scripts/dateScripts";
 import useFetchData from "../hooks/useFetchData";
 
 function ActivitiesDashboard() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../../scripts/formatDate";
+import { formatDate } from "../../scripts/dateScripts";
 import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import { Link } from "react-router-dom";

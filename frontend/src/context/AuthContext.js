@@ -79,6 +79,8 @@ export function AuthContextProvider({ children }) {
       if (minutesPassed >= 15) {
         setIsServerDown(true);
       }
+    } else {
+      setIsServerDown(true);
     }
 
     authorize();

@@ -1,8 +1,19 @@
+import os
+
 import pymongo
+from dotenv import load_dotenv
 
-client = pymongo.MongoClient("localhost", 27017)
+load_dotenv()
 
-db = client["fresh_clone"]
+ENVIRONMENT = os.getenv('ENVIRONMENT')
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if ENVIRONMENT == 'production':
+    client = pymongo.MongoClient(DATABASE_URL)
+else:
+    client = pymongo.MongoClient("localhost", 27017)
+
+db = client["freshsupportdb"]
 
 print("Connected to the database")
 
@@ -23,7 +34,7 @@ notes_collection.delete_many({})
 print("Notes deleted")
 
 agents_collection.update_many({}, {"$set": {"ticketsAssigned": [], "todos": []}})
-print("Agents' tickets assigned deleted")
+print("Agents' tickets assigned and todos deleted")
 
 contacts_collection.update_many({}, {"$set": {"tickets": []}})
 print("Contact tickets deleted")

@@ -1,11 +1,22 @@
+import os
 import random
 
 import bcrypt
 import pymongo
+from dotenv import load_dotenv
 
-client = pymongo.MongoClient("localhost", 27017)
+load_dotenv()
 
-db = client["fresh_clone"]
+ENVIRONMENT = os.getenv('ENVIRONMENT')
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if ENVIRONMENT == 'production':
+    client = pymongo.MongoClient(DATABASE_URL)
+else:
+    client = pymongo.MongoClient("localhost", 27017)
+
+
+db = client["freshsupportdb"]
 
 
 print("Connected to database")

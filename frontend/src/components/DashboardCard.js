@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 function DashboardCard({ status, tickets = [] }) {
   const [count, setCount] = useState(0);
 
-  console.log(tickets);
-
   useEffect(() => {
     const newArray = tickets.filter((ticket) => ticket.status.name === status);
     setCount(newArray.length);

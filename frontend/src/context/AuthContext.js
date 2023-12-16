@@ -20,6 +20,8 @@ const authReducer = (state, action) => {
       // variable ticket stores the updated ticket sent from the backend
       const { ticket } = action.payload;
 
+      const infoToBePushed = { _id: ticket._id, status: ticket.status };
+
       // this if else block will handle the logic for when a ticket is assigned to the current agent
       // or when it is de assigned for the current agent.
       if (ticket.agent === state.agent._id) {
@@ -28,9 +30,10 @@ const authReducer = (state, action) => {
         );
 
         if (index === -1) {
-          state.agent.ticketsAssigned.push(ticket);
+          state.agent.ticketsAssigned.push(infoToBePushed);
         } else {
-          state.agent.ticketsAssigned[index] = ticket;
+          // if the ticket is already assigned but the status changes, this updates it.
+          state.agent.ticketsAssigned[index] = infoToBePushed;
         }
       } else {
         const index = state.agent.ticketsAssigned.findIndex(

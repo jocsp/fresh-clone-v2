@@ -132,8 +132,30 @@ const newTicket = async (req, res) => {
 };
 
 const updateTicket = async (req, res) => {
-  // _id is the id of the agent that made the request
+  // _id is the id of the agent that made the request, this is used for the activity  creation
   const { data, ticket_id, _id } = req.body;
+
+  // if the agent was changed, this function deassigns the ticket from the previous agent
+  // and assigns it to the new agent.
+  const updatingTicketsAssigned = async (data, ticket_id) => {
+    if (!data.agent) {
+      return;
+    }
+
+    const previousTicket = await Ticket.findById(ticket_id).select("agent");
+
+    const previousAgent = await Agent.findOneAndUpdate(
+      { _id: previousTicket.agent },
+      { $pull: { ticketsAssigned: ticket_id } }
+    );
+
+    const currentAgent = await Agent.findOneAndUpdate(
+      { _id: data.agent._id },
+      { $push: { ticketsAssigned: ticket_id } }
+    );
+  };
+
+  updatingTicketsAssigned(data, ticket_id);
 
   // finds ticket with the id provided (ticket_id), changes some fields and
   // returns the new updated document
@@ -147,7 +169,9 @@ const updateTicket = async (req, res) => {
     .populate("status")
     .lean();
 
-  const agent = await Agent.findById(_id).select("name color").lean();
+  const agent = await Agent.findById(_id)
+    .select("name color ticketsAssigned")
+    .lean();
 
   await Activity.createPropActivities(agent, updatedTicket, data);
 

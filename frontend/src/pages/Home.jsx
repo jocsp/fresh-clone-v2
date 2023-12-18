@@ -10,7 +10,7 @@ import wholeTcktImg from "../assets/whole ticket page.png";
 const Home = () => {
   return (
     <div>
-      <nav className="flex justify-between px-40 h-20 w-screen bg-slate-50">
+      <nav className="flex justify-between px-40 h-20 w-full bg-slate-50">
         <div className="flex gap-x-5">
           <img src={freshIcon} className="h-10 w-10" alt="freshclone logo" />
           <span className="text-xl logo-home">FreshClone</span>

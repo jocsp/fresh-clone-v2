@@ -18,11 +18,12 @@
 :root {
   --blueish: #3a4fc8;
   --single-ticket-container-width: 64%;
-  --properties-container-width: 250px;
+  --properties-container-width: 240px;
   --top-bar-height: 50px;
-  --vertical-nav-width: 50px;
-  --contact-details-container-width: 250px;
+  --dashboard-card-height: 100px;
   --bottom-bar-height: 40px;
+  --vertical-nav-width: 50px;
+  --contact-details-container-width: 240px;
 
   --light-color-border: rgba(155, 155, 155, 0.3);
 }
@@ -675,7 +676,7 @@ table {
   top: calc(var(--top-bar-height) + 10px);
   left: calc(
     var(--single-ticket-container-width) + var(--properties-container-width) +
-      var(--vertical-nav-width) + 50px
+      var(--vertical-nav-width) + 35px
   );
   width: var(--contact-details-container-width);
   border-radius: 5px;
@@ -889,7 +890,7 @@ table {
 }
 
 .dashboard-card {
-  height: 100px;
+  height: var(--dashboard-card-height);
   background-color: #fff;
   border-radius: 5px;
   padding: 20px 10px;
@@ -995,7 +996,10 @@ table {
 
 .activities-dashboard-container {
   background-color: #fff;
-  height: calc(100vh -100px - 20px);
+  height: calc(
+    100vh - var(--top-bar-height) - var(--bottom-bar-height) -
+      var(--dashboard-card-height) - 50px
+  );
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(222, 222, 222, 0.7);
   padding: 15px;

@@ -39,7 +39,7 @@ function TopBar({ title }) {
       <span className="bold">{title}</span>
       <div className="flex-center">
         <Link to="/tickets/new">
-          <button className="new-button">New ticket</button>
+          <button className="new-button">New Ticket</button>
         </Link>
         <input
           type="text"

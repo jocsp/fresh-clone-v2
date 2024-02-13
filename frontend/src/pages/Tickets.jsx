@@ -43,7 +43,6 @@ function Tickets() {
     <div className="ticket-page">
       <NavBar />
       <TopBar title="Tickets" />
-      <BottomBar />
 
       <div className="tickets-container">
         {render ? (

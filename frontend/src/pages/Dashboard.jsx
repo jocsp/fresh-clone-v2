@@ -15,7 +15,7 @@ function Dashboard() {
     <div>
       <NavBar />
       <TopBar title="Dashboard" />
-      <div className="bottom-bar" />
+      {/* <div className="bottom-bar" /> */}
       <div className="dashboard-card-container">
         <DashboardCard status="Open" tickets={ticketsAssigned} />
         <DashboardCard status="In process" tickets={ticketsAssigned} />

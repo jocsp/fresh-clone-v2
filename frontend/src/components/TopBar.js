@@ -41,11 +41,11 @@ function TopBar({ title }) {
         <Link to="/tickets/new">
           <button className="new-button">New Ticket</button>
         </Link>
-        <input
+        {/* <input
           type="text"
           placeholder="Search"
           className="standard-input search-input"
-        />
+        /> */}
         <div ref={submenuRef}>
           <ProfileImage
             profile={currentAgent}

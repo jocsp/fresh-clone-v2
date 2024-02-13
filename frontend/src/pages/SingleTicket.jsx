@@ -66,8 +66,8 @@ function SingleTicket() {
               </div>
             </div>
 
-            <div className="m-top-50 description">
-              <p style={{ whiteSpace: "pre" }}>{ticket?.description}</p>
+            <div className="m-top-50 description flex flex-wrap">
+              <p style={{ whiteSpace: "pre-wrap" }}>{ticket?.description}</p>
             </div>
 
             {ticket?.notes.map((note) => (

@@ -4,7 +4,6 @@ import TopBar from "../components/TopBar";
 import { useParams } from "react-router-dom";
 import useFetchData from "../hooks/useFetchData";
 import ProfileImage from "../components/ProfileImage";
-import BottomBar from "../components/BottomBar";
 import parsePhoneNumber from "libphonenumber-js";
 import Timeline from "../components/Timeline/Timeline";
 
@@ -17,7 +16,7 @@ const ContactPage = () => {
     <div className="contact-page">
       <NavBar />
       <TopBar title="Contact" />
-      <BottomBar />
+
       {contact ? (
         <div className="contact-container">
           <div>

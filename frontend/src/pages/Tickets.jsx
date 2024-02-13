@@ -6,7 +6,6 @@ import TicketCard from "../components/TicketCard";
 import Filters from "../components/Filters";
 import { useFiltersContext } from "../hooks/useFiltersContext";
 import useRequest from "../hooks/useRequest";
-import BottomBar from "../components/BottomBar";
 import Loading from "../components/Loading";
 
 function Tickets() {

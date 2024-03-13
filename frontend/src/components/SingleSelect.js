@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import CheckIcon from '@mui/icons-material/Check';
+import { useEffect, useRef, useState } from "react";
+import CheckIcon from "@mui/icons-material/Check";
 
 function SingleSelect({ label, options, state }) {
   const [optionSelected, setOptionSelected] = state;
@@ -28,13 +28,13 @@ function SingleSelect({ label, options, state }) {
     setQueriedOptions([...options]);
 
     e.target.value =
-      optionSelected.name === undefined ? '' : optionSelected.name;
+      optionSelected.name === undefined ? "" : optionSelected.name;
   }
 
   function makeQuery(e) {
-    setQueriedOptions((prevArray) => {
+    setQueriedOptions(() => {
       const newArray = options.filter((element) => {
-        const rx = new RegExp(e.target.value, 'i');
+        const rx = new RegExp(e.target.value, "i");
         const variable = element.name.search(rx) >= 0;
 
         return variable;
@@ -63,15 +63,14 @@ function SingleSelect({ label, options, state }) {
 
             return (
               <div
-                className={selected ? 'option selected' : 'option'}
+                className={selected ? "option selected" : "option"}
                 id={option._id}
                 onMouseDown={selectOption}
-                key={option._id}
-              >
+                key={option._id}>
                 {option.name}
                 <CheckIcon
                   className="check-icon"
-                  style={selected ? { display: 'block' } : { display: 'none' }}
+                  style={selected ? { display: "block" } : { display: "none" }}
                 />
               </div>
             );

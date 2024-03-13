@@ -1,5 +1,3 @@
-# Fresh Clone
-
 ## Demo
 
 To explore a demo of Fresh Clone, visit [https://freshsupport.joses.dev/](https://freshsupport.joses.dev/)

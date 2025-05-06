@@ -24,12 +24,12 @@ Before installing Fresh Clone locally, ensure you have the following installed:
 
 ```
 cd frontend
-npm install
+npm install --save-exact
 ```
 
 ```
 cd ../backend
-npm install
+npm install --save-exact
 ```
 
 ```

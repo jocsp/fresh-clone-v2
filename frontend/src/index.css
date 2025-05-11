@@ -1196,10 +1196,73 @@ a.table-row:hover {
 
 /***** HOME *****/
 
+.home-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 2.5vw, 4rem);
+}
+
 .logo-home {
   font-family: "Mooli", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .items-home {
   font-family: "Roboto", sans-serif;
+}
+
+.login-button {
+  padding: clamp(0.4rem, 2.5vw, 0.75rem) clamp(0.75rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.hero-1ln {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.hero-2ln {
+  font-size: clamp(2em, 3.3vw, 3rem);
+}
+
+.home-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(3rem, 4.2vw, 5rem);
+}
+
+.home-description h3{
+  font-size: clamp(2rem, 2.5vw, 3rem);
+}
+
+.home-description p {
+  font-size: clamp(1rem, 1.25vw, 1.5rem);
+  width: minmax(90%, 66ch);
+}
+
+.img-footer {
+  width: 50%;
+}
+
+@media (max-width: 1200px) {
+  .home-description {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .home-description div {
+    margin-right: 0;
+  }
+
+  .home-img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .img-footer {
+    width: 90%;
+  }
 }

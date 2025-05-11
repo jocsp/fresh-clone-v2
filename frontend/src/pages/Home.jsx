@@ -10,40 +10,35 @@ import wholeTcktImg from "../assets/whole ticket page.png";
 const Home = () => {
   return (
     <div>
-      <nav className="flex justify-between px-40 h-20 w-full bg-slate-50">
+      <nav className="home-nav h-20 w-full bg-slate-50">
         <div className="flex gap-x-5">
           <img src={freshIcon} className="h-10 w-10" alt="freshclone logo" />
-          <span className="text-xl logo-home">FreshClone</span>
+          <span className="logo-home">FreshClone</span>
         </div>
 
-        <ul className="flex gap-x-5 text-xl items-home">
-          <li className=" hover:underline underline-offset-2 hover:cursor-pointer">
-            Features
-          </li>
-          <li className=" hover:underline underline-offset-2 hover:cursor-pointer">
-            Pricing
-          </li>
+        <ul className="flex gap-x-5 items-home">
           <li>
             <Link
               to="/login"
-              className="text-white px-6 py-3 hover:cursor-pointer bg-cyan-950 hover:bg-cyan-900 rounded-md">
+              className="login-button text-white hover:cursor-pointer bg-cyan-950 hover:bg-cyan-900 rounded-md">
               Log in
             </Link>
           </li>
         </ul>
       </nav>
       <section className="flex flex-col h-80 justify-center text-white bg-gradient-to-br from-cyan-950 via-cyan-700 to-cyan-500 ">
-        <h2 className="text-4xl mt-10">
+        <h2 className="hero-1ln mt-10">
           Welcome to{" "}
           <span className="bg-gradient-to-tr from-green-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent">
             Fresh Clone
           </span>
         </h2>
-        <h2 className="text-5xl mt-1"> Your All-in-One Support Solution</h2>
+        <h2 className="hero-2ln mt-1"> Your All-in-One Support Solution</h2>
       </section>
-      <section className="px-20 py-20 flex justify-center ">
+
+      <section className="home-description">
         <div className="mr-20">
-          <h3 className="text-5xl bold mb-5">Seamless Ticket Creation</h3>
+          <h3 className="bold mb-5">Seamless Ticket Creation</h3>
           <p className="text-2xl">
             Our user-friendly interface allows you to create tickets in seconds.
             Just input the essential details, and our system takes care of the
@@ -51,11 +46,11 @@ const Home = () => {
           </p>
         </div>
 
-        <img src={ticketImg} alt="ticket" className="rounded-lg shadow h-80" />
+        <img src={ticketImg} alt="ticket" className="home-img rounded-lg shadow w-full max-w-[800px] h-auto object-contain" />
       </section>
 
-      <section className="px-20 py-10 flex justify-center text-white bg-gradient-to-tr from-gray-700 via-slate-900 to-gray-700">
-        <div className="mr-20 w-2/6">
+      <section className="home-description  text-white bg-gradient-to-tr from-gray-700 via-slate-900 to-gray-700">
+        <div className="mr-20">
           <h3 className="text-5xl bold mb-5">Collaborative Notes</h3>
           <p className="text-2xl">
             Add notes to tickets with ease. Keep track of important details,
@@ -68,17 +63,17 @@ const Home = () => {
           <img
             src={addingNoteImg}
             alt="ticket"
-            className="rounded-lg shadow h-60 mb-5"
+            className="home-img rounded-lg shadow h-60 mb-5"
           />
           <img
             src={twoNotesImg}
             alt="ticket"
-            className="rounded-lg shadow h-60"
+            className="home-img rounded-lg shadow w-full max-w-[800px] h-auto object-contain"
           />
         </div>
       </section>
 
-      <section className="px-20 py-10 flex justify-center">
+      <section className="home-description">
         <div className="mr-20">
           <h3 className="text-5xl bold mb-5">
             Efficient Dashboard at Your Fingertips
@@ -94,16 +89,16 @@ const Home = () => {
         </div>
 
         <div className="p-2 h-auto bg-black rounded-lg">
-          <img src={dashboardImg} alt="ticket" className="rounded-lg block" />
+          <img src={dashboardImg} alt="ticket" className="home-img rounded-lg shadow w-full max-w-[800px] h-auto object-contain" />
         </div>
       </section>
 
-      <section className="flex flex-col justify-center  p-20 text-white bg-gradient-to-b from-transparent via-slate-900 to-gray-700 from-25% via-25% to-60%">
+      <section className="home-description flex flex-col justify-center p-20 text-white bg-gradient-to-b from-transparent via-slate-900 to-gray-700 from-25% via-25% to-60%">
         <div className="p-2 h-auto bg-black rounded-lg w-1/2 mb-16">
           <img
             src={wholeTcktImg}
             alt="Whole ticket page"
-            className="rounded-lg"
+            className="home-img rounded-lg shadow w-full h-auto object-contain"
           />
         </div>
 

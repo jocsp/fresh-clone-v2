@@ -41,73 +41,75 @@ function SingleTicket() {
       <NavBar />
       <TopBar title={`Tickets - ${ticket_number}`} />
 
-      {ticket ? (
-        <>
-          <div className="single-ticket-container">
-            <div className="m-top-20">
-              <p className="subject bold"> {ticket?.subject} </p>
-              <p>
-                Created by{" "}
-                <span className="bold">{ticket?.createdBy.name}</span>
-              </p>
-            </div>
-
-            <div className="m-top-20 flex">
-              <ProfileImage profile={ticket.contact} />
-              <div>
+      <div className="ticket-content">
+        {ticket ? (
+          <>
+            <div className="single-ticket-container">
+              <div className="m-top-20">
+                <p className="subject bold"> {ticket?.subject} </p>
                 <p>
-                  <Link className="bold blueish-font">
-                    {ticket?.contact.name}
-                  </Link>
-                </p>
-                <p className="small-lighter">
-                  {ticket?.date ? formatDateAgo(ticket?.date) : null}
+                  Created by{" "}
+                  <span className="bold">{ticket?.createdBy.name}</span>
                 </p>
               </div>
-            </div>
 
-            <div className="m-top-50 description flex flex-wrap">
-              <p style={{ whiteSpace: "pre-wrap" }}>{ticket?.description}</p>
-            </div>
-
-            {ticket?.notes.map((note) => (
-              <Note
-                key={note._id}
-                note_id={note._id}
-                by={note.by}
-                initialContent={note.content}
-                noteDate={note.noteDate}
-                edited={note.edited}
-                editedBy={note.editedBy}
-                timeEdited={note.timeEdited}
-                reFetch={reFetch}
-              />
-            ))}
-
-            {displayAddNote ? (
-              <AddingNote
-                setDisplayAddNote={setDisplayAddNote}
-                ticket_number={ticket_number}
-              />
-            ) : (
-              <div className="add-note-div m-top-20">
-                <ProfileImage profile={currentAgent} />
-                <button
-                  className="add-note"
-                  onClick={() => setDisplayAddNote(true)}>
-                  Add note
-                </button>
+              <div className="m-top-20 flex">
+                <ProfileImage profile={ticket.contact} />
+                <div>
+                  <p>
+                    <Link className="bold blueish-font">
+                      {ticket?.contact.name}
+                    </Link>
+                  </p>
+                  <p className="small-lighter">
+                    {ticket?.date ? formatDateAgo(ticket?.date) : null}
+                  </p>
+                </div>
               </div>
-            )}
-          </div>
 
-          <Properties />
-        </>
-      ) : (
-        <Loading />
-      )}
+              <div className="m-top-50 description flex flex-wrap">
+                <p style={{ whiteSpace: "pre-wrap" }}>{ticket?.description}</p>
+              </div>
 
-      <ContactDetails />
+              {ticket?.notes.map((note) => (
+                <Note
+                  key={note._id}
+                  note_id={note._id}
+                  by={note.by}
+                  initialContent={note.content}
+                  noteDate={note.noteDate}
+                  edited={note.edited}
+                  editedBy={note.editedBy}
+                  timeEdited={note.timeEdited}
+                  reFetch={reFetch}
+                />
+              ))}
+
+              {displayAddNote ? (
+                <AddingNote
+                  setDisplayAddNote={setDisplayAddNote}
+                  ticket_number={ticket_number}
+                />
+              ) : (
+                <div className="add-note-div m-top-20">
+                  <ProfileImage profile={currentAgent} />
+                  <button
+                    className="add-note"
+                    onClick={() => setDisplayAddNote(true)}>
+                    Add note
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <Properties />
+          </>
+        ) : (
+          <Loading />
+        )}
+
+        <ContactDetails />
+      </div>
 
       {error ? <div className="error"> {error} </div> : null}
     </div>

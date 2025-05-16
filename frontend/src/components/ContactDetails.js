@@ -25,7 +25,7 @@ const ContactDetails = () => {
               <p style={{ color: "#4F69C1" }}>{ticket?.contact.name}</p>
             </div>
             <p className="email-heading">Email</p>
-            <p> {ticket?.contact.email} </p>
+            <p className="contact-email"> {ticket?.contact.email} </p>
             <Link
               to={`/contact/${ticket?.contact._id}`}
               className="view-more-link">

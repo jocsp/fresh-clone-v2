@@ -17,14 +17,10 @@
 }
 :root {
   --blueish: #3a4fc8;
-  --single-ticket-container-width: 64%;
-  --properties-container-width: 240px;
   --top-bar-height: 50px;
   --dashboard-card-height: 100px;
   --bottom-bar-height: 40px;
   --vertical-nav-width: 50px;
-  --contact-details-container-width: 240px;
-
   --light-color-border: rgba(155, 155, 155, 0.3);
 }
 
@@ -556,16 +552,20 @@ table {
   background-color: #eceff3;
 }
 
+.ticket-content {
+  position: absolute;
+  left: calc(var(--vertical-nav-width) + 10px);
+  display: flex;
+  gap: 10px;
+  padding-right: 10px;
+}
+
 .single-ticket-container {
-  position: relative;
   box-shadow:
     -2px 0 3px #ddd,
     2px 0 3px #ddd;
-  left: calc(20px + var(--vertical-nav-width));
-  /* width: calc(100vw - 560px); */
-  width: var(--single-ticket-container-width);
   height: calc(100vh - var(--top-bar-height));
-  min-width: 600px;
+  min-width: 500px;
   background-color: #ffffff;
   padding: 20px 30px;
   overflow: auto;
@@ -614,16 +614,14 @@ table {
 }
 
 .properties-container {
-  position: absolute;
   background: #fff;
   box-shadow:
     -2px 0 3px #ddd,
     2px 0 3px #ddd;
-  top: var(--top-bar-height);
-  left: calc(var(--single-ticket-container-width) + 75px);
-  height: calc(100vh - 50px);
-  width: var(--properties-container-width);
   padding: 5px 10px;
+  min-width: 180px;
+  width: 20vw;
+  max-width: 260px;
   overflow-y: auto;
 }
 
@@ -643,12 +641,6 @@ table {
   border-top: 1px solid rgb(222, 222, 222);
   font-size: 1.3rem;
   padding: 5px;
-}
-
-@media screen and (max-width: 937.5px) {
-  .properties-container {
-    left: 675px;
-  }
 }
 
 .update-button {
@@ -672,15 +664,13 @@ table {
 /** CONTACT DETAILS in Single ticket page **/
 
 .contact-details-container {
-  position: absolute;
+  position: relative;
   background: #fff;
   border: 1px solid var(--light-color-border);
-  top: calc(var(--top-bar-height) + 10px);
-  left: calc(
-    var(--single-ticket-container-width) + var(--properties-container-width) +
-      var(--vertical-nav-width) + 35px
-  );
-  width: var(--contact-details-container-width);
+  top: 10px;
+  min-width: 180px;
+  width: 20vw;
+  max-width: 260px;
   border-radius: 5px;
   height: calc(100vh - var(--top-bar-height) - 20px);
   overflow-y: auto;
@@ -690,7 +680,7 @@ table {
   background-color: #f5f7f9;
   border-radius: 5px 5px 0px 0px;
   gap: 5px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-bottom: 1px solid var(--light-color-border);
 }
 
@@ -701,6 +691,10 @@ table {
 .email-heading {
   color: #adb0b6;
   margin: 15px 0px 5px 0;
+}
+
+.email-heading, .contact-email, .view-more-link {
+  font-size: clamp(0.875rem, 1vw, 1rem);
 }
 
 .view-more-link {

@@ -555,6 +555,8 @@ table {
 .ticket-content {
   position: absolute;
   left: calc(var(--vertical-nav-width) + 10px);
+  height: calc(100vh - var(--top-bar-height));
+  width: calc(100vw - var(--vertical-nav-width) - 10px);
   display: flex;
   gap: 10px;
   padding-right: 10px;
@@ -564,8 +566,8 @@ table {
   box-shadow:
     -2px 0 3px #ddd,
     2px 0 3px #ddd;
-  height: calc(100vh - var(--top-bar-height));
   min-width: 500px;
+  flex-grow: 1;
   background-color: #ffffff;
   padding: 20px 30px;
   overflow: auto;
@@ -619,9 +621,7 @@ table {
     -2px 0 3px #ddd,
     2px 0 3px #ddd;
   padding: 5px 10px;
-  min-width: 180px;
-  width: 20vw;
-  max-width: 260px;
+  flex: 0 0 clamp(180px, 20vw, 260px);
   overflow-y: auto;
 }
 
@@ -668,9 +668,7 @@ table {
   background: #fff;
   border: 1px solid var(--light-color-border);
   top: 10px;
-  min-width: 180px;
-  width: 20vw;
-  max-width: 260px;
+  flex: 0 0 clamp(180px, 20vw, 260px);
   border-radius: 5px;
   height: calc(100vh - var(--top-bar-height) - 20px);
   overflow-y: auto;

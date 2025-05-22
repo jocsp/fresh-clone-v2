@@ -26,7 +26,7 @@ const Home = () => {
           </li>
         </ul>
       </nav>
-      <section className="flex flex-col h-80 justify-center text-white bg-gradient-to-br from-cyan-950 via-cyan-700 to-cyan-500 ">
+      <section className="flex flex-col h-80 justify-center text-center text-white bg-gradient-to-br from-cyan-950 via-cyan-700 to-cyan-500 ">
         <h2 className="hero-1ln mt-10">
           Welcome to{" "}
           <span className="bg-gradient-to-tr from-green-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent">

@@ -1258,3 +1258,37 @@ a.table-row:hover {
     width: 90%;
   }
 }
+
+/* MOBILES PAGE */
+
+.mobiles-page-container {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+
+.mobiles-page-container > img {
+  margin: 3rem 0;
+  width: 60%;
+}
+
+.continue-button {
+  background-color: #008000;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 680px) {
+  .mobiles-page-container {
+    gap: 0.5rem;
+  }
+
+  .mobiles-page-container > img {
+    width: 90%;
+    margin: 1rem 0;
+  }
+}
